@@ -52,6 +52,9 @@ export default {
         password: '',
         confirmPassword: '',
         role: 'user',
+        /**---------------Adding password data rules--------------*/ 
+        //rules: 8 characters, uppercase, lowercase, number, special characters
+        required_characters: false
       },
       registrationErrors: false,
       registrationErrorMsg: 'There were problems registering this user.',
@@ -59,7 +62,14 @@ export default {
   },
   methods: {
     register() {
-      if (this.user.password != this.user.confirmPassword) {
+      /**------------Setting Logic for Password Rules------------*/
+      //Declare variable for the established password data above
+      this.required_characters = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(this.user.password);
+
+      if (this.required_characters === false) {
+        this.registrationErrors = true;
+        this.registrationErrorMsg = "Password must be a minimum of 8 characters ~ Must have at least 1 uppercase ~ Must have at least one number ~ Must have at least 1 special character. "
+      } else if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
         this.registrationErrorMsg = 'Password & Confirm Password do not match.';
       } else {
