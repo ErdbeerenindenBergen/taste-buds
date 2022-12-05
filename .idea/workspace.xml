@@ -4,12 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="34f60253-0dd9-46b1-b550-c52533540930" name="Changes" comment="" />
+=======
+    <list default="true" id="cd52d905-d293-4331-a371-a83f2d41fe8e" name="Changes" comment="" />
+>>>>>>> 0272ddbffa1be115f934a3f6a16ecaef1a7835d7
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -17,6 +22,8 @@
       </list>
     </option>
   </component>
+=======
+>>>>>>> 0272ddbffa1be115f934a3f6a16ecaef1a7835d7
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -27,7 +34,11 @@
       </MavenGeneralSettings>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="ProjectId" id="2IVSn6kljuqTxU6SZB4TdCI3330" />
+=======
+  <component name="ProjectId" id="2IVVv9xJqiPanYA9mZoOaVgGfuK" />
+>>>>>>> 0272ddbffa1be115f934a3f6a16ecaef1a7835d7
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -35,6 +46,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+<<<<<<< HEAD
   </component>
   <component name="RunManager">
     <configuration name="JdbcUserDaoTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -48,24 +60,50 @@
       <option name="PACKAGE_NAME" value="com.techelevator.dao" />
       <option name="MAIN_CLASS_NAME" value="com.techelevator.dao.JdbcUserDaoTests" />
       <option name="TEST_OBJECT" value="class" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Mod2Capstone/mod-2-capstone-team-0/capstone/database/tenmo.sql" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.techelevator.Application" />
+      <module name="final-capstone-starter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.techelevator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+>>>>>>> 0272ddbffa1be115f934a3f6a16ecaef1a7835d7
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+<<<<<<< HEAD
         <item itemvalue="JUnit.JdbcUserDaoTests" />
+=======
+        <item itemvalue="Application.Application" />
+>>>>>>> 0272ddbffa1be115f934a3f6a16ecaef1a7835d7
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< HEAD
       <changelist id="34f60253-0dd9-46b1-b550-c52533540930" name="Changes" comment="" />
       <created>1670265421968</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670265421968</updated>
+=======
+      <changelist id="cd52d905-d293-4331-a371-a83f2d41fe8e" name="Changes" comment="" />
+      <created>1670266966167</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1670266966167</updated>
+>>>>>>> 0272ddbffa1be115f934a3f6a16ecaef1a7835d7
     </task>
     <servers />
   </component>
