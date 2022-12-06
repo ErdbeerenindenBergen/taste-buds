@@ -59,6 +59,5 @@ public class AuthenticationController {
             userDao.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
         }
     }
-
 }
 
