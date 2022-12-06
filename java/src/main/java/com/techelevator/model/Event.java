@@ -32,7 +32,7 @@ public class Event {
     public Event(){}
 
     public int getEventId() {
-        return eventId;
+        return this.eventId;
     }
 
     public void setEventId(int eventId) {
@@ -40,7 +40,7 @@ public class Event {
     }
 
     public String getEventName() {
-        return eventName;
+        return this.eventName;
     }
 
     public void setEventName(String eventName) {
@@ -48,7 +48,7 @@ public class Event {
     }
 
     public String getEventCity() {
-        return eventCity;
+        return this.eventCity;
     }
 
     public void setEventCity(String eventCity) {
@@ -56,7 +56,7 @@ public class Event {
     }
 
     public String getEventState() {
-        return eventState;
+        return this.eventState;
     }
 
     public void setEventState(String eventState) {
@@ -64,7 +64,7 @@ public class Event {
     }
 
     public int getZipcode() {
-        return zipcode;
+        return this.zipcode;
     }
 
     public void setZipcode(int zipcode) {
@@ -72,7 +72,7 @@ public class Event {
     }
 
     public String getUserLatitude() {
-        return userLatitude;
+        return this.userLatitude;
     }
 
     public void setUserLatitude(String userLatitude) {
@@ -80,7 +80,7 @@ public class Event {
     }
 
     public String getUserLongitude() {
-        return userLongitude;
+        return this.userLongitude;
     }
 
     public void setUserLongitude(String userLongitude) {
@@ -88,7 +88,7 @@ public class Event {
     }
 
     public LocalDate getEventDate() {
-        return eventDate;
+        return this.eventDate;
     }
 
     public void setEventDate(LocalDate eventDate) {
@@ -96,7 +96,7 @@ public class Event {
     }
 
     public LocalTime getEventTime() {
-        return eventTime;
+        return this.eventTime;
     }
 
     public void setEventTime(LocalTime eventTime) {
@@ -104,7 +104,7 @@ public class Event {
     }
 
     public int getEventOrganizerId() {
-        return eventOrganizerId;
+        return this.eventOrganizerId;
     }
 
     public void setEventOrganizerId(int eventOrganizerId) {
@@ -112,7 +112,7 @@ public class Event {
     }
 
     public LocalDate getDeadlineDate() {
-        return deadlineDate;
+        return this.deadlineDate;
     }
 
     public void setDeadlineDate(LocalDate deadlineDate) {
@@ -120,7 +120,7 @@ public class Event {
     }
 
     public LocalTime getDeadlineTime() {
-        return deadlineTime;
+        return this.deadlineTime;
     }
 
     public void setDeadlineTime(LocalTime deadlineTime) {
