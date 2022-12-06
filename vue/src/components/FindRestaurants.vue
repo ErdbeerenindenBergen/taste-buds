@@ -20,9 +20,52 @@ export default {
     data() {
         return{
             cityOrZip:"",
-            queryResults: []
-            /**below is where the yelp api json goes? */
+            queryResults: [],
+            /*********the info below should match the data yelp sends back OR our database ?**************** */
+            
+            //-------------i just copy and pasted yelp info from postman -------------------------
+            businesses: [
+                            {
+            id: "",
+            alias: "",
+            name: "",
+            image_url: "",
+            is_closed: false,
+            url: "",
+            review_count: 0,
+            categories: [
+                {
+                    alias: "",
+                    title: ""
+                }
+            ],
+            rating: 0,
+            coordinates: {
+                latitude: 0,
+                longitude: 0
+            },
+            transactions: [],
+            price: "",
+            location: {
+                address1: "",
+                address2: "",
+                address3: "",
+                city: "",
+                zip_code: "",
+                country: "",
+                state: "",
+                display_address: [
+                    "",
+                    ""
+                    ]
+            },
+            phone: "",
+            display_phone: "",
+            distance: 0
+         }]
+        
         }
+     
     },
     methods: {
         find() {
@@ -46,3 +89,4 @@ export default {
 
 <style scoped>
 </style>
+
