@@ -41,3 +41,4 @@ public class EventRestaurant {
         this.voteCount = voteCount;
     }
 }
+//comment
