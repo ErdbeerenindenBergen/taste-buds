@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
+import Restaurant from '../views/Restaurants.vue'
 
 Vue.use(Router)
 
@@ -52,7 +53,16 @@ const router = new Router({
       meta: {
         requiresAuth: false
       }
+    },
+    {
+      path: "/find-a-restaurant",
+      name: "find-a-restaurant",
+      component: Restaurant,
+      meta: {
+        requiresAuth: false
+      }
     }
+   
   ]
 })
 
