@@ -7,14 +7,19 @@
       <div
         class="alert alert-danger"
         role="alert"
-        v-if="invalidCredentials"
-      >Invalid username and password!</div>
+        v-if="invalidCredentials">
+        Invalid username and password!
+        </div>
+
       <div
         class="alert alert-success"
         role="alert"
-        v-if="this.$route.query.registration"
-      >Thank you for registering, please sign in.</div>
+        v-if="this.$route.query.registration">
+        Thank you for registering, please sign in.
+      </div>
+
       <label for="username" class="sr-only">Email</label>
+
       <input
         type="text"
         id="username"
@@ -22,20 +27,24 @@
         placeholder="Username"
         v-model="user.username"
         required
-        autofocus
-      />
+        autofocus/>
+
       <label for="password" class="sr-only">Password</label>
+
       <input
         type="password"
         id="password"
         class="form-control"
         placeholder="Password"
         v-model="user.password"
-        required
-      />
+        required/>
+
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
+
       <button type="submit">Sign in</button>
+
     </form>
+    
   </body>
   
 </template>
