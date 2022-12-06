@@ -82,14 +82,14 @@ export default {
 
  <style scoped>
 body{
-  background-color: rgb(255, 255, 235);
+  background-color: rgb(255, 255, 221, 0.867);
   display: flex;
   flex-direction: row;
   flex-grow: 1;
   justify-content: space-between;
   gap: 25px;
   
-  /* original color: rgba(255, 255, 221, 0.867); */
+
 }
 
 
