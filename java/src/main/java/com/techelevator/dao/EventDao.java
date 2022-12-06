@@ -10,6 +10,8 @@ public interface EventDao {
 
     List<Event> findAll();
 
+    int findIdByEventName(String eventName);
+
     Event getEventById(int eventId);
 
     Event getEventByName(String eventName);
