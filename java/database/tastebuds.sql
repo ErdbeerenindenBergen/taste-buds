@@ -14,8 +14,7 @@ CREATE TABLE tb_user(
 	password_hash VARCHAR(200) NOT NULL,
 	user_role VARCHAR(20) NOT NULL,
 	CONSTRAINT PK_tb_user PRIMARY KEY (user_id),
-	CONSTRAINT UQ_username UNIQUE (username),
-	CONSTRAINT UQ_email_address UNIQUE (email_Address)
+	CONSTRAINT UQ_username UNIQUE (username)
 );
 
 CREATE SEQUENCE seq_event_id
