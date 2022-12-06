@@ -108,7 +108,7 @@ h1,h2 {
 
 p{
   text-align: center;
-  font-family:'Playfair Display';
+  font-family:'Playfair Display', serif;
   font-weight: normal;
   font-size:18px;
   
