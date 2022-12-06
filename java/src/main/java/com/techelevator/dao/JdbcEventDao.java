@@ -104,8 +104,8 @@ public class JdbcEventDao implements EventDao {
         event.setEventCity(rs.getString("event_city"));
         event.setEventState(rs.getString("event_state"));
         event.setZipcode(rs.getInt("event_zipcode"));
-        event.setEventDate(rs.getDate("event_date").toLocalDate()); //Required type Date instead of LocalDate?
-        event.setEventTime(rs.getTime("event_time").toLocalTime()); //Required type Time instead of LocalTime?
+        event.setEventDate(rs.getDate("event_date").toLocalDate());
+        event.setEventTime(rs.getTime("event_time").toLocalTime());
         return event;
     }
 }
