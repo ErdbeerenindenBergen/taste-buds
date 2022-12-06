@@ -44,6 +44,7 @@ public class JdbcEventDao implements EventDao {
         } catch (EmptyResultDataAccessException e) {
             throw new UsernameNotFoundException("Event " + eventName + " was not found.");
         }
+        return eventId;
     }
 
     @Override
