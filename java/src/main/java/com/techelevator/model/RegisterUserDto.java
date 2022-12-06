@@ -13,8 +13,8 @@ public class RegisterUserDto {
     private String username;
     @NotEmpty
     private String password;
-    //@NotEmpty
-   // private String confirmPassword;
+    @NotEmpty
+    private String confirmPassword;
     @NotEmpty(message = "Please select a role for this user.")
     private String role;
 
@@ -34,13 +34,13 @@ public class RegisterUserDto {
         this.password = password;
     }
 
-   // public String getConfirmPassword() {
-     //   return confirmPassword;
-  //  }
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
 
-    //public void setConfirmPassword(String confirmPassword) {
-      //  this.confirmPassword = confirmPassword;
-   // }
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 
     public String getRole() {
         return role;

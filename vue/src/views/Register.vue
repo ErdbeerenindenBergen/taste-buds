@@ -25,6 +25,7 @@
         v-model="user.password"
         required/>
 
+      <label for="password">Confirm Password</label>
       <input type="password"
         id="confirmPassword"
         class="form-control"
