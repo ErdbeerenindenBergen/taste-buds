@@ -2,40 +2,42 @@
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
+
       <label for="username" class="sr-only">Username</label>
-      <input
-        type="text"
+
+      <input type="text"
         id="username"
         class="form-control"
-        placeholder="Username"
+        placeholder="Email"
         v-model="user.username"
         required
-        autofocus
-      />
+        autofocus/>
+
       <label for="password" class="sr-only">Password</label>
-      <input
-        type="password"
+      <input type="password"
         id="password"
         class="form-control"
         placeholder="Password"
         v-model="user.password"
-        required
-      />
-      <input
-        type="password"
+        required/>
+
+      <input type="password"
         id="confirmPassword"
         class="form-control"
         placeholder="Confirm Password"
         v-model="user.confirmPassword"
-        required
-      />
+        required/>
+
       <router-link :to="{ name: 'login' }">Have an account?</router-link>
+
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
       </button>
+
     </form>
   </div>
 </template>
@@ -52,6 +54,9 @@ export default {
         password: '',
         confirmPassword: '',
         role: 'user',
+        /**---------------Adding password data rules--------------*/ 
+        //rules: 8 characters, uppercase, lowercase, number, special characters
+        required_characters: false
       },
       registrationErrors: false,
       registrationErrorMsg: 'There were problems registering this user.',
@@ -59,7 +64,14 @@ export default {
   },
   methods: {
     register() {
-      if (this.user.password != this.user.confirmPassword) {
+      /**------------Setting Logic for Password Rules------------*/
+      
+      this.required_characters = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(this.user.password);
+
+      if (this.required_characters === false) {
+        this.registrationErrors = true;
+        this.registrationErrorMsg = "Password must be a minimum of 8 characters ~ Must have at least 1 uppercase ~ Must have at least one number ~ Must have at least 1 special character. "
+      } else if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
         this.registrationErrorMsg = 'Password & Confirm Password do not match.';
       } else {
@@ -90,4 +102,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+</style>
