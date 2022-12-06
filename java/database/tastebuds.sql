@@ -11,7 +11,6 @@ NO MAXVALUE;
 CREATE TABLE tb_user(
 	user_id int NOT NULL DEFAULT nextval('seq_user_id'),
 	username VARCHAR(50) NOT NULL,
-	email_address VARCHAR(50) NOT NULL,
 	password_hash VARCHAR(200) NOT NULL,
 	user_role VARCHAR(20) NOT NULL,
 	CONSTRAINT PK_tb_user PRIMARY KEY (user_id),
