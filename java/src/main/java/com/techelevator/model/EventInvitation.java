@@ -13,11 +13,20 @@ public class EventInvitation {
     private String username;
     private String recipientEmailAddress;
 
-    public EventInvitation(int eventId, boolean hasVoted, String username, String recipientEmailAddress) {
+    public EventInvitation(int invitationId, int eventId, boolean hasVoted, String username, String recipientEmailAddress) {
+        this.invitationId = invitationId;
         this.eventId = eventId;
         this.hasVoted = hasVoted;
         this.username = username;
         this.recipientEmailAddress = recipientEmailAddress;
+    }
+
+    public int getInvitationId() {
+        return invitationId;
+    }
+
+    public void setInvitationId(int invitationId) {
+        this.invitationId = invitationId;
     }
 
     public int getEventId() {
