@@ -72,7 +72,7 @@ nav {
   display: flex;
   flex-direction: row;
   margin: auto;
-  padding: 20px 10px 0 60px;
+  padding: 20px 10px 0 0px;
 }
 
 .with-bar{
@@ -103,8 +103,9 @@ a:hover{
   font-weight: bold;
 }
 
-</style>
+@media (max-width: 1090px) {
 
-@media (max-width: 800px) {
 
 }
+
+</style>
