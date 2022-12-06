@@ -10,6 +10,10 @@ public class User {
 
    private int id;
    private String username;
+   private String emailAddress;
+
+
+
    @JsonIgnore
    private String password;
    @JsonIgnore
@@ -65,6 +69,11 @@ public class User {
    public void setAuthorities(Set<Authority> authorities) {
       this.authorities = authorities;
    }
+
+   public String getEmailAddress() { return this.emailAddress; }
+
+   public void setEmailAddress(String emailAddress) { this.emailAddress = emailAddress; }
+
 
    public void setAuthorities(String authorities) {
       String[] roles = authorities.split(",");
