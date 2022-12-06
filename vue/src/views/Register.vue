@@ -10,7 +10,7 @@
         type="text"
         id="username"
         class="form-control"
-        placeholder="Username"
+        placeholder="Email"
         v-model="user.username"
         required
         autofocus
@@ -63,7 +63,7 @@ export default {
   methods: {
     register() {
       /**------------Setting Logic for Password Rules------------*/
-      //Declare variable for the established password data above
+      
       this.required_characters = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(this.user.password);
 
       if (this.required_characters === false) {
