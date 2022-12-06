@@ -42,7 +42,7 @@
       <br/>
       <button id="login-button" type="submit">LOG IN</button>
 
-      <p>New to taste buds? Sign up <a href="#">here</a>.
+      <p>New to taste buds? Sign up <a class="register-link" href="../view/register.vue">here</a>.
       </p>
 
     </form>
@@ -114,6 +114,13 @@ p{
   
 }
 
+.register-link{
+  color:#a64d79ff;
+  font-size:18px;
+  font-weight: bold;
+  
+}
+
 form.form-signin{
   order: 2;
   flex-basis: 33%;
@@ -172,7 +179,7 @@ button.submit:hover {
       display:flex;
       flex-direction: column;
     }
-  
+    
     
 }
 @media screen and (max-width: 800px) and (min-width: 400px) {
