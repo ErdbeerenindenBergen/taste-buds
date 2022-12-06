@@ -42,8 +42,8 @@
       <br/>
       <button id="login-button" type="submit">LOG IN</button>
 
-      <p>New to taste buds? Sign up <a class="register-link" href="../view/register.vue">here</a>.
-      </p>
+      <p>New to taste buds?</p>
+      <a class="register-link" href="../src/views/Register.vue">Sign up here.</a>
 
     </form>
     
@@ -99,6 +99,16 @@ body{
   font-weight: normal;
 }
 
+h1 {
+  padding-top: 120px;
+  font-size: 48px;
+}
+
+h2 {
+  font-size: 35px;
+  padding-top: 7px;
+}
+
 h1,h2 {
   text-align: center;
   line-height: 5px;
@@ -108,22 +118,22 @@ h1,h2 {
 
 p{
   text-align: center;
+  display: flex;
   font-family:'Playfair Display', serif;
   font-weight: normal;
-  font-size:18px;
-  
+  font-size:25px;
+  margin-bottom: 10px;
 }
 
 .register-link{
+  display: flex;
   color:#a64d79ff;
-  font-size:18px;
+  font-size:25px;
   font-weight: bold;
-  
 }
 
 form.form-signin{
   order: 2;
-  flex-basis: 33%;
   justify-content: center;
   display: flex;
   flex-direction: column;
@@ -131,30 +141,32 @@ form.form-signin{
 }
 
 input.form-control {
-  width: 80%;
+  width: 30%;
+  font-family: 'Playfair Display';
   padding: 10px 15px;
-  border: 2px solid #999999;
+  border: 2px solid #b7b7b7;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 22px;
   text-align: center;
 }
 
 input.form-control:focus {
-  border: 2px solid black;
+  border: 2px solid #666666;
 }
 
 #login-button{
   background-color: #a64d79ff;
   color: white;
   border:none;
-  text-align: center;
+  justify-content: center;
   text-decoration: none;
-  display: inline-block;
-  font-size:15px;
+  display: flex;
+  font-size: 22px;
+  font-family: 'Playfair Display';
   font-weight: bold;
-  border-radius: 12px;
-  width: 80%;
-  padding: 12px;
+  border-radius: 10px;
+  width: 10%;
+  padding: 10px 15px;
 }
 
 button.submit {
