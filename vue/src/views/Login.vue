@@ -1,8 +1,10 @@
 <template> 
  <body>
-  <form class="form-signin" @submit.prevent="login">
-    <!---------- consider breaking this intro into h2 tag to style or do it inline --------->
-      <h1>welcome to taste buds<br/>where the first bite could change your life</h1>
+   <form class="form-signin" @submit.prevent="login">
+      <h1>Welcome to taste buds</h1>
+      <h2>where the first bite could change your life.</h2>
+      <br/>
+      <br/>
       
       <div
         class="alert alert-danger"
@@ -18,30 +20,30 @@
         Thank you for registering, please sign in.
       </div>
 
-      <label for="username" class="sr-only">Email</label>
-
       <input
         type="text"
         id="username"
         class="form-control"
-        placeholder="Username"
+        placeholder="email"
         v-model="user.username"
         required
         autofocus/>
-
-      <label for="password" class="sr-only">Password</label>
+        <br/>
 
       <input
         type="password"
         id="password"
         class="form-control"
-        placeholder="Password"
+        placeholder="password"
         v-model="user.password"
         required/>
 
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
+      <br/>
+      <br/>
+      <button id="login-button" type="submit">LOG IN</button>
 
-      <button type="submit">Sign in</button>
+      <p>New to taste buds? Sign up <a href="#">here</a>.
+      </p>
 
     </form>
     
@@ -91,19 +93,25 @@ export default {
 
  <style scoped>
 body{
-  background-color: rgb(255, 255, 221, 0.867);
-  display: flex;
-  flex-direction: row;
-  flex-grow: 1;
-  justify-content: space-between;
-  gap: 25px;
-  
-
+  color: #666666;
+  background-color: white;
+  font-family:'Playfair Display';
+  font-weight: normal;
 }
 
-
-h1 {
+h1,h2 {
   text-align: center;
+  line-height: 5px;
+  font-family:'Playfair Display';
+  font-weight: normal;
+}
+
+p{
+  text-align: center;
+  font-family:'Playfair Display';
+  font-weight: normal;
+  font-size:18px;
+  
 }
 
 form.form-signin{
@@ -114,16 +122,34 @@ form.form-signin{
   flex-direction: column;
   align-items: center;
 }
+
 input.form-control {
   width: 80%;
   padding: 10px 15px;
-  border: 3px solid lightgray;
+  border: 2px solid #999999;
   border-radius: 10px;
   font-size: 16px;
+  text-align: center;
 }
+
 input.form-control:focus {
-  border: 3px solid black;
+  border: 2px solid black;
 }
+
+#login-button{
+  background-color: #a64d79ff;
+  color: white;
+  border:none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size:15px;
+  font-weight: bold;
+  border-radius: 12px;
+  width: 80%;
+  padding: 12px;
+}
+
 button.submit {
   border: none;
   background-color: rgb(243, 214, 243);
@@ -132,11 +158,14 @@ button.submit {
   width: 250px;
   padding: 12px 32px;
 }
+
 button.submit:hover {
   background-color: plum;
   color: white;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
+
+
 /* SCREEN DIFFERENCES */
 @media screen and (max-width: 400px) {
   body {
