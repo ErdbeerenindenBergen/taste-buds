@@ -5,7 +5,7 @@
         <form class="find-form" @submit="find">
           <p>Enter a city or zipcode</p>
 
-            <input type="text" class="location" v-model="cityOrZip" placeholder="City or Zipcode" />
+            <input type="text" class="location" v-model="location" placeholder="City or Zipcode" />
             <button type="button" id="submit-button" v-on:click="find()">SUBMIT</button>
         </form>
         </div>
@@ -29,16 +29,44 @@ export default {
     props:{},
     data() {
         return{
-            cityOrZip:"",
+            location:"",
             queryResults: [],
-            
+            businesses: [
+        {
+            id: "",
+            name: "",
+            image_url: "",
+            is_closed: false,
+            categories: [
+                {
+                    alias: "",
+                    title: ""
+                }
+            ],
+            rating: 0.0,
+            coordinates: {
+                latitude: 0,
+                longitude: 0
+            },
+            location: {
+                address1: "",
+                city: "",
+                zip_code: "",
+                state: "",
+                
+            },
+            phone: "",
+            display_phone: ""
+           
+        }]
+        
         
         }
      
     },
     methods: {
         find() {
-            RestaurantService.find(this.cityOrZip).then(response => {
+            RestaurantService.find(this.location).then(response => {
             this.queryResults = response.data;
 
             })

@@ -5,7 +5,7 @@ const http = axios.create({
 });
 
 export default {
-    find(cityOrZip) {
-        return http.get('/find', cityOrZip)
+    find(location) {
+        return http.get('/find', location)
     }
 }
