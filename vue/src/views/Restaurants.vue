@@ -22,11 +22,12 @@ import RestaurantCard from '../components/RestaurantCard.vue'
 
 
 export default {
-    name: "find",
+    name: "restaurants",
     components: {
           RestaurantCard
     },
-    props:{},
+    props:[ 
+      "business"],
     data() {
         return{
             location:"",
@@ -60,13 +61,19 @@ export default {
             }
         }
      },
+
     methods: {
         find() {
+            // RestaurantService.find(this.location).then(response => {
+            //  this.restaurantList = response.data;
             RestaurantService.find(this.location).then(response => {
              this.restaurantList = response.data;
             })
         }
-    }
+    },
+    
+     
+     
 }
 </script>
 
@@ -121,6 +128,5 @@ a.router-link-active{
   width: 10%;
   padding: 12px 12px;
 }
-
 
 </style>
