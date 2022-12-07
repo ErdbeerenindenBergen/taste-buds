@@ -62,7 +62,7 @@ export default {
      },
     methods: {
         find() {
-            RestaurantService.find(this.location).then(response => {
+            RestaurantService.search(this.location).then(response => {
              this.restaurantList = response.data;
             })
         }
