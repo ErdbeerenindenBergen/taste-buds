@@ -27,7 +27,7 @@ export default {
     props: {
         business: Object
     },
-     data() {
+     /*data() {
          return {
              location:"",
              restaurantList: [],
@@ -62,7 +62,7 @@ export default {
           },
          methods: {
         
-         }
+         }*/
         
 }
 </script>
