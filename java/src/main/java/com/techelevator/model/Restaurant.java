@@ -26,6 +26,7 @@ public class Restaurant {
         this.isOpen = isOpen;
         this.thumbnailImageURL = thumbnailImageURL;
     }
+    public Restaurant(){}
 
     public String getRestaurantName() {
         return restaurantName;

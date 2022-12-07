@@ -26,17 +26,6 @@ public class UserController {
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")
-    @RequestMapping (path = "/{emailAddress}", method = RequestMethod.GET)
-    public User findUserByEmail(@PathVariable String emailAddress) {
-        User user = userDao.findUserByEmail(emailAddress);
-        if (user == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found.");
-        } else {
-            return user;
-        }
-    }
-
-    @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping (path = "/{userId}", method = RequestMethod.GET)
     public User getUserByUserId(@PathVariable int userId) {
         User user = userDao.getUserById(userId);

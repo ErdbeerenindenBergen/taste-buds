@@ -37,17 +37,6 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public User findUserByEmail(String emailAddress) {
-        String sql = "select user_id from tb_user where email_address = ?";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, emailAddress);
-        if (results.next()) {
-            return mapRowToUser(results);
-        } else {
-            return null;
-        }
-    }
-
-    @Override
     public User getUserById(int userId) {
         String sql = "SELECT * FROM users WHERE user_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
