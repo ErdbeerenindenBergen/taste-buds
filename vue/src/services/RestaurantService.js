@@ -6,7 +6,7 @@ const http = axios.create({
 
 export default {
     search(location) {
-        return http.get(`/search/`, {
+        return http.get(`/find/`, {
             headers: {
                 'location': location
             }
