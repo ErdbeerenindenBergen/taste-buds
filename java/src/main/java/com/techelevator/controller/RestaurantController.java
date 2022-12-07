@@ -14,6 +14,6 @@ public class RestaurantController {
         this.yelpRestaurantService = yelpRestaurantService;
     }
 
-    @RequestMapping(path="/find/{location}", method = RequestMethod.GET)
+    @RequestMapping(path="/search/{location}", method = RequestMethod.GET)
     public Businesses getBusinesses(@PathVariable String location) {return yelpRestaurantService.getBusinesses(location);}
 }

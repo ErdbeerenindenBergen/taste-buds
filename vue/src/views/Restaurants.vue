@@ -31,9 +31,8 @@ export default {
         return{
             location:"",
             restaurantList: [],
-             businesses: [
-         {
-             id: "",
+            businesses: {
+              id: "",
              restaurantName: "",
              thumbnailImageURL: "",
              isClosed: false,
@@ -58,10 +57,9 @@ export default {
              restaurantAddress: "",
              phoneNumber: "",
              url: ""
-         }]
+            }
         }
-     
-    },
+     },
     methods: {
         find() {
             RestaurantService.find(this.location).then(response => {
