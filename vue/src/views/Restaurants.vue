@@ -1,14 +1,18 @@
 <template>
- <body>
-    <div id="find-restaurant">
+ <body class="container">
+    <div id="find-restaurant" class="left-panel">
+
         <form class="find-form" @submit="find">
-            <p>Enter a city or zipcode:</p>
+          <p>Enter a city or zipcode</p>
+
             <input type="text" class="location" v-model="cityOrZip" placeholder="City or Zipcode" />
             <button type="button" id="submit-button" v-on:click="find()">SUBMIT</button>
         </form>
         </div>
+
         <restaurant-card />
-    </body>
+
+  </body>
 </template>
 
 
@@ -28,47 +32,6 @@ export default {
             cityOrZip:"",
             queryResults: [],
             
-            /*********the info below should match the data yelp sends back OR our database ?**************** 
-            //-------------i just copy and pasted yelp info from postman -------------------------
-            businesses: [
-                            {
-            id: "",
-            alias: "",
-            name: "",
-            image_url: "",
-            is_closed: false,
-            url: "",
-            review_count: 0,
-            categories: [
-                {
-                    alias: "",
-                    title: ""
-                }
-            ],
-            rating: 0,
-            coordinates: {
-                latitude: 0,
-                longitude: 0
-            },
-            transactions: [],
-            price: "",
-            location: {
-                address1: "",
-                address2: "",
-                address3: "",
-                city: "",
-                zip_code: "",
-                country: "",
-                state: "",
-                display_address: [
-                    "",
-                    ""
-                    ]
-            },
-            phone: "",
-            display_phone: "",
-            distance: 0
-         }]*/
         
         }
      
@@ -76,17 +39,12 @@ export default {
     methods: {
         find() {
             RestaurantService.find(this.cityOrZip).then(response => {
-            this.$store.commit("SET_QUERY_RESULTS", this.queryResults);
             this.queryResults = response.data;
 
             })
         }
     },
-        created() {
-        RestaurantService.find(this.cityOrZip).then(response => {
-            this.queryResults = response.data;
-        })
-    },
+        
     
     
     
@@ -94,6 +52,16 @@ export default {
 </script>
 
 <style scoped>
+
+
+p {
+  font-size: 25px;
+  display: flex;
+  line-height: 5px;
+  font-family:'Playfair Display';
+  font-weight: normal;
+}
+
 
 input.location {
   width: 8%;

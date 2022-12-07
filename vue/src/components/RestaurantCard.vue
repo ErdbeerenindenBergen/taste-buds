@@ -7,7 +7,6 @@
             <h2 id='title'>{{ restaurant.businesses.categories[1].title }}</h2>
             <h2 id='name'>{{ restaurant.businesses.rating }}</h2>
             <h2 id='name'>{{ restaurant.businesses.is_closed }}</h2>
-            <h2 id='name'>{{ restaurant.businesses.name }}</h2>
                 
                 <p v-if="restaurant.location.address1" class="address display">{{restaurant.location.address1}}</p>
                 <p v-if="restaurant.location.address2" class="address display">{{ restaurant.location.address2}}</p>
