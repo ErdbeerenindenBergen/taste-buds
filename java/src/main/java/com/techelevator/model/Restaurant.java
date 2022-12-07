@@ -12,6 +12,7 @@ public class Restaurant {
     private boolean hasDelivery;
     private boolean isClosed;
     private String thumbnailImageURL;
+    private Restaurant[] returnedRestaurants;
 
 
     public Restaurant(String restaurantName, String restaurantType, String restaurantAddress, String hoursOfOperation, int stars, String phoneNumber, boolean hasTakeout, boolean hasDelivery, boolean isClosed, String thumbnailImageURL) {
@@ -98,6 +99,10 @@ public class Restaurant {
 
     public void setClosed(boolean closed) {
         isClosed = closed;
+    }
+
+    public Restaurant[] getRestaurants(String location) {
+        return returnedRestaurants;
     }
 
     public String getThumbnailImageURL() {
