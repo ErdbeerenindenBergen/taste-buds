@@ -12,7 +12,7 @@
       </div>  
 
       <nav>
-        <router-link class="with-bar" v-bind:to="{ name: 'find-a-restaurant' }">Find restaurant</router-link> 
+        <router-link class="with-bar" v-bind:to="{ name: 'find' }">Find restaurant</router-link> 
         <router-link class="with-bar" v-bind:to="{ name: 'invite-buds' }">Invite buds</router-link>  
         <router-link class="with-bar" v-bind:to="{ name: 'events' }">Events</router-link> 
         <router-link class="with-bar" v-bind:to="{ name: 'about' }">About</router-link> 
@@ -107,11 +107,6 @@ a:link,a:visited,a:hover{
 
 a:hover{
   font-weight: bold;
-}
-
-@media (max-width: 1090px) {
-
-
 }
 
 </style>

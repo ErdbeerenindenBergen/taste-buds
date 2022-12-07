@@ -10,11 +10,7 @@
         </form>
         </div>
 
-         <restaurant-card class="card"
-            v-for="business in restaurantList"
-            v-bind:key="business.id"
-            v-bind:business="business">
-        </restaurant-card>
+         <restaurant-card class="card" v-for="business in restaurantList" v-bind:key="business.id" v-bind:business="business"> </restaurant-card>
 
   </body>
 </template>
@@ -26,7 +22,7 @@ import RestaurantCard from '../components/RestaurantCard.vue'
 
 
 export default {
-    name: "findARestaurant",
+    name: "find",
     components: {
           RestaurantCard
     },
@@ -94,6 +90,10 @@ export default {
     padding-top: 20px;
 }
 
+.container{
+    padding-top: 25px;
+}
+
 p {
   font-size: 25px;
   display: flex;
@@ -105,13 +105,13 @@ p {
 
 
 input.location {
-  width: 8%;
+  width: 25%;
   padding: 10px 15px;
   border: 3px solid lightgray;
   text-align: center;
   border-radius: 10px;
   font-size: 16px;
-  margin-right: 15px;
+  margin-right: 30px;
 }
 
 form.find-form {

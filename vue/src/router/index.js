@@ -58,8 +58,8 @@ const router = new Router({
       }
     },
     {
-      path: "/find-a-restaurant",
-      name: "find-a-restaurant",
+      path: "/find",
+      name: "find",
       component: Restaurant,
       meta: {
         requiresAuth: false
