@@ -4,7 +4,7 @@
 
       
            
-            <img v-if="business.image_url" :src="this.business.image_url" class="thumbnail"> -->
+            <!-- <img v-if="business.image_url" :src="this.business.image_url" class="thumbnail"> --> -->
         
             <h2 id='name'>{{ business[0].name }}</h2>
             <h2 id='url'>{{ business[0].url }}</h2>

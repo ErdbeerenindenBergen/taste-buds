@@ -10,7 +10,7 @@
         </form>
         </div>
 
-         <restaurant-card class="card" v-for="business in restaurantList" v-bind:key="business.id" v-bind:business="business.id"> </restaurant-card>
+         <restaurant-card class="card" v-for="business in restaurantList" v-bind:key="business.id" v-bind:business="business"> </restaurant-card>
 
   </body>
 </template>
