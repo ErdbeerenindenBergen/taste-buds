@@ -27,15 +27,42 @@ export default {
     props: {
         business: Object
     },
-    // data() {
-    //     return {
-    //         location:"",
-    //         restaurantList: []
-    //     }
-    // },
-    // methods: {
+     data() {
+         return {
+             location:"",
+             restaurantList: [],
+             businesses: {
+                id: "",
+                restaurantName: "",
+                thumbnailImageURL: "",
+                isClosed: false,
+             // categories: [
+             //     {
+             //         alias: "",
+             //         title: ""
+             //     }
+             // ],
+                stars: 0.0,
+             // coordinates: {
+             //     latitude: 0,
+             //     longitude: 0
+             // },
+             // location: {
+             //     address1: "",
+             //     city: "",
+             //     zip_code: "",
+             //     state: "",
+                
+             // },
+                restaurantAddress: "",
+                phoneNumber: "",
+                url: ""
+            }
+         }
+          },
+         methods: {
         
-    // }
+         }
         
 }
 </script>
