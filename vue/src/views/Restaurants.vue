@@ -68,7 +68,12 @@ export default {
              this.restaurantList = response.data;
             })
         }
-    }
+    },
+    // created() {
+    //         RestaurantService.find(this.location).then(response => {
+    //          this.restaurantList = response.data;
+    //     })
+    // }
 }
 </script>
 
@@ -123,6 +128,5 @@ a.router-link-active{
   width: 10%;
   padding: 12px 12px;
 }
-
 
 </style>
