@@ -1,6 +1,6 @@
 <template>
  <body class="container">
-    <div id="find-restaurant" class="left-panel">
+    <div id="find" class="left-panel">
 
         <form class="find-form" @submit="find">
           <p>Enter a city or zipcode</p>
@@ -17,7 +17,7 @@
 
 
 <script>
-import RestaurantService from "../services/RestaurantService"
+import RestaurantService from "../services/RestaurantService.js"
 import RestaurantCard from '../components/RestaurantCard.vue'
 
 
@@ -31,56 +31,45 @@ export default {
         return{
             location:"",
             restaurantList: [],
-            businesses: [
-        {
-            id: "",
-            restaurantName: "",
-            thumbnailImageURL: "",
-            isClosed: false,
-            // categories: [
-            //     {
-            //         alias: "",
-            //         title: ""
-            //     }
-            // ],
-            stars: 0.0,
-            // coordinates: {
-            //     latitude: 0,
-            //     longitude: 0
-            // },
-            // location: {
-            //     address1: "",
-            //     city: "",
-            //     zip_code: "",
-            //     state: "",
+             businesses: [
+         {
+             id: "",
+             restaurantName: "",
+             thumbnailImageURL: "",
+             isClosed: false,
+             // categories: [
+             //     {
+             //         alias: "",
+             //         title: ""
+             //     }
+             // ],
+             stars: 0.0,
+             // coordinates: {
+             //     latitude: 0,
+             //     longitude: 0
+             // },
+             // location: {
+             //     address1: "",
+             //     city: "",
+             //     zip_code: "",
+             //     state: "",
                 
-            // },
-            restaurantAddress: "",
-            phoneNumber: "",
-            // display_phone: ""
-            url: ""
-        }]
-        
-        
+             // },
+             restaurantAddress: "",
+             phoneNumber: "",
+             // display_phone: ""
+             url: ""
+         }]
         }
      
     },
-    // created(){
-    //     RestaurantService.find(this.location)
-    //     .then(response => {
-    //         console.log(response.data);
-    //         this.restaurantList = response.data;
-    //     })
-    // },
     methods: {
         find() {
             RestaurantService.find(this.location).then(response => {
-            this.restaurantList = response.data;
+             this.restaurantList = response.data;
             })
         }
     }
-    
-    
 }
 </script>
 
