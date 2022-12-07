@@ -1,14 +1,14 @@
 <template>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <h3 class="h3 mb-3 font-weight-normal">Create Account</h3>
 
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
 
-      <label for="username" class="sr-only">Username</label>
-
+      <div class="input">
+      <label for="username" class="sr-only"></label>
       <input type="text"
         id="username"
         class="form-control"
@@ -16,28 +16,39 @@
         v-model="user.username"
         required
         autofocus/>
+        </div>
 
-      <label for="password" class="sr-only">Password</label>
+        <br>
+      <div class="input">
+      <label for="password" class="sr-only"></label>
       <input type="password"
         id="password"
         class="form-control"
         placeholder="Password"
         v-model="user.password"
         required/>
+        </div>
+        <br>
+      
 
-      <label for="password">Confirm Password</label>
+      <div class="input">
+      <label for="password"></label>
       <input type="password"
         id="confirmPassword"
         class="form-control"
         placeholder="Confirm Password"
         v-model="user.confirmPassword"
         required/>
+        </div>
 
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
+      <div id="create">
+      <button id="create-account-button" class="btn btn-lg btn-primary btn-block" type="submit">Create Account</button>
+      </div>
 
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
-        Create Account
-      </button>
+      <router-link :to="{ name: 'log-in' }">Have an account already? Log in.</router-link>
+      <br>
+
+
 
     </form>
   </div>
@@ -81,7 +92,7 @@ export default {
           .then((response) => {
             if (response.status == 201) {
               this.$router.push({
-                path: '/login',
+                path: '/log-in',
                 query: { registration: 'success' },
               });
             }
@@ -104,5 +115,111 @@ export default {
 </script>
 
 <style>
+body{
+  color: #666666;
+  background-color: white;
+  font-family:'Playfair Display';
+  font-weight: normal;
+}
 
+h3 {
+  font-size: 32px;
+  padding-top: 130px;
+  padding-bottom: 30px;
+  text-align: center;
+  line-height: 5px;
+  font-family:'Playfair Display';
+  font-weight: normal;
+}
+
+input{
+  display: flex;
+  padding-bottom: 40px;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.input{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.register-link{
+  display: flex;
+  color:#a64d79ff;
+  font-size:25px;
+  font-weight: bold;
+}
+
+input.form-control {
+  width: 30%;
+  font-family: 'Playfair Display';
+  padding: 10px 15px;
+  border: 2px solid #b7b7b7;
+  border-radius: 10px;
+  font-size: 22px;
+  text-align: center;
+  align-content: center;
+}
+
+input.form-control:focus {
+  border: 2px solid #666666;
+}
+
+#create-account-button{
+  background-color: #a64d79ff;
+  color: white;
+  border:none;
+  text-decoration: none;
+  font-size: 22px;
+  font-family: 'Playfair Display';
+  font-weight: bold;
+  border-radius: 10px;
+  width: 20%;
+  padding: 10px 15px;
+}
+
+button.submit:hover {
+  background-color: plum;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+a.router-link-active{
+  font-weight: bold;
+}
+
+button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#create{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* SCREEN DIFFERENCES */
+@media screen and (max-width: 400px) {
+  body {
+      display:flex;
+      flex-direction: column;
+    }
+    
+    
+}
+@media screen and (max-width: 800px) and (min-width: 400px) {
+  body {
+    display:flex;
+    flex-direction: column;
+  }
+  
+}
 </style>

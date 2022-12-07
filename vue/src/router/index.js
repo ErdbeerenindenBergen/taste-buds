@@ -6,6 +6,9 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import Restaurant from '../views/Restaurants.vue'
+import Invite from '../views/InviteBuds.vue'
+import Events from '../views/Events.vue'
+import About from '../views/About.vue'
 
 Vue.use(Router)
 
@@ -31,16 +34,16 @@ const router = new Router({
       }
     },
     {
-      path: "/login",
-      name: "login",
+      path: "/log-in",
+      name: "log-in",
       component: Login,
       meta: {
         requiresAuth: false
       }
     },
     {
-      path: "/logout",
-      name: "logout",
+      path: "/log-out",
+      name: "log-out",
       component: Logout,
       meta: {
         requiresAuth: false
@@ -61,8 +64,31 @@ const router = new Router({
       meta: {
         requiresAuth: false
       }
+    },
+    {
+      path: "/invite-buds",
+      name: "invite-buds",
+      component: Invite,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/events",
+      name: "events",
+      component: Events,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/about",
+      name: "about",
+      component: About,
+      meta: {
+        requiresAuth: true
+      }
     }
-   
   ]
 })
 
@@ -72,7 +98,7 @@ router.beforeEach((to, from, next) => {
 
   // If it does and they are not logged in, send the user to "/login"
   if (requiresAuth && store.state.token === '') {
-    next("/login");
+    next("/log-in");
   } else {
     // Else let them go to their next destination
     next();

@@ -6,6 +6,6 @@ const http = axios.create({
 
 export default {
     find(location) {
-        return http.get('/find', location)
+        return http.get(`/find/${location}`)
     }
 }

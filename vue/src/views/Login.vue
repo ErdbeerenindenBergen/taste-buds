@@ -56,7 +56,7 @@
 import authService from "../services/AuthService";
 
 export default {
-  name: "login",
+  name: "log-in",
   components: {},
   data() {
     return {
@@ -183,6 +183,15 @@ button.submit:hover {
   background-color: plum;
   color: white;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.alert{
+font-size: 22px;
+padding-bottom: 10px;
+}
+
+a.router-link-active{
+  font-weight: bold;
 }
 
 

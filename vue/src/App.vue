@@ -3,7 +3,9 @@
   <div id="app">
 
     <header>
+
       <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display" rel="stylesheet">
+      
       <div id="header-left">
         <img id="tb-logo" src="../src/assets/Taste-Buds.png" alt="taste-buds-logo"/>
         <h1 id="header-title">taste buds</h1>
@@ -14,7 +16,7 @@
         <router-link class="with-bar" v-bind:to="{ name: 'invite-buds' }">Invite buds</router-link>  
         <router-link class="with-bar" v-bind:to="{ name: 'events' }">Events</router-link> 
         <router-link class="with-bar" v-bind:to="{ name: 'about' }">About</router-link> 
-        <router-link active-class="active" v-bind:to="{ name: 'log-in'}" >Log in</router-link>
+        <router-link active-class="active" v-bind:to="{ name: 'log-in'}" v-if="$store.state.token === ''" >Log in</router-link>
         <router-link v-bind:to="{ name: 'log-out' }" v-if="$store.state.token != ''">Log out</router-link>
       </nav>
 
@@ -44,6 +46,10 @@
   /* padding-right: 450px; */
   min-width: 20px;
   line-height: 13px;
+}
+
+a.router-link-active{
+  font-weight: bold;
 }
 
 hr {

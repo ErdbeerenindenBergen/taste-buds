@@ -1,0 +1,33 @@
+    data() {
+        return{
+            location:"",
+            queryResults: [],
+            businesses: [
+        {
+            id: "",
+            restaurantName: "",
+            thumbnailImageURL: "",
+            isClosed: false,
+            // categories: [
+            //     {
+            //         alias: "",
+            //         title: ""
+            //     }
+            // ],
+            stars: 0.0,
+            // coordinates: {
+            //     latitude: 0,
+            //     longitude: 0
+            // },
+            // location: {
+            //     address1: "",
+            //     city: "",
+            //     zip_code: "",
+            //     state: "",
+                
+            // },
+            restaurantAddress: "",
+            phoneNumber: "",
+            // display_phone: ""
+            url: ""
+        }]
