@@ -1,9 +1,7 @@
 package com.techelevator.services;
 
-import com.techelevator.model.Restaurant;
-
-import java.util.List;
+import com.techelevator.model.Businesses;
 
 public interface IYelpRestaurantService {
-    Restaurant[] getRestaurants(String location);
+    Businesses getBusinesses(String location);
 }

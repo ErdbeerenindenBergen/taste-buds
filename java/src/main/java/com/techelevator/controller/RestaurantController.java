@@ -1,6 +1,6 @@
 package com.techelevator.controller;
 
-import com.techelevator.model.Restaurant;
+import com.techelevator.model.Businesses;
 import com.techelevator.services.IYelpRestaurantService;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,5 +15,5 @@ public class RestaurantController {
     }
 
     @RequestMapping(path="/viewRestaurants/{location}", method = RequestMethod.GET)
-    public Restaurant[] getRestaurants(@PathVariable String location) {return yelpRestaurantService.getRestaurants(location);}
+    public Businesses getBusinesses(@PathVariable String location) {return yelpRestaurantService.getBusinesses(location);}
 }
