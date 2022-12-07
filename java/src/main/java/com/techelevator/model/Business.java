@@ -9,18 +9,14 @@ public class Business {
 
     @JsonProperty("name")
     private String restaurantName;
-//    private String restaurantType;
     @JsonProperty("stringAddress")
     private String restaurantAddress;
     @JsonProperty("id")
     private String id;
-//    private String hoursOfOperation;
     @JsonProperty("rating")
     private double stars;
     @JsonProperty("phone")
     private String phoneNumber;
-//    private boolean hasTakeout;
-//    private boolean hasDelivery;
     @JsonProperty("is_closed")
     private boolean isClosed;
     @JsonProperty("image_url")
@@ -30,52 +26,32 @@ public class Business {
 
     public Business(String restaurantName, String restaurantAddress, int stars, String phoneNumber, boolean isClosed, String thumbnailImageURL) {
         this.restaurantName = restaurantName;
-//        this.restaurantType = restaurantType;
         this.restaurantAddress = restaurantAddress;
-//        this.hoursOfOperation = hoursOfOperation;
         this.stars = stars;
         this.phoneNumber = phoneNumber;
-//        this.hasTakeout = hasTakeout;
-//        this.hasDelivery = hasDelivery;
         this.isClosed = isClosed;
         this.thumbnailImageURL = thumbnailImageURL;
     }
     public Business(){}
 
     public String getRestaurantName() {
-        return restaurantName;
+        return this.restaurantName;
     }
 
     public void setRestaurantName(String restaurantName) {
         this.restaurantName = restaurantName;
     }
 
-//    public String getRestaurantType() {
-//        return restaurantType;
-//    }
-//
-//    public void setRestaurantType(String restaurantType) {
-//        this.restaurantType = restaurantType;
-//    }
-
     public String getRestaurantAddress() {
-        return restaurantAddress;
+        return this.restaurantAddress;
     }
 
     public void setRestaurantAddress(String restaurantAddress) {
         this.restaurantAddress = restaurantAddress;
     }
 
-//    public String getHoursOfOperation() {
-//        return hoursOfOperation;
-//    }
-//
-//    public void setHoursOfOperation(String hoursOfOperation) {
-//        this.hoursOfOperation = hoursOfOperation;
-//    }
-
     public double getStars() {
-        return stars;
+        return this.stars;
     }
 
     public void setStars(double stars) {
@@ -83,39 +59,23 @@ public class Business {
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return this.phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-//    public boolean isHasTakeout() {
-//        return hasTakeout;
-//    }
-//
-//    public void setHasTakeout(boolean hasTakeout) {
-//        this.hasTakeout = hasTakeout;
-//    }
-//
-//    public boolean isHasDelivery() {
-//        return hasDelivery;
-//    }
-//
-//    public void setHasDelivery(boolean hasDelivery) {
-//        this.hasDelivery = hasDelivery;
-//    }
-
     public boolean isClosed() {
-        return isClosed;
+        return this.isClosed;
     }
 
     public void setClosed(boolean closed) {
-        isClosed = closed;
+        this.isClosed = closed;
     }
 
     public String getThumbnailImageURL() {
-        return thumbnailImageURL;
+        return this.thumbnailImageURL;
     }
 
     public void setThumbnailImageURL(String thumbnailImageURL) {
@@ -123,7 +83,7 @@ public class Business {
     }
 
     public String getUrl() {
-        return url;
+        return this.url;
     }
 
     public void setUrl(String restaurantWebsite) {
@@ -131,12 +91,11 @@ public class Business {
     }
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(String id) {
         this.id = id;
     }
-
 
 }
