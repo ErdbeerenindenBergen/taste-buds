@@ -20,7 +20,7 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    queryResults: []
+    restaurantList: []
   
   },
   mutations: {
@@ -40,8 +40,8 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
     },
-    SET_QUERY_RESULTS(state, results){
-      state.queryResults = results;
+    SET_List_RESULTS(state, results){
+      state.restaurantList = results;
     }
 }
 })

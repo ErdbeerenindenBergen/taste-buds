@@ -1,37 +1,36 @@
 <template>
     <div id="root">
 
-<p>
-    {{business[0].url}}
-</p>
 
-        <!-- <div id="main-info">
+      
            
-            <img v-if="business.thumbnailImageURL" :src="this.business.thumbnailImageURL" class="thumbnail">
+            <img v-if="business.image_url" :src="this.business.image_url" class="thumbnail"> -->
         
-            <h2 id='name'>{{ business.restaurantName }}</h2>
-            <h2 id='url'>{{ business.url }}</h2>
-             <h2 id='title'>{{ business.restaurantList.categories[1].title }}</h2>
-            <h2 id='stars'>{{ business.stars }}</h2>
-            <h2 id='isClosed'>{{ business.isClosed === false ? "Open now" : "Closed" }}</h2>
-            <p class="address">{{business.restaurantAddress}}</p>
+            <h2 id='name'>{{ business[0].name }}</h2>
+            <h2 id='url'>{{ business[0].url }}</h2>
+            <!-- <h2 id='title'>{{ business[0].restaurantList.categories[1].title }}</h2> -->
+            <h2 id='stars'>{{ business[0].rating }}</h2>
+            <h2 id='isClosed'>{{ business[0].is_closed === false ? "Open now" : "Closed" }}</h2>
+            <!-- <p class="address">{{business[0].location[7]}}</p> -->
         
-        </div>
+        
 
         <div id="phone-button">
             <a href="tel:${business.restaurantList.phoneNumber}" target="_blank"><button class="call-button" type="button call">Call to Order</button></a>
-        </div> -->
+        </div>
 
     </div>
 </template>
 
 <script>
 
+//import RestaurantService from '../services/RestaurantService'
+
 export default {
     name :'restaurant-card',
     props: {
         business: []
-    }
+    },
      /*data() {
          return {
              location:"",
@@ -68,6 +67,7 @@ export default {
          methods: {
         
          }*/
+    
         
 }
 </script>

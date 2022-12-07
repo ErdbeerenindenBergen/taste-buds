@@ -10,7 +10,7 @@
         </form>
         </div>
 
-         <restaurant-card class="card" v-for="business in restaurantList" v-bind:key="business.id" v-bind:business="business"> </restaurant-card>
+         <restaurant-card class="card" v-for="business in restaurantList" v-bind:key="business.id" v-bind:business="business.id"> </restaurant-card>
 
   </body>
 </template>
@@ -61,13 +61,17 @@ export default {
             }
         }
      },
+
     methods: {
         find() {
+            // RestaurantService.find(this.location).then(response => {
+            //  this.restaurantList = response.data;
             RestaurantService.find(this.location).then(response => {
              this.restaurantList = response.data;
             })
         }
     },
+    
      
      
 }
