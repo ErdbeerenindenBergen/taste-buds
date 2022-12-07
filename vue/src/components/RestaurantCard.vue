@@ -1,15 +1,15 @@
 <template>
     <div id="root">
 
-
-      
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display" rel="stylesheet">
            
-            <!-- <img v-if="business.image_url" :src="this.business.image_url" class="thumbnail"> --> -->
-            <div v-for='business in business' :key='business.id'>
+            <!-- <img v-if="business.image_url" :src="this.business.image_url" class="thumbnail"> -->
+            <div id="restaurant-display" v-for='business in business' :key='business.id'>
             <h2 id='name'>{{ business.name }}</h2>
-            <h2 id='url'>{{ business.url }}</h2>
+            <img src="business.image_url" class="thumbnail">
+            <a id='url'>href={{ business.url }}<i class="fa-brands fa-yelp"></i></a>
             <!-- <h2 id='title'>{{ business.restaurantList.categories[1].title }}</h2> -->
-            <h2 id='stars'>{{ business.rating }}</h2>
+            <h2 id='stars'>Average rating: {{ business.rating }}</h2>
             <h2 id='isClosed'>{{ business.is_closed === false ? "Open now" : "Closed" }}</h2>
             <!-- <p class="address">{{business.location[7]}}</p> -->
             </div>
@@ -32,49 +32,24 @@ export default {
     props: {
         business: [],
         restaurants
-    },
-     /*data() {
-         return {
-             location:"",
-             restaurantList: [],
-             businesses: {
-                id: "",
-                restaurantName: "",
-                thumbnailImageURL: "",
-                isClosed: false,
-             // categories: [
-             //     {
-             //         alias: "",
-             //         title: ""
-             //     }
-             // ],
-                stars: 0.0,
-             // coordinates: {
-             //     latitude: 0,
-             //     longitude: 0
-             // },
-             // location: {
-             //     address1: "",
-             //     city: "",
-             //     zip_code: "",
-             //     state: "",
-                
-             // },
-                restaurantAddress: "",
-                phoneNumber: "",
-                url: ""
-            }
-         }
-          },
-         methods: {
-        
-         }*/
-    
-        
+    },    
 }
+
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display');
+
+#restaurant-display{
+    border: 1px solid #999999;
+    margin: 20px 0 10px 0;
+    padding: 0 10px 0 10px;
+    text-align: center;
+}
+
+#name {
+    font-family: 'Playfair Display';
+}
 
 </style>
 
