@@ -36,7 +36,6 @@ public class UserController {
         }
     }
 
-
     @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping (path = "/{userId}", method = RequestMethod.GET)
     public User getUserByUserId(@PathVariable int userId) {
