@@ -9,7 +9,7 @@ START WITH 3001
 NO MAXVALUE;
 
 CREATE TABLE tb_user(
-	user_id int NOT NULL DEFAULT nextval('seq_user_id'),
+	user_id int NOT NULL DEFAULT nextval('seq_user_id'::regclass),
 	username VARCHAR(50) NOT NULL,
 	password_hash VARCHAR(200) NOT NULL,
 	user_role VARCHAR(20) NOT NULL,
@@ -17,8 +17,8 @@ CREATE TABLE tb_user(
 	CONSTRAINT UQ_username UNIQUE (username)
 );
 
-INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
-INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
+INSERT INTO tb_user (username,password_hash,user_role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','USER');
+INSERT INTO tb_user (username,password_hash,user_role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ADMIN');
 
 CREATE SEQUENCE seq_event_id
 INCREMENT BY 1
@@ -59,7 +59,7 @@ CREATE TABLE event_restaurant(
 	yelp_restaurant_id VARCHAR(100) NOT NULL,
 	event_id INT NOT NULL,
 	vote_count INT NOT NULL,
-	CONSTRAINT PK_event_restaurant PRIMARY KEY (yelp_restaurant_id,event_id)	
+	CONSTRAINT PK_event_restaurant PRIMARY KEY (yelp_restaurant_id,event_id)
 );
 
 DROP USER IF EXISTS final_capstone_owner;
@@ -86,7 +86,5 @@ TO final_capstone_appuser;
 GRANT USAGE, SELECT
 ON ALL SEQUENCES IN SCHEMA public
 TO final_capstone_appuser;
-
-COMMIT TRANSACTION;
 
 COMMIT;
