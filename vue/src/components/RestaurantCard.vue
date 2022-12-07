@@ -5,14 +5,14 @@
       
            
             <!-- <img v-if="business.image_url" :src="this.business.image_url" class="thumbnail"> --> -->
-        
-            <h2 id='name'>{{ business[0].name }}</h2>
-            <h2 id='url'>{{ business[0].url }}</h2>
-            <!-- <h2 id='title'>{{ business[0].restaurantList.categories[1].title }}</h2> -->
-            <h2 id='stars'>{{ business[0].rating }}</h2>
-            <h2 id='isClosed'>{{ business[0].is_closed === false ? "Open now" : "Closed" }}</h2>
-            <!-- <p class="address">{{business[0].location[7]}}</p> -->
-        
+            <div v-for='business in business' :key='business.id'>
+            <h2 id='name'>{{ business.name }}</h2>
+            <h2 id='url'>{{ business.url }}</h2>
+            <!-- <h2 id='title'>{{ business.restaurantList.categories[1].title }}</h2> -->
+            <h2 id='stars'>{{ business.rating }}</h2>
+            <h2 id='isClosed'>{{ business.is_closed === false ? "Open now" : "Closed" }}</h2>
+            <!-- <p class="address">{{business.location[7]}}</p> -->
+            </div>
         
 
         <div id="phone-button">
@@ -25,11 +25,13 @@
 <script>
 
 //import RestaurantService from '../services/RestaurantService'
+import restaurants from '../views/Restaurants.vue'
 
 export default {
     name :'restaurant-card',
     props: {
-        business: []
+        business: [],
+        restaurants
     },
      /*data() {
          return {
