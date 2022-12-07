@@ -2,7 +2,7 @@
     <div id="root">
         <div id="main-info">
            
-            <img v-if="business.thumbnailImageURL" :src="this.business.thumbnailImageURL" class="thumbnail"> -->
+            <img v-if="business.thumbnailImageURL" v-show="business.thumbnailImageURL" :src="this.business.thumbnailImageURL" class="thumbnail">
         
             <h2 id='name'>{{ business.restaurantName }}</h2>
             <h2 id='url'>{{ business.url }}</h2>
@@ -25,7 +25,7 @@
 export default {
     name :'restaurant-card',
     props: {
-        business: Object
+        business: [],
     }
      /*data() {
          return {
