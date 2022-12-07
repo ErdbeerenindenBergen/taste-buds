@@ -3,19 +3,20 @@ package com.techelevator.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Restaurant {
+public class Business {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
 
     @JsonProperty("name")
     private String restaurantName;
 //    private String restaurantType;
-    @JsonProperty("display_address")
+    @JsonProperty("stringAddress")
     private String restaurantAddress;
-
+    @JsonProperty("id")
+    private String id;
 //    private String hoursOfOperation;
     @JsonProperty("rating")
-    private int stars;
+    private double stars;
     @JsonProperty("phone")
     private String phoneNumber;
 //    private boolean hasTakeout;
@@ -24,11 +25,10 @@ public class Restaurant {
     private boolean isClosed;
     @JsonProperty("image_url")
     private String thumbnailImageURL;
-    @JsonProperty("url")
-    private String restaurantWebsite;
+    private String url;
 
 
-    public Restaurant(String restaurantName, String restaurantAddress, int stars, String phoneNumber, boolean isClosed, String thumbnailImageURL) {
+    public Business(String restaurantName, String restaurantAddress, int stars, String phoneNumber, boolean isClosed, String thumbnailImageURL) {
         this.restaurantName = restaurantName;
 //        this.restaurantType = restaurantType;
         this.restaurantAddress = restaurantAddress;
@@ -40,7 +40,7 @@ public class Restaurant {
         this.isClosed = isClosed;
         this.thumbnailImageURL = thumbnailImageURL;
     }
-    public Restaurant(){}
+    public Business(){}
 
     public String getRestaurantName() {
         return restaurantName;
@@ -74,11 +74,11 @@ public class Restaurant {
 //        this.hoursOfOperation = hoursOfOperation;
 //    }
 
-    public int getStars() {
+    public double getStars() {
         return stars;
     }
 
-    public void setStars(int stars) {
+    public void setStars(double stars) {
         this.stars = stars;
     }
 
@@ -122,11 +122,21 @@ public class Restaurant {
         this.thumbnailImageURL = thumbnailImageURL;
     }
 
-    public String getRestaurantWebsite() {
-        return restaurantWebsite;
+    public String getUrl() {
+        return url;
     }
 
-    public void setRestaurantWebsite(String restaurantWebsite) {
-        this.restaurantWebsite = restaurantWebsite;
+    public void setUrl(String restaurantWebsite) {
+        this.url = restaurantWebsite;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+
 }
