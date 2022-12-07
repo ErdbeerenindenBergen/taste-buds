@@ -10,11 +10,11 @@ public class Restaurant {
     private String phoneNumber;
     private boolean hasTakeout;
     private boolean hasDelivery;
-    private boolean isOpen;
+    private boolean isClosed;
     private String thumbnailImageURL;
 
 
-    public Restaurant(String restaurantName, String restaurantType, String restaurantAddress, String hoursOfOperation, int stars, String phoneNumber, boolean hasTakeout, boolean hasDelivery, boolean isOpen, String thumbnailImageURL) {
+    public Restaurant(String restaurantName, String restaurantType, String restaurantAddress, String hoursOfOperation, int stars, String phoneNumber, boolean hasTakeout, boolean hasDelivery, boolean isClosed, String thumbnailImageURL) {
         this.restaurantName = restaurantName;
         this.restaurantType = restaurantType;
         this.restaurantAddress = restaurantAddress;
@@ -23,7 +23,7 @@ public class Restaurant {
         this.phoneNumber = phoneNumber;
         this.hasTakeout = hasTakeout;
         this.hasDelivery = hasDelivery;
-        this.isOpen = isOpen;
+        this.isClosed = isClosed;
         this.thumbnailImageURL = thumbnailImageURL;
     }
 
@@ -91,12 +91,12 @@ public class Restaurant {
         this.hasDelivery = hasDelivery;
     }
 
-    public boolean isOpen() {
-        return isOpen;
+    public boolean isClosed() {
+        return isClosed;
     }
 
-    public void setOpen(boolean open) {
-        isOpen = open;
+    public void setClosed(boolean closed) {
+        isClosed = closed;
     }
 
     public String getThumbnailImageURL() {
