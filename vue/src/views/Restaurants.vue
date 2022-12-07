@@ -57,7 +57,6 @@ export default {
              // },
              restaurantAddress: "",
              phoneNumber: "",
-             // display_phone: ""
              url: ""
          }]
         }
