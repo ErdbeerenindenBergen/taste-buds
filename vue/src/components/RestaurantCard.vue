@@ -26,7 +26,7 @@ export default {
     name :'restaurant-card',
     props: {
         business: Object
-    },
+    }
      /*data() {
          return {
              location:"",
