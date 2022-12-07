@@ -43,7 +43,8 @@
       <button id="login-button" type="submit">LOG IN</button>
 
       <p>New to taste buds?</p>
-      <a class="register-link" href="../src/views/Register.vue">Sign up here.</a>
+      <router-link :to="{name:'register'}" class="register-link">Sign up here.</router-link>
+      <!-- <a class="register-link" href="../src/views/Register.vue">Sign up here.</a> -->
 
     </form>
     
