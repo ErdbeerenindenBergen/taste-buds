@@ -101,7 +101,7 @@ export default {
             const response = error.response;
             this.registrationErrors = true;
             if (response.status === 400) {
-              this.registrationErrorMsg = 'The email address is already in use. Pick another one.';
+              this.registrationErrorMsg = 'The username already exists. Pick another one.';
             }
           });
       }
