@@ -7,24 +7,40 @@
     <header id="header">
 
       <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       
       <div id="header-left">
         <img id="tb-logo" src="../src/assets/Taste-Buds.png" alt="taste-buds-logo"/>
         <h1 id="header-title">taste buds</h1>
       </div>  
 
-    <!-- <Slide> -->
-      <nav>
-        <router-link class="with-bar" v-bind:to="{ name: 'find' }">Find restaurant</router-link> 
-        <router-link class="with-bar" v-bind:to="{ name: 'invite-buds' }">Invite buds</router-link>  
-        <router-link class="with-bar" v-bind:to="{ name: 'events' }">Events</router-link> 
-        <router-link class="with-bar" v-bind:to="{ name: 'about' }">About</router-link> 
-        <router-link active-class="active" v-bind:to="{ name: 'log-in'}" v-if="$store.state.token === ''" >Log in</router-link>
-        <router-link v-bind:to="{ name: 'log-out' }" v-if="$store.state.token != ''">Log out</router-link>
+      <nav id="myLinks" class="navbar">
+        <ul class="nav-menu">
+          <li class="nav-item">
+          <router-link class="nav-link" v-bind:to="{ name: 'find' }">Find restaurant</router-link> 
+          </li>
+          <li class="nav-item">
+          <router-link class="nav-link" v-bind:to="{ name: 'invite-buds' }">Invite buds</router-link>  
+          </li>
+          <li class="nav-item">
+          <router-link class="nav-link" v-bind:to="{ name: 'events' }">Events</router-link> 
+          </li>
+          <li class="nav-item">
+          <router-link class="nav-link" v-bind:to="{ name: 'about' }">About</router-link> 
+          </li>
+          <li class="nav-item">
+          <router-link class="nav-link" active-class="active" v-bind:to="{ name: 'log-in'}" v-if="$store.state.token === ''" >Log in</router-link>
+          <router-link class="nav-link" v-bind:to="{ name: 'log-out' }" v-if="$store.state.token != ''">Log out</router-link>
+          </li>
+        </ul>
       </nav>
-    <!-- </Slide> -->
-      
 
+      <div class="hamburger" v-on:click="mobileMenu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    
     </header>
 
     <div class="background-white">
@@ -43,24 +59,55 @@
 </template>
 
 <script>
-// import { Slide } from 'vue-burger-menu'
-
 export default {
-  components: {
-    // Slide
-  },
   name: 'Timer',
   data() {
     return {
       fixed: false,
     };
   },
+  methods: {
+    mobileMenu() {
+      let hamburger = document.querySelector(".hamburger");
+      let navMenu = document.querySelector(".nav-menu");
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
+    }
+  }
 };
 </script>
 
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display');
+
+.hamburger {
+    display: none;
+    margin:15px;
+}
+
+.bar {
+    display: block;
+    width: 45px;
+    height: 3px;
+    margin: 15px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: #666666;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav-menu, .nav-link{
+  display: flex;
+  flex-direction: row;
+}
 
 #app{
   padding-top: 100px;
@@ -85,7 +132,6 @@ export default {
   font-weight: medium;
   font-size: 4rem;
   padding-left: 20px;
-  /* padding-right: 450px; */
   min-width: 20px;
   line-height: 13px;
 }
@@ -126,7 +172,11 @@ header {
   padding-top: 5px;
 }
 
-header, #header-left, nav{
+header, #header-left{
+  display: flex;
+}
+
+nav{
   display: flex;
   justify-content: flex-end;
 }
@@ -171,6 +221,35 @@ a:link,a:visited,a:hover{
 
 a:hover{
   font-weight: bold;
+}
+
+@media screen and (max-width: 1150px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 5rem;
+        flex-direction: column;
+        background-color: #fff;
+        width: 100%;
+        border-radius: 10px;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow:
+            0 10px 27px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-item {
+        margin: 2.5rem 0;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
 }
 
 </style>

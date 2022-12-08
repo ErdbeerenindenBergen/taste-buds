@@ -69,10 +69,6 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display');
 
-#root{
-    padding-top: 100px;
-}
-
 #restaurant-display{
     font-family: 'Playfair Display';
     font-size: 20px;
@@ -179,7 +175,7 @@ button:hover{
 
 @media screen and (max-width: 1200px) {
     #root{
-    padding-top: 200px;
+    padding-top: 100px;
     }
 }
 
@@ -189,7 +185,7 @@ button:hover{
     }
 
     #root{
-    padding-top: 200px;
+    padding-top: 100px;
     }
 
     .thumbnail{
