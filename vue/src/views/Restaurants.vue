@@ -234,18 +234,26 @@ option{
 
 @media screen and (max-width: 1200px) {
 
+.container{
+    padding-top: 15px;
+    display:flex;
+    flex-direction: column;
+}
+
   .left-panel{
-    width:30%;
+    width: 100%;
     position: fixed;
-    top: 250px;
+    top: 150px;
     left: 0;
+    background: white;
   }
 
   .right-panel{
-    width:70%;
+    width:100%;
     justify-content: center;
     text-align: center;
-    padding-left: 30%;
+    padding-left: 0;
+    padding-top: 425px;
   }
 }
 
