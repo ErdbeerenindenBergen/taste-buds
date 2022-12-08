@@ -3,30 +3,33 @@ package com.techelevator.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 public class Business {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
 
     @JsonProperty("name")
     private String restaurantName;
-    @JsonProperty("stringAddress")
-    private String restaurantAddress;
     @JsonProperty("id")
     private String id;
     @JsonProperty("rating")
     private double stars;
     @JsonProperty("phone")
     private String phoneNumber;
+    @JsonProperty("display_phone")
+    private String displayPhoneNumber;
     @JsonProperty("is_closed")
     private boolean isClosed;
     @JsonProperty("image_url")
     private String thumbnailImageURL;
     private String url;
+    private BusinessLocation location;
+    private List<BusinessCategories> categories;
 
 
-    public Business(String restaurantName, String restaurantAddress, int stars, String phoneNumber, boolean isClosed, String thumbnailImageURL) {
+    public Business(String restaurantName, int stars, String phoneNumber, boolean isClosed, String thumbnailImageURL) {
         this.restaurantName = restaurantName;
-        this.restaurantAddress = restaurantAddress;
         this.stars = stars;
         this.phoneNumber = phoneNumber;
         this.isClosed = isClosed;
@@ -34,20 +37,36 @@ public class Business {
     }
     public Business(){}
 
+    public String getDisplayPhoneNumber() {
+        return displayPhoneNumber;
+    }
+
+    public void setDisplayPhoneNumber(String displayPhoneNumber) {
+        this.displayPhoneNumber = displayPhoneNumber;
+    }
+
+    public BusinessLocation getLocation() {
+        return location;
+    }
+
+    public List<BusinessCategories> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<BusinessCategories> categories) {
+        this.categories = categories;
+    }
+
+    public void setLocation(BusinessLocation location) {
+        this.location = location;
+    }
+
     public String getRestaurantName() {
         return this.restaurantName;
     }
 
     public void setRestaurantName(String restaurantName) {
         this.restaurantName = restaurantName;
-    }
-
-    public String getRestaurantAddress() {
-        return this.restaurantAddress;
-    }
-
-    public void setRestaurantAddress(String restaurantAddress) {
-        this.restaurantAddress = restaurantAddress;
     }
 
     public double getStars() {

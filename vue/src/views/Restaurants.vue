@@ -1,16 +1,81 @@
 <template>
  <body class="container">
+
     <div id="find" class="left-panel">
-
+      <br>
+      <br>
+      <br>
+      <br>
         <form class="find-form" @submit="find">
+          <br>
           <p>Enter a city or zipcode</p>
-
+          <br>
             <input type="text" class="location" v-model="location" placeholder="City or Zipcode" />
+            <br>
+            <br>
+            <label for="state">If you'd like, you can specify a state.</label>
+            <br>
+            <select id="state" name="state" v-model="state" size="5"> 
+	<option value=",AL">Alabama</option>
+	<option value=",AK">Alaska</option>
+	<option value=",AZ">Arizona</option>
+	<option value=",AR">Arkansas</option>
+	<option value=",CA">California</option>
+	<option value=",CO">Colorado</option>
+	<option value=",CT">Connecticut</option>
+	<option value=",DE">Delaware</option>
+	<option value=",DC">District Of Columbia</option>
+	<option value=",FL">Florida</option>
+	<option value=",GA">Georgia</option>
+	<option value=",HI">Hawaii</option>
+	<option value=",ID">Idaho</option>
+	<option value=",IL">Illinois</option>
+	<option value=",IN">Indiana</option>
+	<option value=",IA">Iowa</option>
+	<option value=",KS">Kansas</option>
+	<option value=",KY">Kentucky</option>
+	<option value=",LA">Louisiana</option>
+	<option value=",ME">Maine</option>
+	<option value=",MD">Maryland</option>
+	<option value=",MA">Massachusetts</option>
+	<option value=",MI">Michigan</option>
+	<option value=",MN">Minnesota</option>
+	<option value=",MS">Mississippi</option>
+	<option value=",MO">Missouri</option>
+	<option value=",MT">Montana</option>
+	<option value=",NE">Nebraska</option>
+	<option value=",NV">Nevada</option>
+	<option value=",NH">New Hampshire</option>
+	<option value=",NJ">New Jersey</option>
+	<option value=",NM">New Mexico</option>
+	<option value=",NY">New York</option>
+	<option value=",NC">North Carolina</option>
+	<option value=",ND">North Dakota</option>
+	<option value=",OH">Ohio</option>
+	<option value=",OK">Oklahoma</option>
+	<option value=",OR">Oregon</option>
+	<option value=",PA">Pennsylvania</option>
+	<option value=",RI">Rhode Island</option>
+	<option value=",SC">South Carolina</option>
+	<option value=",SD">South Dakota</option>
+	<option value=",TN">Tennessee</option>
+	<option value=",TX">Texas</option>
+	<option value=",UT">Utah</option>
+	<option value=",VT">Vermont</option>
+	<option value=",VA">Virginia</option>
+	<option value=",WA">Washington</option>
+	<option value=",WV">West Virginia</option>
+	<option value=",WI">Wisconsin</option>
+	<option value=",WY">Wyoming</option>
+              </select>
+            <br>
             <button type="button" id="submit-button" v-on:click="find()">SUBMIT</button>
         </form>
-        </div>
+    </div>
 
-         <restaurant-card class="card" v-for="business in restaurantList" v-bind:key="business.id" v-bind:business="business"> </restaurant-card>
+    <div id="find-restaurants-results" class="left-panel">
+        <restaurant-card class="card" v-for="business in restaurantList" v-bind:key="business.id" v-bind:business="business"> </restaurant-card>
+    </div>
 
   </body>
 </template>
@@ -66,6 +131,8 @@ export default {
         find() {
             // RestaurantService.find(this.location).then(response => {
             //  this.restaurantList = response.data;
+            if (this.state != undefined) {
+            this.location = this.location + this.state;}
             RestaurantService.find(this.location).then(response => {
              this.restaurantList = response.data;
             })
@@ -79,21 +146,22 @@ export default {
 
 <style scoped>
 
-.find-form{
-    padding-top: 20px;
+.container{
+    padding-top: 15px;
+    display:flex;
 }
 
-.container{
-    padding-top: 25px;
+.left-panel{
+  width:50%;
 }
 
 p {
   font-size: 25px;
   display: flex;
   line-height: 5px;
-  font-family:'Playfair Display';
+  font-family:Montserrat;
   font-weight: normal;
-  padding-right: 20px;
+  padding-right: 23px;
 }
 
 
@@ -109,7 +177,8 @@ input.location {
 
 form.find-form {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
 }
 
@@ -125,8 +194,36 @@ a.router-link-active{
   font-size:15px;
   font-weight: bold;
   border-radius: 10px;
-  width: 10%;
+  width: 100px;
   padding: 12px 12px;
 }
+
+label{
+  font-family: Montserrat;
+  font-size: 23px;
+}
+
+select {
+  -webkit-appearance: none;
+  border: none;
+  font-family: Montserrat;
+  color: #666666;
+  font-size: 20px;
+  padding: 0 15px 0 0;
+}
+
+option{
+  padding: 5px;
+}
+
+#submit-button:focus{
+  background: orange;
+}
+
+#submit-button:hover{
+  background:#741b47ff;
+}
+
+
 
 </style>

@@ -5,25 +5,40 @@
            
             <!-- <img v-if="business.image_url" :src="this.business.image_url" class="thumbnail"> -->
             <div id="restaurant-display" v-for='business in business' :key='business.id'>
-                <h2 id='name'>{{ business.name }}</h2>
-                <img v-if="business.image_url != ''" :src="business.image_url" class="thumbnail">
-                <a id='url'>href={{ business.url }}<i id="fa-brands fa-yelp"></i></a>
-                <!-- <h2 id='title'>{{ business.restaurantList.categories[1].title }}</h2> -->
-                <h2 id='stars'>Average rating: {{ business.rating }}</h2>
-                <h2 id='isClosed'>{{ business.is_closed === false ? "Open now" : "Closed" }}</h2>
-                      <p id="contacts">
-                {{ business.phone}} <br>
-                <div id="phone-button">
-                    <a href="tel:${business.phone}" target="_blank"><button class="call-button" type="button call">Call to Order</button></a>
-                    <!-- <p class="address">{{business.location[7]}}</p> -->   
+                
+                <div id="restaurant-left">
+                    <h2 id='name'>{{ business.name }}</h2>
+                
+                    <img v-if="business.image_url != ''" :src="business.image_url" class="thumbnail"/>
+                
+                    <div id="icon-links">
+                        <a id='url' href="`${business.url}`" target="_blank">
+                            <img id="yelp-icon" src="@/assets/yelp.png" alt="yelp-icon" class="zoom"/>
+                        </a>
+                    </div>
                 </div>
+                
+                <div id="restaurant-right">
+                    
+                    <!-- <h2 id='title'>{{ business.restaurantList.categories[1].title }}</h2> -->
+                    <br>
+                    <br>
+                    <h2 id='stars'>Average rating: {{ business.rating }}</h2>
+                    <h2 id='isClosed'>{{ business.is_closed === false ? "Open now" : "Closed" }}</h2>
+
+                    <div id='contact-information'>
+                        <p id="contacts">{{ business.display_phone}}</p><br>
+                        <p id="address1">{{ business.location.display_address[0]}}</p>
+                        <p id="address2">{{ business.location.display_address[1]}}</p>
+                    </div>
+                
+                    <div id="phone-button">
+                        <a href="tel:${business.phone}" target="_blank"><button class="call-button" type="button call">Call to Order</button></a>
+                        <!-- <p class="address">{{business.location[7]}}</p> -->   
+                    </div>
+                </div>
+
             </div>
-
-       
-
-        
-
-
 
     </div>
 </template>
@@ -50,9 +65,22 @@ export default {
     font-family: 'Playfair Display';
     border: 1px solid #999999;
     margin: 20px 0 10px 0;
-    padding: 0 10px 0 10px;
+    padding: 0 30px 0 30px;
     text-align: center;
     font-weight: normal;
+    display: flex;
+}
+
+#restaurant-left{
+    display: flex;
+    flex-direction: column;
+}
+
+#restaurant-right{
+    display: flex;
+    flex-direction: column;
+    flex: grow;
+    width: 70%;
 }
 
 .call-button{
@@ -63,11 +91,47 @@ background-color: #a64d79ff;
   font-size:15px;
   font-weight: bold;
   border-radius: 10px;
-  width: 10%;
+  width: 150px;
   padding: 12px 12px;
   margin-bottom: 20px;
 }
 
+.thumbnail{
+    float: left;
+    height:400px;
+    width: 400px;
+    object-fit: cover;
+}
+
+#yelp-icon{
+    height: 40px;
+    margin: 10px;
+}
+
+p{
+    font-size: 22px;
+    font-family: Montserrat;
+}
+
+button:focus{
+    background: orange;;
+}
+
+button:hover{
+  background:#741b47ff;
+}
+
+.zoom:hover{
+  transform: scale(1.2);
+  transition: all ease 500ms;
+}
+
+@media screen and (max-width: 1350px) {
+
+    #restaurant-display {
+        flex-direction: column;
+    }
+}
 </style>
 
 
