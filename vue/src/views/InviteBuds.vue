@@ -20,6 +20,11 @@
                 <input type="text" class="state" v-model="location" placeholder="State" />
             </div>
 
+                    <!--------------------- Search Restaurant same as Find Restaurant ---------------------->
+
+            <button type="button" id="search-button" v-on:click="find()">search restaurants</button>
+
+
             <div class="date-time">
                 <h2>When must your buds respond by?</h2>
                 <input type="text" class="date" v-model="date" placeholder="mm/dd/yyyy"/>
