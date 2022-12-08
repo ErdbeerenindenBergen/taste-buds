@@ -98,6 +98,11 @@ background-color: #a64d79ff;
 
 #yelp-icon{
     height: 40px;
+    margin: 10px;
+}
+
+p{
+    font-size: 22px;
 }
 
 </style>

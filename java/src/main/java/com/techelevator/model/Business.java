@@ -17,6 +17,8 @@ public class Business {
     private double stars;
     @JsonProperty("phone")
     private String phoneNumber;
+    @JsonProperty("display_phone")
+    private String displayPhoneNumber;
     @JsonProperty("is_closed")
     private boolean isClosed;
     @JsonProperty("image_url")
@@ -34,6 +36,14 @@ public class Business {
         this.thumbnailImageURL = thumbnailImageURL;
     }
     public Business(){}
+
+    public String getDisplayPhoneNumber() {
+        return displayPhoneNumber;
+    }
+
+    public void setDisplayPhoneNumber(String displayPhoneNumber) {
+        this.displayPhoneNumber = displayPhoneNumber;
+    }
 
     public BusinessLocation getLocation() {
         return location;
