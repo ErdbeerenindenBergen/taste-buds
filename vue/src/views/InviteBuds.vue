@@ -24,7 +24,8 @@
             <button type="button" id="event-info-button" v-on:click="find()">SUBMIT</button>
             
                     <!-------------------View all Restaurants Button/Left Panel ----------------->
-                    //this list either shows up on the invite view page or takes them back to find a restaurant? 
+                    
+                    <!---i'm thinking maybe this button should be near the top? -->
             <button type="button" id="restaurant-button" v-on:click="viewRestaurants()">View Restaurants List</button>
 
                     <!-------------------Send Invite Button Button/Right Panel ------------------>
@@ -40,22 +41,30 @@
 
 
 <script>
+    //mikey note to self: think about imports and whether u need them
+
+//import InviteService from '../services/InviteService';
 
 export default{
 
-    //mikey note to self: think about imports and whether u need them
-    
     data() {
         return {
-            restaurantOptions: [],//this is for 'view restaurants list' button?]
+            restaurantOptions: [],//this is for 'view restaurants list' button, similar to find restaurant
             inviteId: "",
-            location: "",
             decisionDate: "", //might have to parse LocalDate as string
             decisionTime: "",//might have to parse LocalTime as string
             uniqueInvitationLink: "",
 
         }
     },
+    methods: {
+      //mikey note to self: the submitInvite function should create new invite with the data from above. reference the store stuff from lecture.
+      //capture data in variable and put that into create? must check backend create function
+      submitInvite() {
+      
+      }
+
+    }
 
 
         
