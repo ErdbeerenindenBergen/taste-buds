@@ -3,6 +3,8 @@ import App from './App.vue'
 import router from './router/index'
 import store from './store/index'
 import axios from 'axios'
+import ScrollFixedHeader from 'vuejs-scroll-fixed-header';
+Vue.use(ScrollFixedHeader);
 
 Vue.config.productionTip = false
 

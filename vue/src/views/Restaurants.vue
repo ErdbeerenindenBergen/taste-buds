@@ -2,10 +2,7 @@
  <body class="container">
 
     <div id="find" class="left-panel">
-      <br>
-      <br>
-      <br>
-      <br>
+
         <form class="find-form" @submit="find">
           <br>
           <p>Enter a city or zipcode</p>
@@ -73,7 +70,7 @@
         </form>
     </div>
 
-    <div id="find-restaurants-results" class="left-panel">
+    <div id="find-restaurants-results" class="right-panel">
         <restaurant-card class="card" v-for="business in restaurantList" v-bind:key="business.id" v-bind:business="business"> </restaurant-card>
     </div>
 
@@ -152,7 +149,12 @@ export default {
 }
 
 .left-panel{
-  width:50%;
+  width:30%;
+}
+.right-panel{
+  width:70%;
+  justify-content: center;
+  text-align: center;
 }
 
 p {
@@ -161,7 +163,6 @@ p {
   line-height: 5px;
   font-family:Montserrat;
   font-weight: normal;
-  padding-right: 23px;
 }
 
 
@@ -172,7 +173,6 @@ input.location {
   text-align: center;
   border-radius: 10px;
   font-size: 16px;
-  margin-right: 30px;
 }
 
 form.find-form {
@@ -222,6 +222,22 @@ option{
 
 #submit-button:hover{
   background:#741b47ff;
+}
+
+@media screen and (max-width: 800px) {
+ .container{
+    display:flex;
+}
+
+.left-panel{
+  width:100%;
+  padding-bottom:20px;
+}
+.right-panel{
+  width:100%;
+  justify-content: center;
+  text-align: center;
+}
 }
 
 
