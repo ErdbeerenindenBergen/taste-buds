@@ -69,6 +69,10 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display');
 
+#root{
+    padding-top: 100px;
+}
+
 #restaurant-display{
     font-family: 'Playfair Display';
     font-size: 20px;
@@ -158,9 +162,6 @@ button:hover{
 
 @media screen and (max-width: 1350px) {
 
-    #restaurant-display {
-    flex-direction: column;
-    }
     .thumbnail{
     margin: auto;
     height:300px;
@@ -176,8 +177,22 @@ button:hover{
     }
 }
 
+@media screen and (max-width: 1200px) {
+    #root{
+    padding-top: 200px;
+    }
+}
+
 @media screen and (max-width: 970px) {
-.thumbnail{
+    #restaurant-display {
+    flex-direction: column;
+    }
+
+    #root{
+    padding-top: 200px;
+    }
+
+    .thumbnail{
     float: left;
     height:225px;
     width: 225px;
@@ -185,7 +200,7 @@ button:hover{
     border-radius:10px;
     justify-content: center;
     /* margin: auto; */
-}
+    }
     #restaurant-display {
     flex:grow;
     justify-content: center;

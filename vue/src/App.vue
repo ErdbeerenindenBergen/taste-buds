@@ -1,7 +1,9 @@
 <template>
 
   <div id="app">
-  <scroll-fixed-header :fixed.sync="fixed" :threshold="56">
+
+    <div id=header-top>
+
     <header id="header">
 
       <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display" rel="stylesheet">
@@ -31,7 +33,9 @@
         </div>
     </div>
     
-  </scroll-fixed-header>
+
+  </div>
+
     <router-view />
   </div>
 </template>
@@ -56,6 +60,12 @@ export default {
     height: 60px;
     width: auto;
     margin: auto;
+}
+
+#header-top{
+  width:100%;
+  position: fixed;
+  top: 0px;
 }
 
 #header-title{
