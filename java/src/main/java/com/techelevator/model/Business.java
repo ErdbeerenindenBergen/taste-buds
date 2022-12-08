@@ -26,7 +26,7 @@ public class Business {
     private String url;
     private BusinessLocation location;
     private List<BusinessCategories> categories;
-
+    private BusinessCoordinates coordinates;
 
     public Business(String restaurantName, int stars, String phoneNumber, boolean isClosed, String thumbnailImageURL) {
         this.restaurantName = restaurantName;
@@ -117,4 +117,11 @@ public class Business {
         this.id = id;
     }
 
+    public BusinessCoordinates getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(BusinessCoordinates coordinates) {
+        this.coordinates = coordinates;
+    }
 }
