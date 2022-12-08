@@ -225,7 +225,7 @@ option{
 }
 
 #submit-button:focus{
-  background: orange;
+  background: #e06666;
 }
 
 #submit-button:hover{
