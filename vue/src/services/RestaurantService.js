@@ -7,7 +7,12 @@ const http = axios.create({
 export default {
     find(location) {
         return http.get(`/find/${location}`)
-            }
-        
+    },
+
+    collectRestaurantsForInvite(restaurant) {
+        return http.post('/restaurants/save', restaurant)
+    }
+      
+            
     
 }
