@@ -1,7 +1,7 @@
 <template>
     <div id="main-div">
 
-                    <!---------------Form Left Panel ------------>
+                    <!---------------------Form Left Panel ---------------------->
 
         <form class="invite-form" @submit="invite">
            
@@ -23,23 +23,24 @@
 
             <button type="button" id="event-info-button" v-on:click="find()">SUBMIT</button>
             
-                    <!---------------View all Restaurants/Left Panel ------------>
+                    <!-------------------View all Restaurants Button/Left Panel ----------------->
             <button type="button" id="restaurant-button" v-on:click="viewRestaurants()">View Restaurants List</button>
 
-                    <!---------------Send Invite Button/Right Panel ------------>
+                    <!-------------------Send Invite Button Button/Right Panel ------------------>
             <div class="send-invite">
                 <h2>Want to invite a friend who is not yet a taste bud?</h2>
                 <button type="button" id="invite-button" v-on:click="sendInvite()">send an invite!</button>
             </div>
+        
         </form>
     </div>
 </template>
 
 <script>
-// import InviteService from '../services/InviteService.vue';
-// import Restaurants from '../views/Restaurants.vue';
 
 export default{
+
+    //mikey note to self: think about imports and whether u need them
     
     data() {
         return {
@@ -51,7 +52,9 @@ export default{
             uniqueInvitationLink: "",
 
         }
-    }
+    },
+
+
         
     
 }

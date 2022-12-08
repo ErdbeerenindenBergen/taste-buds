@@ -5,9 +5,14 @@ const http = axios.create({
 });
 
 export default {
-    find(location) {
-        return http.get(`/find/${location}`)
-            }
+    getInvitationByInviteId(inviteID) {
+        return http.get(`/invite/${inviteID}`) //check with backend to match endpoint
+    },
+
+    createInvitation(invitation) {
+        return http.get(`/invite/create`, invitation) //check with backend to match endpoint
+    }
+
         
     
 }
