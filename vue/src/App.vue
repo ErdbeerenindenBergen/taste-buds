@@ -13,7 +13,7 @@
         <h1 id="header-title">taste buds</h1>
       </div>  
 
-    <Slide>
+    <!-- <Slide> -->
       <nav>
         <router-link class="with-bar" v-bind:to="{ name: 'find' }">Find restaurant</router-link> 
         <router-link class="with-bar" v-bind:to="{ name: 'invite-buds' }">Invite buds</router-link>  
@@ -22,7 +22,7 @@
         <router-link active-class="active" v-bind:to="{ name: 'log-in'}" v-if="$store.state.token === ''" >Log in</router-link>
         <router-link v-bind:to="{ name: 'log-out' }" v-if="$store.state.token != ''">Log out</router-link>
       </nav>
-    </Slide>
+    <!-- </Slide> -->
       
 
     </header>
@@ -43,11 +43,11 @@
 </template>
 
 <script>
-import { Slide } from 'vue-burger-menu'
+// import { Slide } from 'vue-burger-menu'
 
 export default {
   components: {
-    Slide
+    // Slide
   },
   name: 'Timer',
   data() {
