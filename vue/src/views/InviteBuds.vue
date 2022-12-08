@@ -26,20 +26,22 @@
                 <input type="text" class="time" v-model="time" placeholder="hh:mm" />
             </div>
 
-            <button type="button" id="event-info-button" v-on:click="find()">SUBMIT</button>
+            <!-- this button same as invite? -->
+            <!-- <button type="button" id="event-info-button" v-on:click="sendInvite()">SUBMIT</button> -->
             
                     <!-------------------Send Invite Button Button/Left Panel ------------------>
             <div class="send-invite">
                 <h2>Want to invite a friend who is not yet a taste bud?</h2>
                 <button type="button" id="invite-button" v-on:click="sendInvite()">send an invite!</button>
             </div>
-        
+         </form>
+                     
                      <!-------------------View all Restaurants Button/Left Panel ----------------->
                     
                     <!---i'm thinking maybe this button should be near the top? -->
             <button type="button" id="restaurant-button" v-on:click="viewRestaurants()">view restaurants list</button>
 
-        </form>
+       
     </div>
 </template>
 
@@ -59,6 +61,7 @@ export default{
             restaurantOptions: [],//this is for 'view restaurants list' button, similar to find restaurant
             //invitation as an array to capture in submit button
             invitation: {
+            eventName: "",
             inviteId: "",
             decisionDate: "", //might have to parse LocalDate as string
             decisionTime: "",//might have to parse LocalTime as string
@@ -68,11 +71,11 @@ export default{
         }
     },
     methods: {
-      //mikey note to self: the sendInvite function should create new invite with the data from above. reference the store stuff from lecture.
+      //mikey note to self: the submitInvite function should create new invite with the data from above. reference the store stuff from lecture.
       //capture data in variable and put that into create? must check backend create function
       //invite has to be array?
       sendInvite() {
-          const invitationArray = {inviteId: "", decisionDate: "", decisionTime: "", uniqueInvitationLink:""};
+          const invitationArray = {eventName: "", inviteId: "", decisionDate: "", decisionTime: "", uniqueInvitationLink:""};
           
           InviteService.createInvitation(invitationArray).then(response => {
               this.invite.inviteId = response.data;
