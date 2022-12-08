@@ -5,25 +5,33 @@
            
             <!-- <img v-if="business.image_url" :src="this.business.image_url" class="thumbnail"> -->
             <div id="restaurant-display" v-for='business in business' :key='business.id'>
-                <h2 id='name'>{{ business.name }}</h2>
-                <img v-if="business.image_url != ''" :src="business.image_url" class="thumbnail"/>
-                <img id="yelp-icon" src="/src/assets/yelp.png" alt="yelp-icon" class="yelp-icon"/>
-                <a id='url'>href={{ business.url }}<i id="fa-brands fa-yelp"></i></a>
-                <!-- <h2 id='title'>{{ business.restaurantList.categories[1].title }}</h2> -->
-                <h2 id='stars'>Average rating: {{ business.rating }}</h2>
-                <h2 id='isClosed'>{{ business.is_closed === false ? "Open now" : "Closed" }}</h2>
-                      <p id="contacts">{{ business.phone}}</p>
-                <div id="phone-button">
-                    <a href="tel:${business.phone}" target="_blank"><button class="call-button" type="button call">Call to Order</button></a>
-                    <!-- <p class="address">{{business.location[7]}}</p> -->   
+                
+                <div id="restaurant-left">
+                    <h2 id='name'>{{ business.name }}</h2>
+                
+                    <img v-if="business.image_url != ''" :src="business.image_url" class="thumbnail"/>
+                
+                    <div id="icon-links">
+                        <a id='url' href="`${business.url}`" >
+                            <img id="yelp-icon" src="@/assets/yelp.png" alt="yelp-icon" class="yelp-icon"/>
+                        </a>
+                    </div>
                 </div>
+                
+                <div id="restaurant-right">
+                    
+                    <!-- <h2 id='title'>{{ business.restaurantList.categories[1].title }}</h2> -->
+                    <h2 id='stars'>Average rating: {{ business.rating }}</h2>
+                    <h2 id='isClosed'>{{ business.is_closed === false ? "Open now" : "Closed" }}</h2>
+                    <p id="contacts">{{ business.phone}}</p>
+                
+                    <div id="phone-button">
+                        <a href="tel:${business.phone}" target="_blank"><button class="call-button" type="button call">Call to Order</button></a>
+                        <!-- <p class="address">{{business.location[7]}}</p> -->   
+                    </div>
+                </div>
+
             </div>
-
-       
-
-        
-
-
 
     </div>
 </template>
@@ -53,6 +61,20 @@ export default {
     padding: 0 10px 0 10px;
     text-align: center;
     font-weight: normal;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#restaurant-left{
+    display: flex;
+    flex-direction: column;
+}
+
+#restaurant-right{
+    display: flex;
+    flex-direction: column;
+    flex: grow;
+    width: 70%;
 }
 
 .call-button{
@@ -71,6 +93,11 @@ background-color: #a64d79ff;
 .thumbnail{
     height:400px;
     width:auto;
+    object-fit: cover;
+}
+
+#yelp-icon{
+    height: 40px;
 }
 
 </style>
