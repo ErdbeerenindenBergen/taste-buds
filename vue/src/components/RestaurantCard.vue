@@ -12,7 +12,8 @@
                     <img v-if="business.image_url != ''" :src="business.image_url" class="thumbnail"/>
                 
                     <div id="icon-links">
-                        <a id='url' href="`${business.url}`" target="_blank">
+                        <!-- <p>{{business.url}}</p> -->
+                        <a id='url' :href="`${business.url}`" target="_blank">
                             <img id="yelp-icon" src="@/assets/yelp.png" alt="yelp-icon" class="zoom"/>
                         </a>
                     </div>
@@ -33,7 +34,7 @@
                     </div>
                 
                     <div id="phone-button">
-                        <a href="tel:${business.phone}" target="_blank"><button class="call-button" type="button call">Call to Order</button></a>
+                        <a href="tel:${business.phone}" target="_blank"><button class="call-button" type="button call">CALL TO ORDER</button></a>
                         <!-- <p class="address">{{business.location[7]}}</p> -->   
                     </div>
                 </div>
@@ -63,12 +64,15 @@ export default {
 
 #restaurant-display{
     font-family: 'Playfair Display';
-    border: 1px solid #999999;
+    /* border: 1px solid #999999; */
+    border-radius: 10px;
     margin: 20px 0 10px 0;
     padding: 0 30px 0 30px;
     text-align: center;
     font-weight: normal;
     display: flex;
+    background:#f0efef;
+    flex: grow;
 }
 
 #restaurant-left{
@@ -101,6 +105,7 @@ background-color: #a64d79ff;
     height:400px;
     width: 400px;
     object-fit: cover;
+    border-radius:10px;
 }
 
 #yelp-icon{
@@ -114,7 +119,7 @@ p{
 }
 
 button:focus{
-    background: orange;;
+    background: #e06666;
 }
 
 button:hover{
@@ -131,7 +136,30 @@ button:hover{
     #restaurant-display {
         flex-direction: column;
     }
+    .thumbnail{
+    justify-content: center;
+    margin: auto;
+    }
+    #restaurant-right {
+    justify-content: center;
+    margin: auto;
+    }
+}
+
+@media screen and (max-width: 970px) {
+.thumbnail{
+    float: left;
+    height:300px;
+    width: 300px;
+    object-fit: cover;
+    border-radius:10px;
+    justify-content: center;
+    margin: auto;
+}
+
 }
 </style>
+
+
 
 
