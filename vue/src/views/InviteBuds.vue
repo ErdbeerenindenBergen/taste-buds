@@ -23,7 +23,11 @@
 
               <!-------------- Search Restaurant button similar to Find Restaurant ------------------->
 
-            <button type="button" id="search-button" v-on:click="find()">search restaurants</button>
+            <button type="button" id="search-button" v-on:click="find()">searchRestaurants</button>
+
+            <!-----------------------Current Location button ----------------------->
+
+            <button type="button" id="current-location-button" v-on:click="currentLocation">Current Location</button> 
 
                     <!------------------------- Date/Time Fields ------------------------------>
 
@@ -37,6 +41,7 @@
                     <!-- my understanding is this button will submit/save the restaurants of 10 or whatever from the query above -->
 
             <button type="button" id="event-info-button" v-on:click="collectRestaurantsForInvite()">SUBMIT</button> 
+
 
                     <!-----------------------Enter Email Field ----------------------->
 
