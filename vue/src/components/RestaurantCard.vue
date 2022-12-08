@@ -12,8 +12,8 @@
                     <img v-if="business.image_url != ''" :src="business.image_url" class="thumbnail"/>
                 
                     <div id="icon-links">
-                        <a id='url' href="`${business.url}`" >
-                            <img id="yelp-icon" src="@/assets/yelp.png" alt="yelp-icon" class="yelp-icon"/>
+                        <a id='url' href="`${business.url}`" target="_blank">
+                            <img id="yelp-icon" src="@/assets/yelp.png" alt="yelp-icon" class="zoom"/>
                         </a>
                     </div>
                 </div>
@@ -21,6 +21,8 @@
                 <div id="restaurant-right">
                     
                     <!-- <h2 id='title'>{{ business.restaurantList.categories[1].title }}</h2> -->
+                    <br>
+                    <br>
                     <h2 id='stars'>Average rating: {{ business.rating }}</h2>
                     <h2 id='isClosed'>{{ business.is_closed === false ? "Open now" : "Closed" }}</h2>
 
@@ -63,11 +65,10 @@ export default {
     font-family: 'Playfair Display';
     border: 1px solid #999999;
     margin: 20px 0 10px 0;
-    padding: 0 10px 0 10px;
+    padding: 0 30px 0 30px;
     text-align: center;
     font-weight: normal;
     display: flex;
-    justify-content: space-evenly;
 }
 
 #restaurant-left{
@@ -90,7 +91,7 @@ background-color: #a64d79ff;
   font-size:15px;
   font-weight: bold;
   border-radius: 10px;
-  width: 10%;
+  width: 150px;
   padding: 12px 12px;
   margin-bottom: 20px;
 }
@@ -112,6 +113,25 @@ p{
     font-family: Montserrat;
 }
 
+button:focus{
+    background: orange;;
+}
+
+button:hover{
+  background:#741b47ff;
+}
+
+.zoom:hover{
+  transform: scale(1.2);
+  transition: all ease 500ms;
+}
+
+@media screen and (max-width: 1350px) {
+
+    #restaurant-display {
+        flex-direction: column;
+    }
+}
 </style>
 
 
