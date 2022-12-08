@@ -36,16 +36,11 @@
 </template>
 
 <script>
-import InviteService from '../services/InviteService.vue';
-import Restaurants from '../views/Restaurants.vue';
+// import InviteService from '../services/InviteService.vue';
+// import Restaurants from '../views/Restaurants.vue';
 
 export default{
-    components: { 
-        Restaurants
-    },
-    props: {
-        Restaurants
-    },
+    
     data() {
         return {
             restaurantOptions: [],//this is for 'view restaurants list' button?
