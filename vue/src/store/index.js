@@ -20,7 +20,8 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    restaurantList: []
+    restaurantList: [],
+    pendingInvite: []
   
   },
   mutations: {
@@ -40,8 +41,12 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
     },
-    SET_List_RESULTS(state, results){
+    SET_LIST_RESULTS(state, results){
       state.restaurantList = results;
+    },
+    //capturing new invite.
+    SET_PENDING_INVITE(state, invitation){
+      state.pendingInvite = invitation;
     }
 }
 })
