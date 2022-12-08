@@ -1,8 +1,8 @@
 <template>
 
   <div id="app">
-
-    <header>
+  <scroll-fixed-header :fixed.sync="fixed" :threshold="56">
+    <header id="header">
 
       <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display" rel="stylesheet">
       
@@ -19,13 +19,34 @@
         <router-link active-class="active" v-bind:to="{ name: 'log-in'}" v-if="$store.state.token === ''" >Log in</router-link>
         <router-link v-bind:to="{ name: 'log-out' }" v-if="$store.state.token != ''">Log out</router-link>
       </nav>
+      
 
     </header>
 
-    <hr/>
+    <div class="background-white">
+      <div id="header-padding-top" class="background-white">
+        </div>
+      <hr/>
+      <div id="header-padding" class="background-white">
+        </div>
+    </div>
+    
+  </scroll-fixed-header>
     <router-view />
   </div>
 </template>
+
+<script>
+export default {
+  name: 'Timer',
+  data() {
+    return {
+      fixed: false,
+    };
+  },
+};
+</script>
+
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display');
@@ -48,6 +69,16 @@
   line-height: 13px;
 }
 
+#header-padding-top{
+  padding-top: 3px;
+  line-height: 0px;
+}
+
+#header-padding{
+  padding-bottom: 3px;
+  line-height: 3px;
+}
+
 a.router-link-active{
   font-weight: bold;
 }
@@ -56,10 +87,22 @@ hr {
   color:#999999;
   margin-left: 2rem; 
   margin-right: 2rem;
+  background: white;
+  margin-bottom: 20px;
+}
+
+#background{
+  background: white;
+}
+
+.background-white{
+  background: white;
 }
 
 header {
-  margin: 5px 10px 5px 10px;
+  margin: 0px 10px 0px 10px;
+  background:white;
+  padding-top: 5px;
 }
 
 header, #header-left, nav{

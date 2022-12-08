@@ -22,8 +22,7 @@
                 <div id="restaurant-right">
                     
                     <!-- <h2 id='title'>{{ business.restaurantList.categories[1].title }}</h2> -->
-                    <br>
-                    <br>
+
                     <h2 id='stars'>Average rating: {{ business.rating }}</h2>
                     <h2 id='isClosed'>{{ business.is_closed === false ? "Open now" : "Closed" }}</h2>
 
@@ -64,6 +63,7 @@ export default {
 
 #restaurant-display{
     font-family: 'Playfair Display';
+    font-size: 20px;
     /* border: 1px solid #999999; */
     border-radius: 10px;
     margin: 20px 0 10px 0;
@@ -78,13 +78,19 @@ export default {
 #restaurant-left{
     display: flex;
     flex-direction: column;
+    flex: grow;
+    width: 50%;
+    justify-content: center;
+    text-align: center;
 }
 
 #restaurant-right{
     display: flex;
     flex-direction: column;
     flex: grow;
-    width: 70%;
+    width: 50%;
+    justify-content: center;
+    text-align: center;
 }
 
 .call-button{
@@ -106,6 +112,7 @@ background-color: #a64d79ff;
     width: 400px;
     object-fit: cover;
     border-radius:10px;
+    margin:auto;
 }
 
 #yelp-icon{
@@ -114,7 +121,7 @@ background-color: #a64d79ff;
 }
 
 p{
-    font-size: 22px;
+    font-size: 25px;
     font-family: Montserrat;
 }
 
@@ -134,13 +141,18 @@ button:hover{
 @media screen and (max-width: 1350px) {
 
     #restaurant-display {
-        flex-direction: column;
+    flex-direction: column;
     }
     .thumbnail{
+    margin: auto;
+    height:300px;
+    width: 300px;
+    }
+    #restaurant-right {
     justify-content: center;
     margin: auto;
     }
-    #restaurant-right {
+    #restaurant-left {
     justify-content: center;
     margin: auto;
     }
@@ -149,13 +161,18 @@ button:hover{
 @media screen and (max-width: 970px) {
 .thumbnail{
     float: left;
-    height:300px;
-    width: 300px;
+    height:225px;
+    width: 225px;
     object-fit: cover;
     border-radius:10px;
     justify-content: center;
-    margin: auto;
+    /* margin: auto; */
 }
+    #restaurant-display {
+    flex:grow;
+    justify-content: center;
+    padding: 0 30px 0 30px;
+    }
 
 }
 </style>
