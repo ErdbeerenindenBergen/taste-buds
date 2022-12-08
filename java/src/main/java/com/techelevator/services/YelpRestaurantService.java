@@ -27,4 +27,6 @@ public class YelpRestaurantService implements IYelpRestaurantService{
         return businesses;
     }
 
+    //TODO add method to search for specific restaurant via API call
+
 }

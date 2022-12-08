@@ -11,12 +11,20 @@
                 
                     <img v-if="business.image_url != ''" :src="business.image_url" class="thumbnail"/>
                 
-                    <div id="icon-links">
-                        <!-- <p>{{business.url}}</p> -->
-                        <a id='url' :href="`${business.url}`" target="_blank">
-                            <img id="yelp-icon" src="@/assets/yelp.png" alt="yelp-icon" class="zoom"/>
-                        </a>
+                    <div id="icons">
+                        <div id="yelp-icon-link">
+                            <a id='url' :href="`${business.url}`" target="_blank">
+                                <img id="yelp-icon" src="@/assets/yelp.png" alt="yelp-icon" class="zoom"/>
+                            </a>
+                        </div>
+
+                        <div id="google-icon-link">
+                            <a id='url' :href="'http://maps.google.com/?q=' + `${business.name}` + `${business.location.display_address[0]}`" target="_blank">
+                                <img id="google-icon" src="@/assets/google-maps.png" alt="google-maps-icon" class="zoom"/>
+                            </a>
+                        </div>
                     </div>
+
                 </div>
                 
                 <div id="restaurant-right">
@@ -53,7 +61,7 @@ export default {
     props: {
         business: [],
         restaurants
-    },    
+    },   
 }
 
 </script>
@@ -115,7 +123,17 @@ background-color: #a64d79ff;
     margin:auto;
 }
 
+#icons{
+    display: flex;
+    justify-content: center;
+}
+
 #yelp-icon{
+    height: 40px;
+    margin: 10px;
+}
+
+#google-icon{
     height: 40px;
     margin: 10px;
 }

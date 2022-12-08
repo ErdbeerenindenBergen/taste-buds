@@ -150,11 +150,16 @@ export default {
 
 .left-panel{
   width:30%;
+  position: fixed;
+  top: 250px;
+  left: 0;
 }
+
 .right-panel{
   width:70%;
   justify-content: center;
   text-align: center;
+  padding-left: 30%;
 }
 
 p {
@@ -164,7 +169,6 @@ p {
   font-family:Montserrat;
   font-weight: normal;
 }
-
 
 input.location {
   width: 25%;
@@ -180,6 +184,10 @@ form.find-form {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: fix;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
 a.router-link-active{
@@ -222,6 +230,23 @@ option{
 
 #submit-button:hover{
   background:#741b47ff;
+}
+
+@media screen and (max-width: 1200px) {
+
+  .left-panel{
+    width:30%;
+    position: fixed;
+    top: 250px;
+    left: 0;
+  }
+
+  .right-panel{
+    width:70%;
+    justify-content: center;
+    text-align: center;
+    padding-left: 30%;
+  }
 }
 
 @media screen and (max-width: 800px) {
