@@ -17,8 +17,7 @@ public interface InvitationDao {
 
     void deleteInvitation(Invitation invitation);
 
-    Invitation createInvitation(String inviter, String location, String zipCode, LocalDate decisionDate, LocalTime decisionTime, List<String> guestList,
-                                List<String> restaurantOptions, String uniqueInvitationLink, String emailAddress); //Don't think this needs all this?
+    boolean createInvitation(Invitation invitation); //??
 
     Invitation getInvitationByInviter(String inviter);
 
