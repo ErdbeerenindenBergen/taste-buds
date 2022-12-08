@@ -23,7 +23,12 @@
                     <!-- <h2 id='title'>{{ business.restaurantList.categories[1].title }}</h2> -->
                     <h2 id='stars'>Average rating: {{ business.rating }}</h2>
                     <h2 id='isClosed'>{{ business.is_closed === false ? "Open now" : "Closed" }}</h2>
-                    <p id="contacts">{{ business.phone}}</p>
+
+                    <div id='contact-information'>
+                        <p id="contacts">{{ business.display_phone}}</p><br>
+                        <p id="address1">{{ business.location.display_address[0]}}</p>
+                        <p id="address2">{{ business.location.display_address[1]}}</p>
+                    </div>
                 
                     <div id="phone-button">
                         <a href="tel:${business.phone}" target="_blank"><button class="call-button" type="button call">Call to Order</button></a>
@@ -91,8 +96,9 @@ background-color: #a64d79ff;
 }
 
 .thumbnail{
+    float: left;
     height:400px;
-    width:auto;
+    width: 400px;
     object-fit: cover;
 }
 
@@ -103,6 +109,7 @@ background-color: #a64d79ff;
 
 p{
     font-size: 22px;
+    font-family: Montserrat;
 }
 
 </style>
