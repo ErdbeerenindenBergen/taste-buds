@@ -31,6 +31,8 @@ public class Invitation {
         this.emailAddress = emailAddress;
     }
 
+    public Invitation() {}
+
     public String getInviter() {
         return inviter;
     }
