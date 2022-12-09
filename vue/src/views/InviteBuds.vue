@@ -70,8 +70,8 @@
             </div>
 
             <!-- this here is the imported Restaurants.vue template from views -->
-           
-            <restaurants />
+<!--            
+            <restaurants /> -->
             
 
     </div>
@@ -84,17 +84,17 @@
 
 import InviteService from '../services/InviteService';
 import RestaurantCard from '../components/RestaurantCard.vue';
-import Restaurants from '../views/Restaurants.vue';
+//import Restaurants from '../views/Restaurants.vue';
 //import RestaurantService from '../services/RestaurantService';
 
 
 export default{
     components: {
         RestaurantCard,
-        Restaurants
+       // Restaurants
     },
     props: {
-        RestaurantCard,
+        //RestaurantCard,
     },
     data() {
         return {
