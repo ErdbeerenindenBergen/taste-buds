@@ -2,7 +2,7 @@
     <div id="invite-buds">
 
 
-        <form class="inviteBud-form" v-on:submit.prevent="submitForm">
+        <form class="inviteBud-form" v-on:submit.prevent="submitForm" v-if="inProcess">
            
                      <!-------B-------------- Query Fields to Search Restaurants ---------------------->
 
@@ -68,7 +68,6 @@
             <restaurant-card class="card" v-for="business in restaurantList" v-bind:key="business.id" v-bind:business="business"> </restaurant-card>
             </div>
             
-
     </div>
 </template>
 
@@ -85,7 +84,7 @@ import RestaurantCard from '../components/RestaurantCard.vue';
 export default{
     components: {
         RestaurantCard,
-       
+        
     },
     props: {
         business: []
@@ -93,8 +92,10 @@ export default{
     data() {
         return {
             inviteInfo: {},
+            businesses: [],
             invitation: {
                 eventName: "",
+                event_organizer_id: "",
                 inviteId: "",
                 decisionDate: "", //might not be correct default date approach
                 decisionTime: "",//might not be correct default time approach
@@ -107,10 +108,12 @@ export default{
     methods: {
       
       //mikey note to self: the submit function should create new invite with the data from above. reference the store stuff from lecture.
+      //the idea is to save all the invites to the store and then we could access it anytime and mutate it....i think. lmao
       submitForm() {
           const inviteInfo = {
-              eventName:"", 
-              inviteId: "", 
+              eventName: this.eventName,
+              event_organizer_id: this.event_organizer_Id, 
+              inviteId: this.inviteId, 
               decisionDate: this.invitation.decisionDate, 
               decisionTime: this.invitation.decisionTime, 
               uniqueInvitationLink: this.invitation.uniqueInvitationLink
@@ -128,9 +131,8 @@ export default{
           window.open(inviteLink);
 
       }
-
+        
     }
-
 
         
     
