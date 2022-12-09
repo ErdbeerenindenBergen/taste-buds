@@ -108,6 +108,7 @@ a {
   display: flex;
   flex-direction: row;
   background: none;
+  z-index:99;
 }
 
 #app{
@@ -235,6 +236,7 @@ a:hover{
         border-radius: 10px;
         text-align: center;
         transition: 0.3s;
+        z-index:999999999999 !important;
         /* box-shadow:
             0 10px 27px rgba(0, 0, 0, 0.05); */
     }

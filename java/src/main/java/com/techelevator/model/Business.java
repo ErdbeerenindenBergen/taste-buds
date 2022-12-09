@@ -27,6 +27,7 @@ public class Business {
     private BusinessLocation location;
     private List<BusinessCategories> categories;
     private BusinessCoordinates coordinates;
+    private String[] transactions;
 
     public Business(String restaurantName, int stars, String phoneNumber, boolean isClosed, String thumbnailImageURL) {
         this.restaurantName = restaurantName;
@@ -36,6 +37,14 @@ public class Business {
         this.thumbnailImageURL = thumbnailImageURL;
     }
     public Business(){}
+
+    public String[] getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(String[] transactions) {
+        this.transactions = transactions;
+    }
 
     public String getDisplayPhoneNumber() {
         return displayPhoneNumber;
