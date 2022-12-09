@@ -21,7 +21,7 @@ public class JdbcInvitationDao implements InvitationDao  {
     @Override
     public List<Invitation> findAll() {
         List<Invitation> invitations = new ArrayList<>();
-        String sql = "select * from event_invitation";
+        String sql = "select * from event_invitation;";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()) {
@@ -31,11 +31,11 @@ public class JdbcInvitationDao implements InvitationDao  {
         return invitations;
     }
 
-    @Override //How to get deadline information from tb_event ?
+    @Override //Bane of my existence
     public boolean createInvitation(Invitation invitation) {
-        String sql = "INSERT INTO event_invitation(" +
-                "invitation_id, event_id, has_voted)" +
-                "VALUES (?, ?, ?);";
+        String sql = "INSERT INTO public.event_invitation" +
+                "(invitation_id, event_id, email_address, has_voted)\n" +
+                "VALUES (?, ?, ?, ?);";
         return jdbcTemplate.update(sql, invitation) == 1;
 
         
@@ -43,9 +43,13 @@ public class JdbcInvitationDao implements InvitationDao  {
 
     @Override
     public Invitation getInvitationByInvitationId(int invitationId) {
-        String sql = "SELECT event_invitation.invitation_id, event_invitation.event_id, event_invitation.has_voted, tb_event.event_name, tb_event.response_deadline_date, \n" +
-                "tb_event.response_deadline_time, tb_event.event_zipcode, tb_event.event_city, tb_event.event_state \n" +
-                "FROM event_invitation JOIN tb_event ON event_invitation.event_id = tb_event.event_id;";
+        String sql = "SELECT event_invitation.invitation_id, event_invitation.event_id, event_invitation.email_address, event_invitation.has_voted,\n" +
+                "tb_event.event_name, tb_event.response_deadline_date,\n" +
+                "tb_event.response_deadline_time, tb_event.event_zipcode, tb_event.event_city, tb_event.event_state\n" +
+                "FROM event_invitation\n" +
+                "JOIN tb_event \n" +
+                "ON event_invitation.event_id = tb_event.event_id\n" +
+                "WHERE invitation_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, invitationId);
 
         if (results.next()) {
@@ -57,7 +61,8 @@ public class JdbcInvitationDao implements InvitationDao  {
 
     @Override
     public Invitation getInvitationByUserId(int userId) {
-        String sql = "SELECT invitation_id, event_invitation.event_id, has_voted, response_deadline_date, response_deadline_time\n" +
+        String sql = "SELECT event_invitation.invitation_id, event_invitation.event_id, event_invitation.email_address, event_invitation.has_voted, \n" +
+                "tb_event.event_name, tb_event.event_city, tb_event.event_state, tb_event.event_zipcode, tb_event.response_deadline_date, tb_event.response_deadline_time\n" +
                 "FROM event_invitation\n" +
                 "INNER JOIN tb_event\n" +
                 "ON event_invitation.event_id = tb_event.event_id\n" +
@@ -76,7 +81,8 @@ public class JdbcInvitationDao implements InvitationDao  {
     private Invitation mapRowToInvitations(SqlRowSet rs) {
         Invitation invitation = new Invitation();
         invitation.setInvitationId(rs.getInt("invitation_id"));
-
+        invitation.setLocation(rs.getString("event_city, event_state")); // <--- ??
+        invitation.setZipCode(rs.getString("event_zipcode"));
         invitation.setDecisionDate(rs.getDate("decision_date"));
         invitation.setDecisionTime(rs.getTime("decision_time"));
 

@@ -30,15 +30,14 @@ public class InvitationController {
         return invitationDao.findAll();
     }
 
-    //500 error - The column index is out of range: 1, number of columns: 0.; nested exception is org.postgresql.util.PSQLException:
-    // The column index is out of range: 1, number of columns: 0.",
+    //Just getting '1' back? may need to create an invitation to really check?
     @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(path = "/{invitationId}", method = RequestMethod.GET)
     public Invitation getInvitationByInvitationId(@PathVariable int invitationId) {
         return invitationDao.getInvitationByInvitationId(invitationId);
     }
 
-    //Just getting '1' back? may need to create an invitation to really check?
+    //Just getting '1' back? may need to create an invitation to really check? (AGAIN)
     @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(path = "/UserInvites/{userId}", method = RequestMethod.GET)
     public Invitation getInvitationByUserId(@PathVariable int userId) {
