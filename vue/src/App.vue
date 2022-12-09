@@ -73,15 +73,15 @@ export default {
       hamburger.classList.toggle("active");
       navMenu.classList.toggle("active");
     },
-            turnOffFindView() {
-          let targetDiv = document.getElementById("find");
-            if (targetDiv.style.display !== "none") {
-              targetDiv.style.display = "none";
-            } else {
-              targetDiv.style.display = "flex";
-              targetDiv.style.position="fix";
-              targetDiv.style.justifyContent="center";
-              targetDiv.style.alignContent="center";
+    turnOffFindView() {
+      let targetDiv = document.getElementById("find");
+        if (targetDiv.style.display !== "none") {
+          targetDiv.style.display = "none";
+        } else {
+          targetDiv.style.display = "flex";
+          targetDiv.style.position="fix";
+          targetDiv.style.justifyContent="center";
+          targetDiv.style.alignContent="center";
             }
       },
   }

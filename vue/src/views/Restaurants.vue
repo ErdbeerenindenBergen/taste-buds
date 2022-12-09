@@ -71,7 +71,7 @@
     </div>
 
     <div id="find-restaurants-results" class="right-panel">
-        <restaurant-card class="card" v-for="business in restaurantList" v-bind:key="business.id" v-bind:business="business"> </restaurant-card>
+        <restaurant-card class="card" v-for="business in businesses" v-bind:key="business.id" v-bind:business="business"> </restaurant-card>
     </div>
 
   </body>
@@ -93,34 +93,7 @@ export default {
     data() {
         return{
             location:"",
-            restaurantList: [],
-            businesses: {
-              id: "",
-             restaurantName: "",
-             thumbnailImageURL: "",
-             isClosed: false,
-             // categories: [
-             //     {
-             //         alias: "",
-             //         title: ""
-             //     }
-             // ],
-             stars: 0.0,
-             // coordinates: {
-             //     latitude: 0,
-             //     longitude: 0
-             // },
-             // location: {
-             //     address1: "",
-             //     city: "",
-             //     zip_code: "",
-             //     state: "",
-                
-             // },
-             restaurantAddress: "",
-             phoneNumber: "",
-             url: ""
-            }
+            businesses: [],
         }
      },
     methods: {
@@ -128,7 +101,7 @@ export default {
             if (this.state != undefined) {
             this.location = this.location + this.state;}
             RestaurantService.find(this.location).then(response => {
-             this.restaurantList = response.data;
+             this.businesses = response.data;
             })
         },
   }  

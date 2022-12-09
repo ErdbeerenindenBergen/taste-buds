@@ -3,8 +3,7 @@
 
       <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display" rel="stylesheet">
            
-            <!-- <img v-if="business.image_url" :src="this.business.image_url" class="thumbnail"> -->
-            <div id="restaurant-display" v-for='business in business' :key='business.id'>
+            <div id="restaurant-display" v-for='element in business' :key='element.id'>
                 
                 <div id="restaurant-left">
                     <h2 id='name'>{{ business.name }}</h2>
@@ -29,8 +28,6 @@
                 </div>
                 
                 <div id="restaurant-right">
-                    
-                    <!-- <h2 id='title'>{{ business.restaurantList.categories[1].title }}</h2> -->
 
                     <h2 id='stars'>Average rating: {{ business.rating }}</h2>
                     <h2 id='isClosed'>{{ business.is_closed === false ? "Open now" : "Closed" }}</h2>
@@ -59,17 +56,11 @@
 
 <script>
 
-//import RestaurantService from '../services/RestaurantService'
-import restaurants from '../views/Restaurants.vue'
-
 export default {
     name :'restaurant-card',
     props: {
-        business: [],
-        restaurants
-    },  
-    method: {
-    } 
+        business : Object,
+    }
 }
 
 </script>
