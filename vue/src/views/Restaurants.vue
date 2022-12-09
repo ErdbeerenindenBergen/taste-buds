@@ -2,7 +2,6 @@
  <body class="container">
 
     <div id="find" class="left-panel">
-
         <form class="find-form" @submit="find">
           <br>
           <p>Enter a city or zipcode</p>
@@ -124,37 +123,25 @@ export default {
             }
         }
      },
-
     methods: {
         find() {
-            // RestaurantService.find(this.location).then(response => {
-            //  this.restaurantList = response.data;
             if (this.state != undefined) {
             this.location = this.location + this.state;}
             RestaurantService.find(this.location).then(response => {
              this.restaurantList = response.data;
             })
         },
-        
-//         submitWithEnter() {
-//         var input = document.getElementById("city-or-zip");
-//         input.addEventListener("keyup", function(event) {
-//           if (event.keyCode === 13) {
-//           event.preventDefault();
-//           document.getElementById("submit-button").click();
-//   }
-// });
-
-//         }
-    },  
+  }  
 }
 </script>
 
 <style scoped>
 
-.container{
+body{
     padding-top: 15px;
     display:flex;
+    order: bottom;
+    z-index: -1;
 }
 
 .left-panel{

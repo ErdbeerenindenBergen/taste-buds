@@ -35,7 +35,7 @@
         </ul>
       </nav>
 
-      <div class="hamburger" v-on:click="mobileMenu">
+      <div id="hamburger" class="hamburger" v-on:click="mobileMenu(),turnOffFindView()">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
@@ -72,7 +72,18 @@ export default {
       let navMenu = document.querySelector(".nav-menu");
       hamburger.classList.toggle("active");
       navMenu.classList.toggle("active");
-    }
+    },
+            turnOffFindView() {
+          let targetDiv = document.getElementById("find");
+            if (targetDiv.style.display !== "none") {
+              targetDiv.style.display = "none";
+            } else {
+              targetDiv.style.display = "flex";
+              targetDiv.style.position="fix";
+              targetDiv.style.justifyContent="center";
+              targetDiv.style.alignContent="center";
+            }
+      },
   }
 };
 </script>
@@ -108,6 +119,7 @@ a {
   display: flex;
   flex-direction: row;
   background: none;
+  z-index:99;
 }
 
 #app{
@@ -235,6 +247,7 @@ a:hover{
         border-radius: 10px;
         text-align: center;
         transition: 0.3s;
+        z-index:999999999999 !important;
         /* box-shadow:
             0 10px 27px rgba(0, 0, 0, 0.05); */
     }

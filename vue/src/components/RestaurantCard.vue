@@ -23,6 +23,7 @@
                                 <img id="google-icon" src="@/assets/google-maps.png" alt="google-maps-icon" class="zoom"/>
                             </a>
                         </div>
+
                     </div>
 
                 </div>
@@ -35,10 +36,15 @@
                     <h2 id='isClosed'>{{ business.is_closed === false ? "Open now" : "Closed" }}</h2>
 
                     <div id='contact-information'>
-                        <p id="contacts">{{ business.display_phone}}</p><br>
+                        <p id="contacts">{{ business.display_phone}}</p>
                         <p id="address1">{{ business.location.display_address[0]}}</p>
                         <p id="address2">{{ business.location.display_address[1]}}</p>
                     </div>
+
+                    <div id='pickup-or-delivery'>
+                        <p id="pickup">{{ business.transactions.includes("pickup") ? "Pick-up is available" : "" }}</p>
+                        <p id="delivery">{{ business.transactions.includes("delivery") ? "Delivery is available" : "" }}</p>
+                        </div>
                 
                     <div id="phone-button">
                         <a href="tel:${business.phone}" target="_blank"><button class="call-button" type="button call">CALL TO ORDER</button></a>
@@ -61,7 +67,9 @@ export default {
     props: {
         business: [],
         restaurants
-    },   
+    },  
+    method: {
+    } 
 }
 
 </script>
