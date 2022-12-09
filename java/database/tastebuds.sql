@@ -50,6 +50,7 @@ NO MAXVALUE;
 CREATE TABLE event_invitation(
 	invitation_id INT NOT NULL DEFAULT nextval('seq_invitation_id'),
 	event_id INT NOT NULL,
+	email_address VARCHAR(100) NOT NULL,
 	has_voted BOOLEAN NOT NULL DEFAULT false,
 	CONSTRAINT PK_event_invitation PRIMARY KEY (invitation_id),
 	CONSTRAINT FK_event_invitation_tb_event FOREIGN KEY (event_id) REFERENCES tb_event (event_id)
