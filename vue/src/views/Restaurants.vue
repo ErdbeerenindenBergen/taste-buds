@@ -131,7 +131,7 @@ export default {
              this.restaurantList = response.data;
             })
         },
-    },  
+  }  
 }
 </script>
 
@@ -147,7 +147,6 @@ body{
 .left-panel{
   width:30%;
   position: fixed;
-  order: bottom;
   top: 250px;
   left: 0;
 }
