@@ -1,16 +1,16 @@
 package com.techelevator.controller;
 
 import com.techelevator.model.Businesses;
-import com.techelevator.services.IYelpRestaurantService;
+import com.techelevator.services.IYelpBusinessService;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-public class RestaurantController {
+public class BusinessController {
 
-    private IYelpRestaurantService yelpRestaurantService;
+    private IYelpBusinessService yelpRestaurantService;
 
-    public RestaurantController(IYelpRestaurantService yelpRestaurantService) {
+    public BusinessController(IYelpBusinessService yelpRestaurantService) {
         this.yelpRestaurantService = yelpRestaurantService;
     }
 

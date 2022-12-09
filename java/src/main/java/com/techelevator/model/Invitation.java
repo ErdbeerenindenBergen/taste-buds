@@ -16,10 +16,10 @@ public class Invitation {
     private List<String> guestList;
     private List<String> restaurantOptions;
     private String uniqueInvitationLink;
+    private String emailAddress;
 
     public Invitation(int invitationId, String location, String zipCode, Date decisionDate, Time decisionTime,
-                      List<String> guestList, List<String> restaurantOptions, String uniqueInvitationLink) {
-
+                      List<String> guestList, List<String> restaurantOptions, String uniqueInvitationLink, String emailAddress) {
         this.invitationId = invitationId;
         this.location = location;
         this.zipCode = zipCode;
@@ -97,4 +97,11 @@ public class Invitation {
         this.uniqueInvitationLink = uniqueInvitationLink;
     }
 
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
 }
