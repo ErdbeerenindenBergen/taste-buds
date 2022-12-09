@@ -3,7 +3,7 @@
 
       <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display" rel="stylesheet">
            
-            <div id="restaurant-display" v-for='element in business' :key='element.id'>
+            <div id="restaurant-display" v-for='business in business' :key='business.id'>
                 
                 <div id="restaurant-left">
                     <h2 id='name'>{{ business.name }}</h2>
