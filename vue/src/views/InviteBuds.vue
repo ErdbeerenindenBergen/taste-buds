@@ -43,10 +43,10 @@
             </form>
                     <!-----------------------Enter Email Field ----------------------->
 
-            <!-- <div class="email">
+            <div class="email">
                 <h2>Enter the email of the bud you want to invite:</h2>
                 <input type="text" class="date" v-model="email" placeholder="your bud's email"/>
-            </div> -->
+            </div>
             
                     <!-------------------Send Invite Button Link or Button --------------------->
 
@@ -92,7 +92,7 @@ export default{
    },
     data() {
         return {
-           restaurantOptions: {},
+            inviteInfo: {},
             invitation: {
                 eventName: "",
                 inviteId: "",
@@ -108,7 +108,7 @@ export default{
       
       //mikey note to self: the submit function should create new invite with the data from above. reference the store stuff from lecture.
       submitForm() {
-          const restaurantOptions = {
+          const inviteInfo = {
               eventName:"", 
               inviteId: "", 
               decisionDate: this.invitation.decisionDate, 
@@ -116,7 +116,7 @@ export default{
               uniqueInvitationLink: this.invitation.uniqueInvitationLink
            };
           
-          InviteService.createInvitation(restaurantOptions).then(response => {
+          InviteService.createInvitation(inviteInfo).then(response => {
               this.invitation.inviteId = response.data;
               this.$store.commit("SET_PENDING_INVITE", response.data);
           })

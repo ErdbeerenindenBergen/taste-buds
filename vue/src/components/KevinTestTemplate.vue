@@ -2,16 +2,16 @@
     <div id="invite-buds">
 
 
-        <form class="invite-form" @submit="invite">
+        <form class="inviteBud-form" v-on:submit.prevent="submitForm">
            
-                     <!--------------------- Query Fields to Search Restaurants ---------------------->
+                     <!-------B-------------- Query Fields to Search Restaurants ---------------------->
 
             <div class="event-info">
                 <h2>Event Name:</h2>
                 <input type="text" class="event-name" v-model="invitation.eventName" placeholder="Capstone Celebration" />
             </div>
 
-            <div class="city-zip">
+           <!--  <div class="city-zip">
                 <h2>Enter a city or zipcode:</h2>
                 <input type="text" class="zip-city" v-model="location" placeholder="City or Zipcode" />
             </div>
@@ -19,15 +19,15 @@
             <div class="state">
                 <h2>State:</h2>
                 <input type="text" class="state" v-model="location" placeholder="State" />
-            </div>
+            </div> -->
 
               <!-------------- Search Restaurant button similar to Find Restaurant ------------------->
 
-            <button type="button" id="search-button" v-on:click="find()">searchRestaurants</button>
+            <!-- <button type="button" id="search-button" v-on:click="find()">searchRestaurants</button> -->
 
             <!-----------------------Current Location button ----------------------->
 
-            <button type="button" id="current-location-button" v-on:click="currentLocation">Current Location</button> 
+            <!-- <button type="button" id="current-location-button" v-on:click="currentLocation">Current Location</button>  -->
 
                     <!------------------------- Date/Time Fields ------------------------------>
 
@@ -38,11 +38,9 @@
             </div>
 
                      <!-----------------------Submit Invite info Button ----------------------->
-                    <!-- my understanding is this button will submit/save the restaurants of 10 or whatever from the query above -->
+            <button type="button" id="event-info-button" v-on:click="submitForm()">SUBMIT</button> 
 
-            <button type="button" id="event-info-button" v-on:click="collectRestaurantsForInvite()">SUBMIT</button> 
-
-
+            </form>
                     <!-----------------------Enter Email Field ----------------------->
 
             <div class="email">
@@ -50,28 +48,25 @@
                 <input type="text" class="date" v-model="email" placeholder="your bud's email"/>
             </div>
             
-                    <!-------------------Send Invite Button Button --------------------->
+                    <!-------------------Send Invite Button Link or Button --------------------->
 
             <div class="send-invite">
                 <h2>Want to invite a friend who is not yet a taste bud?</h2>
-                <button type="button" id="invite-button" v-on:click="sendInvite()">send an invite!</button>
+                <h2>Share this invite Id with them: {{ this.invitation.inviteId }}</h2>
+                <button type="button" id="invite-button" v-on:click="viewInviteLink()">See Invite</button>
             </div>
        
                      <!-------------------View all Restaurants Button ----------------------->
 
              <button type="button" id="restaurant-button" v-on:click="viewRestaurants()">view restaurants list</button>
 
-         </form>
+         
 
         <!-- this here is the imported RestaurantCard.vue template from components -->
             
             <div id="find-restaurants-results" class="right-panel">
             <restaurant-card class="card" v-for="business in restaurantList" v-bind:key="business.id" v-bind:business="business"> </restaurant-card>
             </div>
-
-            <!-- this here is the imported Restaurants.vue template from views -->
-           
-            <restaurants />
             
 
     </div>
@@ -84,27 +79,25 @@
 
 import InviteService from '../services/InviteService';
 import RestaurantCard from '../components/RestaurantCard.vue';
-import Restaurants from '../views/Restaurants.vue';
 //import RestaurantService from '../services/RestaurantService';
 
 
 export default{
     components: {
         RestaurantCard,
-        Restaurants
+       
     },
     props: {
-        RestaurantCard,
-    },
+        business: []
+   },
     data() {
         return {
-            restaurantOptions: {},//this is for 'view restaurants list' button, OR this is what will hold the results of  the queryies? same thing?
-
+            inviteInfo: {},
             invitation: {
                 eventName: "",
                 inviteId: "",
-                decisionDate: "", //might have to parse LocalDate as string
-                decisionTime: "",//might have to parse LocalTime as string
+                decisionDate: "", //might not be correct default date approach
+                decisionTime: "",//might not be correct default time approach
                 uniqueInvitationLink: ""
             },
 
@@ -112,20 +105,27 @@ export default{
         }
     },
     methods: {
-      //needs work
-      collectRestaurantsForInvite() {
-         // RestaurantService.collectRestaurantsForInvite
-          
-      },
       
-      //mikey note to self: the sendInvite function should create new invite with the data from above. reference the store stuff from lecture.
-      sendInvite() {
-          const invitationObject = {eventName: "", inviteId: "", decisionDate: "", decisionTime: "", uniqueInvitationLink:""};
+      //mikey note to self: the submit function should create new invite with the data from above. reference the store stuff from lecture.
+      submitForm() {
+          const inviteInfo = {
+              eventName:"", 
+              inviteId: "", 
+              decisionDate: this.invitation.decisionDate, 
+              decisionTime: this.invitation.decisionTime, 
+              uniqueInvitationLink: this.invitation.uniqueInvitationLink
+           };
           
-          InviteService.createInvitation(invitationObject).then(response => {
+          InviteService.createInvitation(inviteInfo).then(response => {
               this.invitation.inviteId = response.data;
               this.$store.commit("SET_PENDING_INVITE", response.data);
           })
+
+      },
+        //need to make sure backend is set up. work in progress
+      viewInviteLink() {
+          let inviteLink = "http://localhost:8080/invitation/view/" + this.invitation.inviteId;
+          window.open(inviteLink);
 
       }
 
