@@ -5,7 +5,7 @@ import java.time.LocalTime;
 
 public class Event {
 
-    private int eventId;
+    private Integer eventId;
     private String eventName;
     private String eventCity;
     private String eventState;

@@ -90,11 +90,13 @@ public class JdbcEventDao implements EventDao {
             return null;
         }
     }
-
     @Override
-    public boolean create(String eventName, LocalDate eventDate) {
-        String insertEventSql = "insert into tb_event (event_name,event_date) values (?,?)";
-        return jdbcTemplate.update(insertEventSql, eventName, eventDate) == 1;
+    public Integer create(Event event, int userId) {
+        String sql = "INSERT INTO tb_event (event_name, event_date, event_time, event_organizer_id, " +
+        " response_deadline_date, response_deadline_time) VALUES (?, ?, ?, ?, ?, ?) RETURNING event_id;";
+        Integer eventId = jdbcTemplate.queryForObject(sql, Integer.class, event.getEventName(), event.getEventDate(),
+                event.getEventTime(), userId, event.getDeadlineDate(), event.getDeadlineTime());
+            return eventId;
     }
 
     private Event mapRowToEvent(SqlRowSet rs) {

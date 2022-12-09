@@ -13,6 +13,6 @@ export default {
         return http.get(`/invite-buds/create`, invitation) //check with backend to match endpoint
     }
 
-        
+    
     
 }

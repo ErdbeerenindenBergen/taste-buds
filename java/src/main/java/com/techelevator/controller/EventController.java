@@ -2,10 +2,13 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.EventDao;
 import com.techelevator.model.Event;
+import com.techelevator.model.Invitation;
 import com.techelevator.model.User;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin
@@ -40,5 +43,10 @@ public class EventController {
     public Event getEventByName(@PathVariable String eventName) {
         return eventDao.getEventByName(eventName);
     }
+
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(path = "/create/{userId}", method = RequestMethod.POST)
+    public Integer createEvent(@PathVariable("userId") int userId, @Valid @RequestBody Event event) {return eventDao.create(event, userId);}
 
 }

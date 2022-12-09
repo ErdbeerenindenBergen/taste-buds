@@ -2,7 +2,6 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.EventRestaurantDao;
 import com.techelevator.model.Business;
-import com.techelevator.model.Businesses;
 import com.techelevator.model.EventRestaurant;
 import com.techelevator.services.IYelpBusinessService;
 import org.springframework.http.HttpStatus;
@@ -33,11 +32,12 @@ public class EventRestaurantController {
         return eventRestaurantDao.createEventRestaurant(yelpRestaurantId, eventId);
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
-    @RequestMapping(path = "/{eventId}/restaurant", method = RequestMethod.GET)
-    public List<EventRestaurant> getEventRestaurantsByEventId(@PathVariable("eventId") int eventId) {
-        return eventRestaurantDao.getEventRestaurantsByEventId(eventId);
-    }
+    //may not need this method, call method below this one to get all information from API
+//    @PreAuthorize("hasRole('ROLE_USER')")
+//    @RequestMapping(path = "/{eventId}/restaurant", method = RequestMethod.GET)
+//    public List<EventRestaurant> getEventRestaurantsByEventId(@PathVariable("eventId") int eventId) {
+//        return eventRestaurantDao.getEventRestaurantsByEventId(eventId);
+//    }
 
     @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(path = "/find/{eventId}", method = RequestMethod.GET)

@@ -1,153 +1,129 @@
 <template>
-    <div id="invite-buds">
+  <div id="invite-buds">
 
+    <!-----------------------Create-Event Form----------------------->
 
-        <form class="inviteBud-form" v-on:submit.prevent="submitForm">
-           
-                     <!-------B-------------- Query Fields to Search Restaurants ---------------------->
+    <form class="event-form" @submit="createEvent()">
+      <div class="event-info">
+        <h2>Event Name:</h2>
+        <input  type="text"  class="event-name"  v-model="event.eventName"  placeholder="Capstone Celebration" />
+        <h2>Event Date:</h2>
+        <input  type="text"  class="event-name"  v-model="event.eventDate"  placeholder="Capstone Celebration" />
+        <h2>Event Time:</h2>
+        <input  type="text"  class="event-name"  v-model="event.eventTime"  placeholder="Capstone Celebration" />
+      </div>
 
-            <div class="event-info">
-                <h2>Event Name:</h2>
-                <input type="text" class="event-name" v-model="invitation.eventName" placeholder="Capstone Celebration" />
-            </div>
+      <div class="invite-due-date-time">
+        <h2>When must your buds respond by?</h2>
+        <input  type="text"  class="date"  v-model="event.responseDeadlineDate"  placeholder="mm/dd/yyyy" />
+        <input  type="text"  class="time"  v-model="event.responseDeadlineTime"  placeholder="hh:mm" />
+      </div>
 
-           <!--  <div class="city-zip">
-                <h2>Enter a city or zipcode:</h2>
-                <input type="text" class="zip-city" v-model="location" placeholder="City or Zipcode" />
-            </div>
+    <!-----------------------Create-Event Button ----------------------->
 
-            <div class="state">
-                <h2>State:</h2>
-                <input type="text" class="state" v-model="location" placeholder="State" />
-            </div> -->
+      <button  type="button"  id="create-event-button"  v-on:click="createEvent()">SUBMIT</button>
+    </form>
 
-              <!-------------- Search Restaurant button similar to Find Restaurant ------------------->
+    <!-----------------------Create-Invite Form----------------------->
 
-            <!-- <button type="button" id="search-button" v-on:click="find()">searchRestaurants</button> -->
+    <!-----------------------Enter Email Field ----------------------->
 
-            <!-----------------------Current Location button ----------------------->
+    <form class="invite-form" @submit="invite">
+      <div class="email">
+        <h2>Enter the email address of the bud you want to invite:</h2>
+        <input  type="text"  class="date"  v-model="email"  placeholder="your bud's email"/>
+      </div>
 
-            <!-- <button type="button" id="current-location-button" v-on:click="currentLocation">Current Location</button>  -->
+      <!-------------------Send Invite Button Button --------------------->
 
-                    <!------------------------- Date/Time Fields ------------------------------>
+      <div class="send-invite">
+        <button type="button" id="invite-button" v-on:click="sendInvite()" >send an invite!</button>
+      </div>
 
-            <div class="date-time">
-                <h2>When must your buds respond by?</h2>
-                <input type="text" class="date" v-model="invitation.decisionDate" placeholder="mm/dd/yyyy"/>
-                <input type="text" class="time" v-model="invitation.decisionTime" placeholder="hh:mm" />
-            </div>
+      <!-------------------View all Restaurants Button ----------------------->
 
-                     <!-----------------------Submit Invite info Button ----------------------->
-            <button type="button" id="event-info-button" v-on:click="submitForm()">SUBMIT</button> 
+      <button  type="button"  id="restaurant-button"  v-on:click="viewRestaurants()" >view restaurants list</button>
+    </form>
 
-            </form>
-                    <!-----------------------Enter Email Field ----------------------->
+    <!-- this here is the imported RestaurantCard.vue template from components -->
 
-            <div class="email">
-                <h2>Enter the email of the bud you want to invite:</h2>
-                <input type="text" class="date" v-model="email" placeholder="your bud's email"/>
-            </div>
-            
-                    <!-------------------Send Invite Button Link or Button --------------------->
-
-            <div class="send-invite">
-                <h2>Want to invite a friend who is not yet a taste bud?</h2>
-                <h2>Share this invite Id with them: {{ this.invitation.inviteId }}</h2>
-                <button type="button" id="invite-button" v-on:click="viewInviteLink()">See Invite</button>
-            </div>
-       
-                     <!-------------------View all Restaurants Button ----------------------->
-
-             <button type="button" id="restaurant-button" v-on:click="viewRestaurants()">view restaurants list</button>
-
-         
-
-        <!-- this here is the imported RestaurantCard.vue template from components -->
-            
-            <div id="find-restaurants-results" class="right-panel">
-            <restaurant-card class="card" v-for="business in restaurantList" v-bind:key="business.id" v-bind:business="business"> </restaurant-card>
-            </div>
-            
-
+    <div id="find-restaurants-results" class="right-panel">
+      <restaurant-card  class="card"  v-for="business in Businesses"  v-bind:key="business.id"  v-bind:business="business"></restaurant-card>
     </div>
+
+  </div>
 </template>
 
 
 
 <script>
-    //mikey note to self: think about imports and whether u need them
 
-import InviteService from '../services/InviteService';
-import RestaurantCard from '../components/RestaurantCard.vue';
-//import RestaurantService from '../services/RestaurantService';
-
-
-export default{
-    components: {
-        RestaurantCard,
-       
-    },
-    props: {
-        business: []
-   },
-    data() {
-        return {
-            inviteInfo: {},
-            invitation: {
-                eventName: "",
-                inviteId: "",
-                decisionDate: "", //might not be correct default date approach
-                decisionTime: "",//might not be correct default time approach
-                uniqueInvitationLink: ""
-            },
+// import InviteService from "../services/InviteService";
+import RestaurantCard from "../components/RestaurantCard.vue";
+import RestaurantService from "../services/RestaurantService.js";
+import EventService from "../services/EventService.js";
 
 
-        }
-    },
-    methods: {
-      
-      //mikey note to self: the submit function should create new invite with the data from above. reference the store stuff from lecture.
-      submitForm() {
-          const inviteInfo = {
-              eventName:"", 
-              inviteId: "", 
-              decisionDate: this.invitation.decisionDate, 
-              decisionTime: this.invitation.decisionTime, 
-              uniqueInvitationLink: this.invitation.uniqueInvitationLink
-           };
-          
-          InviteService.createInvitation(inviteInfo).then(response => {
-              this.invitation.inviteId = response.data;
-              this.$store.commit("SET_PENDING_INVITE", response.data);
-          })
-
-      },
-        //need to make sure backend is set up. work in progress
-      viewInviteLink() {
-          let inviteLink = "http://localhost:8080/invitation/view/" + this.invitation.inviteId;
-          window.open(inviteLink);
-
+export default {
+  components: {
+    RestaurantCard,
+  },
+  props: {
+    business : Object
+  },
+  data() {
+    return {
+      businesses: [], //this is for 'view restaurants list' button, OR this is what will hold the results of the queries? same thing?
+      event: {
+        eventId: "",
+        eventName: "",
+        eventDate: "",
+        eventTime: "",
+        eventOrganizerId: "",
+        deadlineDate: "", //might have to parse LocalDate as string
+        deadlineTime: "", //might have to parse LocalTime as string
       }
-
+    };
+  },
+  methods: {
+    createEvent() {
+        EventService.createEvent(this.user.userId, this.event).then(response => {
+             this.event.eventId = response.data;
+        })
+    },
+    viewRestaurants() {
+       return RestaurantService.findBusinessesByEventId(this.event.eventId).then(response => {
+           this.businesses = response.data;
+       })
     }
+    //mikey note to self: the sendInvite function should create new invite with the data from above. reference the store stuff from lecture.
+//     sendInvite() {
+//       const invitationObject = {
+//         eventName: "",
+//         inviteId: "",
+//         decisionDate: "",
+//         decisionTime: "",
+//         uniqueInvitationLink: "",
+//       };
 
-
-        
-    
-}
+//       InviteService.createInvitation(invitationObject).then((response) => {
+//         this.invitation.inviteId = response.data;
+//         this.$store.commit("SET_PENDING_INVITE", response.data);
+//       });
+     },
+};
 
 </script>
 
-
 <style scoped>
-h1{
-  font-family: 'Playfair Display';
+h1 {
+  font-family: "Playfair Display";
   font-weight: normal;
   text-align: center;
   padding-top: 40px;
 }
 
-a.router-link-active{
+a.router-link-active {
   font-weight: bold;
 }
 </style>

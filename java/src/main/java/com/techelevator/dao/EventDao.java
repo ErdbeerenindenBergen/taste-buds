@@ -3,7 +3,6 @@ package com.techelevator.dao;
 import com.techelevator.model.Event;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 public interface EventDao {
@@ -20,5 +19,5 @@ public interface EventDao {
 
     Event getEventByOrganizerId(int eventOrganizerId);
 
-    boolean create(String eventName, LocalDate eventDate);
+    Integer create(Event event, int userId);
 }
