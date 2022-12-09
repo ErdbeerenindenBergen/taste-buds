@@ -107,6 +107,7 @@ a {
 .nav-menu, .nav-link{
   display: flex;
   flex-direction: row;
+  background: none;
 }
 
 #app{
@@ -229,17 +230,20 @@ a:hover{
         left: -100%;
         top: 5rem;
         flex-direction: column;
-        background-color: #fff;
+        /* background-color: #fff; */
         width: 100%;
         border-radius: 10px;
         text-align: center;
         transition: 0.3s;
-        box-shadow:
-            0 10px 27px rgba(0, 0, 0, 0.05);
+        /* box-shadow:
+            0 10px 27px rgba(0, 0, 0, 0.05); */
     }
 
     .nav-menu.active {
         left: 0;
+        background: white;
+        box-shadow:
+            0 10px 27px rgba(0, 0, 0, 0.05);
     }
 
     .nav-item {

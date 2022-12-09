@@ -7,7 +7,8 @@
           <br>
           <p>Enter a city or zipcode</p>
           <br>
-            <input type="text" class="location" v-model="location" placeholder="City or Zipcode" />
+            <input id="city-or-zip" type="text" class="location" v-model="location"
+              @keydown.enter.exact.prevent="find()" placeholder="City or Zipcode"/>
             <br>
             <br>
             <label for="state">If you'd like, you can specify a state.</label>
@@ -133,11 +134,19 @@ export default {
             RestaurantService.find(this.location).then(response => {
              this.restaurantList = response.data;
             })
-        }
-    },
-    
-     
-     
+        },
+        
+//         submitWithEnter() {
+//         var input = document.getElementById("city-or-zip");
+//         input.addEventListener("keyup", function(event) {
+//           if (event.keyCode === 13) {
+//           event.preventDefault();
+//           document.getElementById("submit-button").click();
+//   }
+// });
+
+//         }
+    },  
 }
 </script>
 
