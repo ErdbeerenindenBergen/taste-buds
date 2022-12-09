@@ -8,6 +8,6 @@ public interface EventRestaurantDao {
 
     boolean createEventRestaurant(String yelpRestaurantId, int eventId);
 
-    List<EventRestaurant> getRestaurantsByEventId(int eventId);
+    List<EventRestaurant> getEventRestaurantsByEventId(int eventId);
 
 }

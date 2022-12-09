@@ -1,13 +1,15 @@
 package com.techelevator.services;
 
+import com.techelevator.model.Business;
 import com.techelevator.model.Businesses;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import com.techelevator.model.EventRestaurant;
+import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class YelpBusinessService implements IYelpBusinessService {
@@ -18,15 +20,26 @@ public class YelpBusinessService implements IYelpBusinessService {
     private final int TOTAL_BUSINESSES_LIMIT = 40;
 
     public Businesses getBusinesses(String location) throws RestClientException {
-        HttpHeaders header = new HttpHeaders();
-        header.setBearerAuth(API_KEY);
-        HttpEntity<Void> entity = new HttpEntity<>(header);
-
-        ResponseEntity<Businesses> response = restTemplate.exchange(API_BASE_URL + "businesses/search?location=" + location, HttpMethod.GET, entity, Businesses.class);
+        ResponseEntity<Businesses> response = restTemplate.exchange(API_BASE_URL + "businesses/search?location=" + location, HttpMethod.GET, makeAuthEntity(), Businesses.class);
         Businesses businesses = response.getBody();
         return businesses;
     }
 
-    //TODO add method to search for specific restaurant via API call
+    public List<Business> getBusinessesByYelpRestaurantId(List<EventRestaurant> eventRestaurants) throws RestClientException {
+        List<Business> returnedBusinesses = new ArrayList<>();
+        Business business = null;
+        for (EventRestaurant eventRestaurant : eventRestaurants) {
+            business = restTemplate.exchange(API_BASE_URL + "/businesses/" + eventRestaurant.getYelpRestaurantId(), HttpMethod.GET, makeAuthEntity(), Business.class).getBody();
+            returnedBusinesses.add(business);
+        }
+        return returnedBusinesses;
+    }
+
+    //SECURITY METHOD BELOW - do not alter
+    public HttpEntity<Void> makeAuthEntity() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(API_KEY);
+        return new HttpEntity<>(headers);
+    }
 
 }

@@ -1,10 +1,12 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.Event;
 import com.techelevator.model.EventRestaurant;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -25,8 +27,14 @@ public class JdbcEventRestaurantDao implements EventRestaurantDao {
     }
 
     @Override
-    public List<EventRestaurant> getRestaurantsByEventId(int eventId) {
-        return null;
+    public List<EventRestaurant> getEventRestaurantsByEventId(int eventId) {
+        List<EventRestaurant> eventRestaurants = new ArrayList<>();
+        String sql = "SELECT * FROM event_restaurant WHERE event_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, eventId);
+        while (results.next()) {
+            EventRestaurant eventRestaurant = mapRowToEventRestaurant(results);
+            eventRestaurants.add(eventRestaurant);
+        } return eventRestaurants;
     }
 
     private EventRestaurant mapRowToEventRestaurant(SqlRowSet rs) {
