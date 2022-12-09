@@ -11,18 +11,10 @@ public interface InvitationDao {
 
     List<Invitation> findAll();
 
-    Invitation getInvitationByUniqueLink(String uniqueInvitationLink);
+    boolean createInvitation(Invitation invitation);
 
-    void updateInvitation(Invitation invitation);
+    Invitation getInvitationByInvitationId(int invitationId);
 
-    void deleteInvitation(Invitation invitation);
-
-    boolean createInvitation(Invitation invitation); //??
-
-    Invitation getInvitationByInviter(String inviter);
-
-    Invitation getInvitationByInviteId(int inviteId);
-
-    List<Invitation> getAllInvitationsByInviter(String inviter);
+    Invitation getInvitationByUserId(int userId);
 
 }

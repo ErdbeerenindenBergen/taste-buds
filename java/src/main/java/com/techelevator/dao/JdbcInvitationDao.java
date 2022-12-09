@@ -31,45 +31,55 @@ public class JdbcInvitationDao implements InvitationDao  {
         return invitations;
     }
 
-    @Override
-    public Invitation getInvitationByUniqueLink(String uniqueInvitationLink) {
-        return null;
-    }
-
-    @Override
-    public void updateInvitation(Invitation invitation) {
-
-    }
-
-    @Override
-    public void deleteInvitation(Invitation invitation) {
-
-    }
-
-    @Override
+    @Override //How to get deadline information from tb_event ?
     public boolean createInvitation(Invitation invitation) {
-        return false;
+        String sql = "INSERT INTO event_invitation(" +
+                "invitation_id, event_id, has_voted)" +
+                "VALUES (?, ?, ?);";
+        return jdbcTemplate.update(sql, invitation) == 1;
+
+        
     }
 
     @Override
-    public Invitation getInvitationByInviter(String inviter) {
-        return null;
+    public Invitation getInvitationByInvitationId(int invitationId) {
+        String sql = "SELECT event_invitation.invitation_id, event_invitation.event_id, event_invitation.has_voted, tb_event.event_name, tb_event.response_deadline_date, \n" +
+                "tb_event.response_deadline_time, tb_event.event_zipcode, tb_event.event_city, tb_event.event_state \n" +
+                "FROM event_invitation JOIN tb_event ON event_invitation.event_id = tb_event.event_id;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, invitationId);
+
+        if (results.next()) {
+            return mapRowToInvitations(results);
+        } else {
+            return null;
+        }
     }
 
     @Override
-    public Invitation getInvitationByInviteId(int inviteId) {
-        return null;
+    public Invitation getInvitationByUserId(int userId) {
+        String sql = "SELECT invitation_id, event_invitation.event_id, has_voted, response_deadline_date, response_deadline_time\n" +
+                "FROM event_invitation\n" +
+                "INNER JOIN tb_event\n" +
+                "ON event_invitation.event_id = tb_event.event_id\n" +
+                "INNER JOIN tb_user\n" +
+                "ON tb_event.event_organizer_id = tb_user.user_id\n" +
+                "WHERE tb_user.user_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+        if (results.next()) {
+            return mapRowToInvitations(results);
+        } else {
+            return null;
+        }
     }
 
-    @Override
-    public List<Invitation> getAllInvitationsByInviter(String inviter) {
-        return null;
-    }
-
-    //TODO Update database for rows needed?
+    //TODO
     private Invitation mapRowToInvitations(SqlRowSet rs) {
         Invitation invitation = new Invitation();
-        invitation.setInviter(rs.getString(""));
+        invitation.setInvitationId(rs.getInt("invitation_id"));
+
+        invitation.setDecisionDate(rs.getDate("decision_date"));
+        invitation.setDecisionTime(rs.getTime("decision_time"));
+
 
         return invitation;
 

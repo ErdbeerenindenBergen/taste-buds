@@ -1,26 +1,26 @@
 package com.techelevator.model;
 
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 public class Invitation {
 
-    private String inviter; //Do I want to make this 'int senderId/inviterId? If so, change in InvitationDao as well
-    private int inviteId;
+    private int invitationId;
     private String location;
     private String zipCode;
-    private LocalDate decisionDate;
-    private LocalTime decisionTime;
+    private Date decisionDate;
+    private Time decisionTime;
     private List<String> guestList;
     private List<String> restaurantOptions;
     private String uniqueInvitationLink;
-    private String emailAddress;
 
-    public Invitation(String inviter, int inviteId, String location, String zipCode, LocalDate decisionDate, LocalTime decisionTime,
-                      List<String> guestList, List<String> restaurantOptions, String uniqueInvitationLink, String emailAddress) {
-        this.inviter = inviter;
-        this.inviteId = inviteId;
+    public Invitation(int invitationId, String location, String zipCode, Date decisionDate, Time decisionTime,
+                      List<String> guestList, List<String> restaurantOptions, String uniqueInvitationLink) {
+
+        this.invitationId = invitationId;
         this.location = location;
         this.zipCode = zipCode;
         this.decisionDate = decisionDate;
@@ -28,25 +28,17 @@ public class Invitation {
         this.guestList = guestList;
         this.restaurantOptions = restaurantOptions;
         this.uniqueInvitationLink = uniqueInvitationLink;
-        this.emailAddress = emailAddress;
+
     }
 
     public Invitation() {}
 
-    public String getInviter() {
-        return inviter;
+    public int getInvitationId() {
+        return invitationId;
     }
 
-    public void setInviter(String inviter) {
-        this.inviter = inviter;
-    }
-
-    public int getInviteId() {
-        return inviteId;
-    }
-
-    public void setInviteId(int inviteId) {
-        this.inviteId = inviteId;
+    public void setInvitationId(int inviteId) {
+        this.invitationId = inviteId;
     }
 
     public String getLocation() {
@@ -65,19 +57,19 @@ public class Invitation {
         this.zipCode = zipCode;
     }
 
-    public LocalDate getDecisionDate() {
+    public Date getDecisionDate() {
         return decisionDate;
     }
 
-    public void setDecisionDate(LocalDate decisionDate) {
+    public void setDecisionDate(Date decisionDate) {
         this.decisionDate = decisionDate;
     }
 
-    public LocalTime getDecisionTime() {
+    public Time getDecisionTime() {
         return decisionTime;
     }
 
-    public void setDecisionTime(LocalTime decisionTime) {
+    public void setDecisionTime(Time decisionTime) {
         this.decisionTime = decisionTime;
     }
 
@@ -105,11 +97,4 @@ public class Invitation {
         this.uniqueInvitationLink = uniqueInvitationLink;
     }
 
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
 }
