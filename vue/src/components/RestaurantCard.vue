@@ -23,6 +23,7 @@
                                 <img id="google-icon" src="@/assets/google-maps.png" alt="google-maps-icon" class="zoom"/>
                             </a>
                         </div>
+
                     </div>
 
                 </div>
