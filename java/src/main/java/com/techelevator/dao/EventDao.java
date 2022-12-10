@@ -19,5 +19,5 @@ public interface EventDao {
 
     Event getEventByOrganizerId(int eventOrganizerId);
 
-    Integer create(Event event, int userId);
+    Event create(Event event);
 }

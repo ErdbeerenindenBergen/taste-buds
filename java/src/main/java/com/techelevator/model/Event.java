@@ -18,15 +18,13 @@ public class Event {
     private LocalDate deadlineDate;
     private LocalTime deadlineTime;
 
-    public Event(int eventId, String eventName, String eventCity, String eventState, int zipcode, LocalDate eventDate, LocalTime eventTime, int eventOrganizerId) {
-        this.eventId = eventId;
+    public Event(String eventName, LocalDate eventDate, LocalTime eventTime, int eventOrganizerId, LocalDate deadlineDate, LocalTime deadlineTime) {
         this.eventName = eventName;
-        this.eventCity = eventCity;
-        this.eventState = eventState;
-        this.zipcode = zipcode;
         this.eventDate = eventDate;
         this.eventTime = eventTime;
         this.eventOrganizerId = eventOrganizerId;
+        this.deadlineDate = deadlineDate;
+        this.deadlineTime = deadlineTime;
     }
 
     public Event(){}

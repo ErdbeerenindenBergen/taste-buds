@@ -8,20 +8,25 @@
         <h2>Event Name:</h2>
         <input  type="text"  class="event-name"  v-model="event.eventName"  placeholder="Capstone Celebration" />
         <h2>Event Date:</h2>
-        <input  type="text"  class="event-name"  v-model="event.eventDate"  placeholder="Capstone Celebration" />
+        <input  type="text"  class="event-name"  v-model="event.eventDate"  placeholder="mm/dd/yyyy" />
         <h2>Event Time:</h2>
-        <input  type="text"  class="event-name"  v-model="event.eventTime"  placeholder="Capstone Celebration" />
+        <input  type="text"  class="event-name"  v-model="event.eventTime"  placeholder="hh:mm" />
+        <!-- <span>{{moment(event.eventTime).format('h:mm:ss')}}</span> -->
       </div>
 
       <div class="invite-due-date-time">
         <h2>When must your buds respond by?</h2>
-        <input  type="text"  class="date"  v-model="event.responseDeadlineDate"  placeholder="mm/dd/yyyy" />
-        <input  type="text"  class="time"  v-model="event.responseDeadlineTime"  placeholder="hh:mm" />
+        <input  type="text"  class="date"  v-model="event.deadlineDate"  placeholder="mm/dd/yyyy" />
+    
+        <input  type="text"  class="time"  v-model="event.deadlineTime"  placeholder="hh:mm" />
+        <!-- <span>{{moment(event.deadlineTime).format('h:mm:ss')}}</span> -->
       </div>
 
       <div>
+    
+    <!-- IMPORTANT NOTE: I am planning to change the userId below in the database to an emailAddress, but as of now, you may need to enter a 4 digit number to get it to work. -->
         <h2>Your email address:</h2>
-            <input  type="text"  class="event-name"  v-model="userId"  placeholder="Capstone Celebration" />
+            <input  type="text"  class="event-name"  v-model="event.eventOrganizerId"  placeholder="Capstone Celebration" />
       </div>
 
     <!-----------------------Create-Event Button ----------------------->
@@ -33,7 +38,7 @@
 
     <!-----------------------Enter Email Field ----------------------->
 
-    <!-- <form class="invite-form" @submit="invite"> -->
+    <form class="invite-form" @submit="invite">
       <div class="email">
         <h2>Enter the email address of the bud you want to invite:</h2>
         <input  type="text"  class="date"  v-model="invitation.emailAddress"  placeholder="your bud's email"/>
@@ -41,14 +46,14 @@
 
       <!-------------------Send Invite Button Button --------------------->
 
-      <!-- <div class="send-invite">
+      <div class="send-invite">
         <button type="button" id="invite-button" v-on:click="sendInvite()" >send an invite!</button>
-      </div> -->
+      </div>
 
       <!-------------------View all Restaurants Button ----------------------->
 
       <button  type="button"  id="restaurant-button"  v-on:click="viewRestaurants()" >view restaurants list</button>
-    <!-- </form> -->
+    </form>
 
     <!-- this here is the imported RestaurantCard.vue template from components -->
 
@@ -70,24 +75,26 @@ import EventService from "../services/EventService.js";
 
 
 export default {
+  name: "create-event",
   components: {
     RestaurantCard
   },
     props:[ 
       "business"
-      ],
+      ], 
   data() {
     return {
         businesses: [], //this is for 'view restaurants list' button, OR this is what will hold the results of the queries? same thing?
         userId: '',
+        // eventId: '',
         event: {
             // eventId: '',
-            eventName: '',
-            eventDate: '',
-            eventTime: '',
-            eventOrganizerId: '',
-            deadlineDate: '', //might have to parse LocalDate as string
-            deadlineTime: '', //might have to parse LocalTime as string
+            eventName: "",
+            eventDate: "",
+            eventTime: "",
+            eventOrganizerId: "",
+            deadlineDate: "", //might have to parse LocalDate as string
+            deadlineTime: "", //might have to parse LocalTime as string
         },
         invitation: {
             emailAddress: ''
@@ -95,21 +102,23 @@ export default {
     };
   },
   methods: {
+      // this.event is populating correctly, but the method isn't working. It isn't working via postman when called from the backend either. 
     createEvent() {
-        // let userId = this.event.eventOrganizerId = $http.get('api/user').then(response => {
-        //     console.log(response.body)
-        // })
-
-        EventService.createEvent(this.userId, this.event).then(response => {
-            this.event.eventId = response.data;
+        // this.eventDate = this.moment(this.eventDate).format('YYYY-MM-DD');
+        // this.deadlineDate = this.moment(this.deadlineDate).format('YYYY-MM-DD');
+        // this.userId = parseInt(this.userId);
+        console.log(this.event);
+        EventService.createEvent(this.event).then(response => {
+            this.event = response.data;
+            this.$router.push({name: 'create-event'});
         })
     },
     viewRestaurants() {
-       return RestaurantService.findBusinessesByEventId(this.event.eventId).then(response => {
+       return RestaurantService.findBusinessesByEventId(this.eventId).then(response => {
             this.businesses = response.data;
        })
     }
-    //mikey note to self: the sendInvite function should create new invite with the data from above. reference the store stuff from lecture.
+    // mikey note to self: the sendInvite function should create new invite with the data from above. reference the store stuff from lecture.
 //     sendInvite() {
 //       const invitationObject = {
 //         eventName: "",
@@ -123,18 +132,17 @@ export default {
 //         this.$store.commit("SET_PENDING_INVITE", response.data);
 //       });
      },
-     computed: {
-         getEvent() {
-             return {
-                eventId: this.eventId,
-                eventName: this.eventName,
-                eventDate: this.eventDate,
-                eventTime: this.eventTime,
-                deadlineDate: this.deadlineDate,
-                deadlineTime: this.deadlineTime,
-             }
-         }
-     }
+    //  computed: {
+    //      getEvent() {
+    //          return {
+    //             eventName: this.eventName,
+    //             eventDate: this.eventDate,
+    //             eventTime: this.eventTime,
+    //             deadlineDate: this.deadlineDate,
+    //             deadlineTime: this.deadlineTime,
+    //          }
+    //      }
+    //  }
 };
 </script>
 

@@ -90,13 +90,22 @@ public class JdbcEventDao implements EventDao {
             return null;
         }
     }
+//    @Override
+//    public Integer create(Event event, int userId) {
+//        String sql = "INSERT INTO tb_event (event_name, event_date, event_time, event_organizer_id, " +
+//        " response_deadline_date, response_deadline_time) VALUES (?, ?, ?, ?, ?, ?) RETURNING event_id;";
+//        Integer eventId = jdbcTemplate.queryForObject(sql, Integer.class, event.getEventName(), event.getEventDate(),
+//                event.getEventTime(), userId, event.getDeadlineDate(), event.getDeadlineTime());
+//            return eventId;
+//    }
+
     @Override
-    public Integer create(Event event, int userId) {
-        String sql = "INSERT INTO tb_event (event_name, event_date, event_time, event_organizer_id, " +
-        " response_deadline_date, response_deadline_time) VALUES (?, ?, ?, ?, ?, ?) RETURNING event_id;";
+    public Event create(Event event) {
+        String sql = "INSERT INTO tb_event (event_name, event_date, event_time, event_organizer_id, response_deadline_date, response_deadline_time) " +
+                " VALUES (?, ?, ?, ?, ?, ?) RETURNING event_id;";
         Integer eventId = jdbcTemplate.queryForObject(sql, Integer.class, event.getEventName(), event.getEventDate(),
-                event.getEventTime(), userId, event.getDeadlineDate(), event.getDeadlineTime());
-            return eventId;
+                event.getEventTime(), event.getEventOrganizerId(), event.getDeadlineDate(), event.getDeadlineTime());
+        return getEventById(eventId);
     }
 
     private Event mapRowToEvent(SqlRowSet rs) {
@@ -108,6 +117,8 @@ public class JdbcEventDao implements EventDao {
         event.setZipcode(rs.getInt("event_zipcode"));
         event.setEventDate(rs.getDate("event_date").toLocalDate());
         event.setEventTime(rs.getTime("event_time").toLocalTime());
+        event.setDeadlineDate(rs.getDate("response_deadline_date").toLocalDate());
+        event.setDeadlineTime(rs.getTime("response_deadline_time").toLocalTime());
         return event;
     }
 }

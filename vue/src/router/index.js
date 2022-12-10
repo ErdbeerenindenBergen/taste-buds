@@ -10,6 +10,7 @@ import Invite from '../views/InviteBuds.vue'
 import Events from '../views/Events.vue'
 import About from '../views/About.vue'
 import InviteOptions from '../views/InviteOptions.vue'
+import InviteBuds from '../views/InviteOptions.vue'
 
 
 Vue.use(Router)
@@ -97,6 +98,14 @@ const router = new Router({
       component: About,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: '/event/create/:userId',
+      name: 'create-event',
+      component: InviteBuds,
+      meta: {
+        requiresAuth: true
       }
     }
   ]

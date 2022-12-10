@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @PreAuthorize("isAuthenticated()")
 
@@ -25,7 +25,6 @@ public class EventRestaurantController {
         this.yelpRestaurantService = yelpRestaurantService;
     }
 
-    @CrossOrigin
     @PreAuthorize("hasRole('ROLE_USER')")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/{eventId}/restaurant/{restaurantId}", method = RequestMethod.POST)
@@ -40,12 +39,13 @@ public class EventRestaurantController {
 //        return eventRestaurantDao.getEventRestaurantsByEventId(eventId);
 //    }
 
-    @CrossOrigin
     @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(path = "/find/{eventId}", method = RequestMethod.GET)
     public List<Business> getBusinessesByEventId(@PathVariable("eventId") int eventId) {
         List<EventRestaurant> eventRestaurants = eventRestaurantDao.getEventRestaurantsByEventId(eventId);
         return yelpRestaurantService.getBusinessesByYelpRestaurantId(eventRestaurants);
     }
+
+
 
 }
