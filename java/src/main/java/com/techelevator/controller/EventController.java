@@ -51,5 +51,5 @@ public class EventController {
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/create", method = RequestMethod.POST)
     public Event createEvent(@RequestBody Event event) {return eventDao.create(event);}
-    
+
 }
