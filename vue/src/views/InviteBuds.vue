@@ -122,8 +122,72 @@ h1 {
   text-align: center;
   padding-top: 40px;
 }
-
-a.router-link-active {
+a.router-link-active{
   font-weight: bold;
 }
+.inviteBud-form {
+    width: 30%;
+    position: fixed;
+    top: 150px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+input {
+  width: 25%;
+  height: 25%;
+  align-self: center;
+  padding: 10px 15px;
+  border: 3px solid lightgray;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 16px;
+  display: inline-flex;
+  flex-grow: 0;
+  margin-top: 15px;
+}
+h2 {
+    text-align: left;
+}
+#event-info-button, #invite-button, #restaurant-button{
+  background-color: #a64d79ff;
+  color: white;
+  text-decoration: none;
+  font-size:15px;
+  font-weight: bold;
+  border-radius: 10px;
+  width: 100px;
+  height: 45px;
+  padding: 12px 12px;
+}
+#invite-button {
+    align-self: center;
+    width: 30%;
+    margin: 10px
+}
+#restaurant-button {
+    margin-bottom: 10px;
+    width: 50%;
+}
+#event-info-button {
+    width: 30%;
+    margin: 10px;
+}
+#event-info-button:focus, #invite-button:focus, #restaurant-button:focus{
+  background: #E06666;
+}
+#event-info-button:hover, #invite-button:hover, #restaurant-button:hover{
+  background:#741b47ff;
+}
+div.event-info, div.date-time, div.email, div.send-invite {
+    justify-content: space-between;
+    margin: 10px;
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+    display: inline-block;
+    width: 100%
+};
 </style>

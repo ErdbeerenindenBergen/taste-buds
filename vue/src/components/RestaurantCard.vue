@@ -23,6 +23,10 @@
                             </a>
                         </div>
 
+                        <div id="purple-heart-icon-link">
+                            <button type="button" v-on:click="addToFavorites()"><img src="@/assets/purple-heart-icon.png" alt="purple-icon" id="purple-heart-icon" class="zoom"/></button>
+                        </div>
+
                     </div>
 
                 </div>
@@ -56,10 +60,37 @@
 
 <script>
 
+import InviteService from '../services/InviteService';
+
 export default {
     name :'restaurant-card',
     props: {
         business : Object,
+    },
+    data() {
+        return {
+        favRestaurants: {
+            restaurantId: "",
+            inviteId: "",
+            eventId: "",
+            business: Object
+        }
+        }
+    },
+    methods: {
+        addToFavorites() {
+            const favorite = {
+                restaurantId: this.favRestaurants.restaurantId,
+                inviteId: this.favRestaurants.inviteId,
+                eventId: this.favRestaurants.eventId,
+                business: Object
+            };
+            InviteService.createFavorites(favorite).then(response => {
+              this.invitation.inviteId = response.data;
+              this.$store.commit("SET_FAVORITES_LIST", response.data);
+          })
+
+        }
     }
 }
 
@@ -135,6 +166,13 @@ background-color: #a64d79ff;
 #google-icon{
     height: 40px;
     margin: 10px;
+}
+
+#purple-heart-icon{
+    height: 40px;
+    margin: 10px;
+    border: 0px;
+    text-decoration: none;
 }
 
 p{
