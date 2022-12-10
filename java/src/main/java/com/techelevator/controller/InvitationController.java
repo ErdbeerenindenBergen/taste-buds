@@ -51,10 +51,4 @@ public class InvitationController {
     public boolean createInvitation(@RequestBody Invitation invitation) {
         return invitationDao.createInvitation(invitation);
     }
-
-
-
-
-
-
 }

@@ -19,6 +19,11 @@
         <input  type="text"  class="time"  v-model="event.responseDeadlineTime"  placeholder="hh:mm" />
       </div>
 
+      <div>
+        <h2>Your email address:</h2>
+            <input  type="text"  class="event-name"  v-model="userId"  placeholder="Capstone Celebration" />
+      </div>
+
     <!-----------------------Create-Event Button ----------------------->
 
       <button  type="button"  id="create-event-button"  v-on:click="createEvent()">SUBMIT</button>
@@ -28,27 +33,27 @@
 
     <!-----------------------Enter Email Field ----------------------->
 
-    <form class="invite-form" @submit="invite">
+    <!-- <form class="invite-form" @submit="invite"> -->
       <div class="email">
         <h2>Enter the email address of the bud you want to invite:</h2>
-        <input  type="text"  class="date"  v-model="email"  placeholder="your bud's email"/>
+        <input  type="text"  class="date"  v-model="invitation.emailAddress"  placeholder="your bud's email"/>
       </div>
 
       <!-------------------Send Invite Button Button --------------------->
 
-      <div class="send-invite">
+      <!-- <div class="send-invite">
         <button type="button" id="invite-button" v-on:click="sendInvite()" >send an invite!</button>
-      </div>
+      </div> -->
 
       <!-------------------View all Restaurants Button ----------------------->
 
       <button  type="button"  id="restaurant-button"  v-on:click="viewRestaurants()" >view restaurants list</button>
-    </form>
+    <!-- </form> -->
 
     <!-- this here is the imported RestaurantCard.vue template from components -->
 
     <div id="find-restaurants-results" class="right-panel">
-      <restaurant-card  class="card"  v-for="business in Businesses"  v-bind:key="business.id"  v-bind:business="business"></restaurant-card>
+      <restaurant-card  class="card"  v-for="business in businesses"  v-bind:key="business.id"  v-bind:business="business"></restaurant-card>
     </div>
 
   </div>
@@ -66,34 +71,42 @@ import EventService from "../services/EventService.js";
 
 export default {
   components: {
-    RestaurantCard,
+    RestaurantCard
   },
-  props: {
-    business : Object
-  },
+    props:[ 
+      "business"
+      ],
   data() {
     return {
-      businesses: [], //this is for 'view restaurants list' button, OR this is what will hold the results of the queries? same thing?
-      event: {
-        eventId: "",
-        eventName: "",
-        eventDate: "",
-        eventTime: "",
-        eventOrganizerId: "",
-        deadlineDate: "", //might have to parse LocalDate as string
-        deadlineTime: "", //might have to parse LocalTime as string
-      }
+        businesses: [], //this is for 'view restaurants list' button, OR this is what will hold the results of the queries? same thing?
+        userId: '',
+        event: {
+            // eventId: '',
+            eventName: '',
+            eventDate: '',
+            eventTime: '',
+            eventOrganizerId: '',
+            deadlineDate: '', //might have to parse LocalDate as string
+            deadlineTime: '', //might have to parse LocalTime as string
+        },
+        invitation: {
+            emailAddress: ''
+      },
     };
   },
   methods: {
     createEvent() {
-        EventService.createEvent(this.user.userId, this.event).then(response => {
-             this.event.eventId = response.data;
+        // let userId = this.event.eventOrganizerId = $http.get('api/user').then(response => {
+        //     console.log(response.body)
+        // })
+
+        EventService.createEvent(this.userId, this.event).then(response => {
+            this.event.eventId = response.data;
         })
     },
     viewRestaurants() {
        return RestaurantService.findBusinessesByEventId(this.event.eventId).then(response => {
-           this.businesses = response.data;
+            this.businesses = response.data;
        })
     }
     //mikey note to self: the sendInvite function should create new invite with the data from above. reference the store stuff from lecture.
@@ -105,26 +118,39 @@ export default {
 //         decisionTime: "",
 //         uniqueInvitationLink: "",
 //       };
-
 //       InviteService.createInvitation(invitationObject).then((response) => {
 //         this.invitation.inviteId = response.data;
 //         this.$store.commit("SET_PENDING_INVITE", response.data);
 //       });
      },
+     computed: {
+         getEvent() {
+             return {
+                eventId: this.eventId,
+                eventName: this.eventName,
+                eventDate: this.eventDate,
+                eventTime: this.eventTime,
+                deadlineDate: this.deadlineDate,
+                deadlineTime: this.deadlineTime,
+             }
+         }
+     }
 };
-
 </script>
 
 <style scoped>
+
 h1 {
   font-family: "Playfair Display";
   font-weight: normal;
   text-align: center;
   padding-top: 40px;
 }
+
 a.router-link-active{
   font-weight: bold;
 }
+
 .inviteBud-form {
     width: 30%;
     position: fixed;
@@ -136,6 +162,7 @@ a.router-link-active{
     flex-wrap: wrap;
     justify-content: center;
 }
+
 input {
   width: 25%;
   height: 25%;
@@ -149,9 +176,11 @@ input {
   flex-grow: 0;
   margin-top: 15px;
 }
+
 h2 {
     text-align: left;
 }
+
 #event-info-button, #invite-button, #restaurant-button{
   background-color: #a64d79ff;
   color: white;
@@ -163,25 +192,31 @@ h2 {
   height: 45px;
   padding: 12px 12px;
 }
+
 #invite-button {
     align-self: center;
     width: 30%;
     margin: 10px
 }
+
 #restaurant-button {
     margin-bottom: 10px;
     width: 50%;
 }
+
 #event-info-button {
     width: 30%;
     margin: 10px;
 }
+
 #event-info-button:focus, #invite-button:focus, #restaurant-button:focus{
   background: #E06666;
 }
+
 #event-info-button:hover, #invite-button:hover, #restaurant-button:hover{
   background:#741b47ff;
 }
+
 div.event-info, div.date-time, div.email, div.send-invite {
     justify-content: space-between;
     margin: 10px;
@@ -189,5 +224,5 @@ div.event-info, div.date-time, div.email, div.send-invite {
     padding-bottom: 10px;
     display: inline-block;
     width: 100%
-};
+}
 </style>

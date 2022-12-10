@@ -9,6 +9,8 @@ import Restaurant from '../views/Restaurants.vue'
 import Invite from '../views/InviteBuds.vue'
 import Events from '../views/Events.vue'
 import About from '../views/About.vue'
+import InviteOptions from '../views/InviteOptions.vue'
+
 
 Vue.use(Router)
 
@@ -74,6 +76,14 @@ const router = new Router({
       }
     },
     {
+      path: '/invite-options/:id',
+      name: 'invite-options',
+      component: InviteOptions,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
       path: "/events",
       name: "events",
       component: Events,
@@ -86,7 +96,7 @@ const router = new Router({
       name: "about",
       component: About,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     }
   ]

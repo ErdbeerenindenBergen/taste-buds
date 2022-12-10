@@ -5,6 +5,7 @@ const http = axios.create({
 });
 
 export default {
+
     createEvent(userId, event){
         return http.post(`/create/${userId}`, event)
     }

@@ -25,6 +25,7 @@ public class EventRestaurantController {
         this.yelpRestaurantService = yelpRestaurantService;
     }
 
+    @CrossOrigin
     @PreAuthorize("hasRole('ROLE_USER')")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/{eventId}/restaurant/{restaurantId}", method = RequestMethod.POST)
@@ -39,6 +40,7 @@ public class EventRestaurantController {
 //        return eventRestaurantDao.getEventRestaurantsByEventId(eventId);
 //    }
 
+    @CrossOrigin
     @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(path = "/find/{eventId}", method = RequestMethod.GET)
     public List<Business> getBusinessesByEventId(@PathVariable("eventId") int eventId) {

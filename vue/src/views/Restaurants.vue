@@ -2,7 +2,7 @@
  <body class="container">
 
     <div id="find" class="left-panel">
-        <form class="find-form" @submit="find">
+        <form class="find-form" @submit="find()">
           <br>
           <p>Enter a city or zipcode</p>
           <br>
