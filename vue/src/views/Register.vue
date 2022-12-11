@@ -45,7 +45,7 @@
       <button id="create-account-button" class="btn btn-lg btn-primary btn-block" type="submit">Create Account</button>
       </div>
 
-      <router-link :to="{ name: 'log-in' }">Have an account already? Log in.</router-link>
+      <router-link class="register-link" :to="{ name: 'log-in' }">Have an account already? Log in.</router-link>
       <br>
 
 
@@ -146,7 +146,7 @@ input{
   align-content: center;
 }
 
-.register-link{
+a.register-link{
   display: flex;
   color:#a64d79ff;
   font-size:25px;
