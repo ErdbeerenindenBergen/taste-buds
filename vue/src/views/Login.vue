@@ -204,7 +204,7 @@ a.router-link-active{
 
   h1{
     font-size:30px;
-    padding-top:30px;
+    padding-top:20px;
   }
 
   h2{

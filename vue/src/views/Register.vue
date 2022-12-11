@@ -156,6 +156,8 @@ a.register-link{
 .alert-danger{
   color:red;
   font-weight:bold;
+  justify-content: center;
+  margin:auto;
 }
 
 input.form-control {

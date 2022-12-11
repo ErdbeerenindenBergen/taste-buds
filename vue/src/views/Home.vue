@@ -31,4 +31,16 @@ p{
 a.router-link-active{
   font-weight: bold;
 }
+
+@media screen and (max-width: 800px) and (min-width: 400px) {
+  p{
+  font-size: 20px;
+  text-align: center;
+  line-height: 5px;
+  font-family:'Playfair Display';
+  font-weight: normal;
+  padding-right: 20px;
+}
+}
+
 </style>
