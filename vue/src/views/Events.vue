@@ -7,10 +7,10 @@
     </div>
     
     <!---------------- Events Info ------------------>
-    <!-- needs work -->
-    <div class="event-info">
+    <div id="event-name-info" v-for='event in events' :key='event.id'>
       <h3>Events:</h3>
-      <h2> {{ event.eventName }}</h2>
+      <!-- at the moment this reactive element breaks everything -->
+      <!-- <h2> {{ event.eventName }}</h2> -->
       
     </div>
 
@@ -23,7 +23,8 @@ import RestaurantService from "../services/RestaurantService.js";
 import EventService from "../services/EventService.js";
 
 export default {
-  name: "events",
+  name: "event-details",
+  props: ["event"],
   data() {
     return {
         events:[],
@@ -34,6 +35,7 @@ export default {
   created() {
       EventService.getAllEvents().then(response => {
             this.events = response.data
+            console.log(this.events);
       });
 
   },
