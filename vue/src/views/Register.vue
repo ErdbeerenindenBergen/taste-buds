@@ -1,7 +1,7 @@
 <template>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
-      <h3 class="h3 mb-3 font-weight-normal">Create Account</h3>
+      <h3 class="h3 mb-3 font-weight-normal">Create an Account</h3>
 
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
@@ -45,7 +45,7 @@
       <button id="create-account-button" class="btn btn-lg btn-primary btn-block" type="submit">Create Account</button>
       </div>
 
-      <router-link class="register-link" :to="{ name: 'log-in' }">Have an account already? Log in.</router-link>
+      <router-link class="register-link" :to="{ name: 'log-in' }">Have an account already? Log in here.</router-link>
       <br>
 
 
@@ -153,6 +153,11 @@ a.register-link{
   font-weight: bold;
 }
 
+.alert-danger{
+  color:red;
+  font-weight:bold;
+}
+
 input.form-control {
   width: 30%;
   font-family: 'Playfair Display';
@@ -214,17 +219,18 @@ button{
   }
 
   h3{
-    padding-top:0px;
+    padding-top:15px;
     padding-bottom:5px;
   }
 
   input.form-control{
-    font-size:14px;
+    font-size:18px;
+    width:50%;
   }
 
   #create-account-button{
   font-size: 18px;
-  width:50%
+  width:45%
   }
 
   a.register-link{

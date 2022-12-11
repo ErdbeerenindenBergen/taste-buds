@@ -236,6 +236,35 @@ a:hover{
   font-weight: bold;
 }
 
+@media screen and (max-width: 800px) and (min-width: 400px) {
+  #header-title{
+    font-size: 40px;
+    margin:5px;
+    justify-content:center;
+    align-items: center;
+    margin:auto;
+  }
+ 
+  hr {
+  margin-bottom: 0px;
+  }
+
+  .bar {
+    margin:10px;
+    width: 30px;
+  }
+  
+  #header-padding{
+    padding:0px;
+    line-height:0px;
+  }
+
+  li.nav-item{
+    margin:5px;
+  }
+
+}
+
 @media screen and (max-width: 1150px) {
     .nav-menu {
         position: fixed;
@@ -268,33 +297,6 @@ a:hover{
         cursor: pointer;
     }
 }
-@media screen and (max-width: 400px) {
-  #header-title{
-    font-size: 40px;
-    margin:5px;
-    justify-content:center;
-    align-items: center;
-    margin:auto;
-  }
- 
-  hr {
-  margin-bottom: 0px;
-  }
 
-  .bar {
-    margin:10px;
-    width: 30px;
-  }
-  
-  #header-padding{
-    padding:0px;
-    line-height:0px;
-  }
-
-  .nav-item{
-    margin:10px;
-  }
-
-}
 
 </style>
