@@ -101,7 +101,7 @@ const router = new Router({
       }
     },
     {
-      path: '/event/create/:userId',
+      path: '/event/create',
       name: 'create-event',
       component: InviteBuds,
       meta: {

@@ -1,5 +1,8 @@
 package com.techelevator.controller;
 
+import com.techelevator.security.jwt.TokenProvider;
+import java.security.Principal;
+
 import com.techelevator.dao.EventDao;
 import com.techelevator.model.Event;
 import com.techelevator.model.Invitation;
@@ -16,9 +19,11 @@ import java.util.List;
 @RequestMapping("event")
 public class EventController {
 
-    EventDao eventDao;
+    private final TokenProvider tokenProvider;
+    private final EventDao eventDao;
 
-    public EventController(EventDao eventDao) {
+    public EventController(TokenProvider tokenProvider, EventDao eventDao) {
+        this.tokenProvider = tokenProvider;
         this.eventDao = eventDao;
     }
 
@@ -41,11 +46,7 @@ public class EventController {
         return eventDao.getEventByName(eventName);
     }
 
-//    @PreAuthorize("hasRole('ROLE_USER')")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    @RequestMapping(path = "/create/{userId}", method = RequestMethod.POST)
-//    public Integer createEvent(@PathVariable("userId") int userId, @Valid @RequestBody Event event) {return eventDao.create(event, userId);}
-
+    //this works from frontend but will not work for me in Postman -KB
     @CrossOrigin
     @PreAuthorize("hasRole('ROLE_USER')")
     @ResponseStatus(HttpStatus.CREATED)
