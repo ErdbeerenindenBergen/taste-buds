@@ -24,7 +24,7 @@
                         </div>
 
                         <div id="purple-heart-icon-link">
-                            <button type="button" v-on:click="addToFavorites()"><img src="@/assets/purple-heart-icon.png" alt="purple-icon" id="purple-heart-icon" class="zoom"/></button>
+                            <button type="button" @click="created() ? addToFavorites() : $router.push('/log-in')"><img src="@/assets/purple-heart-icon.png" alt="purple-icon" id="purple-heart-icon" class="zoom"/></button>
                         </div>
 
                     </div>
@@ -69,14 +69,9 @@ export default {
     },
     data() {
         return {
-        favRestaurants: {
-            restaurantId: "",
-            inviteId: "",
-            eventId: "",
-            business: Object
+        eventOrganizerId: "",
         }
-        }
-    },
+     },
     methods: {
         addToFavorites() {
             const favorite = {
@@ -90,7 +85,11 @@ export default {
               this.$store.commit("SET_FAVORITES_LIST", response.data);
           })
 
+        },
+        created() {
+            this.eventOrganizerId = this.$store.state.user.id;
         }
+    
     }
 }
 
