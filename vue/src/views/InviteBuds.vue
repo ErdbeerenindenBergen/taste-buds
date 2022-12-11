@@ -3,7 +3,7 @@
 
     <div class="tab-buttons">
     <button  type="button"  id="step-1-create-event" class="button"  v-on:click="showFormStepOne()">Step 1: Info</button>
-    <button  type="button"  id="step-2-create-event"  class="button" v-on:click="showFormStepThree()" >Step 2: Tastes</button>
+    <button  type="button"  id="step-2-create-event"  class="button" v-on:click="showFormStepTwo()" >Step 2: Tastes</button>
     <button  type="button"  id="step-3-create-event"  class="button" v-on:click="showFormStepThree()" >Step 3: Buds</button>
     </div>
     <!-----------------------Event Form----------------------->
@@ -32,7 +32,7 @@
 
     <!-----------------------Invite Form----------------------->
 
-    <form id="invite-form" v-show=false @submit="invite">
+    <form id="invite-form" v-show=false @submit="addToInvitees()">
       <div class="email">
         <h1>Enter the email address of the bud you want to invite:</h1>
         <input  type="text"  class="date"  v-model="invitation.emailAddress"  placeholder="your bud's email"/>
@@ -43,8 +43,9 @@
 
       </div>
 
-      <div id="current-list-of-invitees">
+      <div id="current-list-of-invitees" v-for='invitation in invitees' :key='invitation.emailAddress'>
         <h2>Below is a list of current invitees to this event:</h2>
+        <h2 id='inviteeEmailAddress'>{{ invitation.emailAddress }}</h2>
           <!-- how to print current invitees in their own rows here? -->
       </div>
 
@@ -55,10 +56,11 @@
       <!-- <button  type="button"  id="restaurant-button"  v-on:click="viewRestaurants()" >view restaurants list</button> -->
 
     <!-- this here is the imported RestaurantCard.vue template from components -->
-
+    <form id="restaurants-form" v-show=false>  
     <div id="find-restaurants-results" class="right-panel">
       <restaurant-card  class="card"  v-for="business in businesses"  v-bind:key="business.id"  v-bind:business="business"></restaurant-card>
     </div>
+    </form>
 
   </div>
 </template>
@@ -85,19 +87,19 @@ export default {
     return {
         businesses: [], //this is for 'view restaurants list' button, OR this is what will hold the results of the queries? same thing?
         userId: '',
-        // eventId: '',
         event: {
             eventId: '',
             eventName: "",
             eventDate: "",
             eventTime: "",
             eventOrganizerId: 0,
-            deadlineDate: "", //might have to parse LocalDate as string
-            deadlineTime: "", //might have to parse LocalTime as string
+            deadlineDate: "", 
+            deadlineTime: "", 
         },
         invitation: {
             emailAddress: ''
-      },
+        },
+        invitees: [] //this is to store invitees as they are added by user
     };
   },
   methods: {
@@ -109,59 +111,42 @@ export default {
         EventService.createEvent(this.event).then(response => {
             this.event.eventId = response.data.eventId;
             this.$router.push({name: 'restaurants'});
-            // return this.event.eventId;
-            // this.$router.push({name: 'create-event'});
         })
     },
     showFormStepOne() {
       const stepOneForm = document.getElementById('event-form');
-      const stepTwoForm = document.getElementById('invite-form');
-        // if (form.style.display === 'none') {
+      const stepTwoForm = document.getElementById('restaurants-form');
+      const stepThreeForm = document.getElementById('invite-form');
           stepOneForm.style.display = 'block';
           stepTwoForm.style.display = 'none';
-        // } else {
-        //   form.style.display = 'none';
-        // }
+          stepThreeForm.style.display = 'none';
     },
-    showFormStepThree() {
+    showFormStepTwo() {
       const stepOneForm = document.getElementById('event-form');
-      const stepTwoForm = document.getElementById('invite-form');
-        // if (form.style.display === 'none') {
-          stepTwoForm.style.display = 'block';
+      const stepTwoForm = document.getElementById('restaurants-form');
+      const stepThreeForm = document.getElementById('invite-form');
           stepOneForm.style.display = 'none';
-        // } else {
-        //   form.style.display = 'none';
-        // }
+          stepTwoForm.style.display = 'block';
+          stepThreeForm.style.display = 'none';
+    },
+      showFormStepThree() {
+      const stepOneForm = document.getElementById('event-form');
+      const stepTwoForm = document.getElementById('restaurants-form');
+      const stepThreeForm = document.getElementById('invite-form');
+          stepOneForm.style.display = 'none';
+          stepTwoForm.style.display = 'none';
+          stepThreeForm.style.display = 'block';
+    },
+    addToInvitees() {
+      this.invitees.push(this.invitation);
+      //resetForm;
+      console.log(this.invitees);
     },
     viewRestaurants() {
        return RestaurantService.findBusinessesByEventId(this.event.eventId).then(response => {
             this.businesses = response.data;
        })
     }
-    // mikey note to self: the sendInvite function should create new invite with the data from above. reference the store stuff from lecture.
-//     sendInvite() {
-//       const invitationObject = {
-//         eventName: "",
-//         inviteId: "",
-//         decisionDate: "",
-//         decisionTime: "",
-//         uniqueInvitationLink: "",
-//       };
-//       InviteService.createInvitation(invitationObject).then((response) => {
-//         this.invitation.inviteId = response.data;
-//         this.$store.commit("SET_PENDING_INVITE", response.data);
-//       });
-    //  computed: {
-    //      getEvent() {
-    //          return {
-    //             eventName: this.eventName,
-    //             eventDate: this.eventDate,
-    //             eventTime: this.eventTime,
-    //             deadlineDate: this.deadlineDate,
-    //             deadlineTime: this.deadlineTime,
-    //          }
-    //      }
-    //  }
   },
   created() {
     this.event.eventOrganizerId = this.$store.state.user.id;
