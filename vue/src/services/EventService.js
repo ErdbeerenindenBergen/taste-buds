@@ -12,5 +12,17 @@ export default {
 
     createInvitation(invitation){
         return http.post(`/invitation/create`, invitation)
+    },
+
+    getEventById(eventId){
+        return http.get(`/${eventId}`)
+    },
+
+    getEventByName(eventName){
+        return http.get('/eventName', eventName)
+    },
+
+    getAllEvents(){
+        return http.get('event') //does this have an endpoint? - nice catch! yes, it does! I fixed it.
     }
 }
