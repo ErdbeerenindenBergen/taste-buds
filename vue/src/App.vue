@@ -245,6 +245,7 @@ a:hover{
     margin:auto;
   }
  
+
   hr {
   margin-bottom: 0px;
   }
@@ -254,9 +255,22 @@ a:hover{
     width: 30px;
   }
   
+  header{
+    padding:0px;
+    margin:0px;
+  }
+
   #header-padding{
     padding:0px;
     line-height:0px;
+  }
+
+  #header-left {
+    padding-left:20px;
+  }
+
+  #hamburger{
+    padding-right:8px;
   }
 
   li.nav-item{
