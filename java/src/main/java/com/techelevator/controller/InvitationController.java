@@ -45,10 +45,12 @@ public class InvitationController {
     }
 
     //Still need to figure out sql for this, but I'm pretty sure this is how it should look here
+    //Thanks for all this awesome work! I think I fixed this in the back.
+    @CrossOrigin
     @PreAuthorize("hasRole('ROLE_USER')")
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(path = "", method = RequestMethod.POST)
-    public boolean createInvitation(@RequestBody Invitation invitation) {
+    @RequestMapping(path = "/create", method = RequestMethod.POST)
+    public Invitation createInvitation(@RequestBody Invitation invitation) {
         return invitationDao.createInvitation(invitation);
     }
 }

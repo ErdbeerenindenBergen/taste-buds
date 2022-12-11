@@ -10,12 +10,12 @@ export default {
     },
 
     //not sure this connects to anything in back- or frontend -KB
-    collectRestaurantsForInvite(restaurant) {
-        return http.post('/restaurants/save', restaurant)
+    collectRestaurantsForInvite(eventRestaurant) {
+        return http.post('/restaurants/save', eventRestaurant)
     },
 
-    createEventRestaurantInDatabase(restaurantId,eventId) {
-        return http.post(`/event/${eventId}/restaurant/${restaurantId}`)
+    createEventRestaurantInDatabase(eventRestaurant) {
+        return http.post(`/event/restaurant/`, eventRestaurant)
     },
 
     findBusinessesByEventId(eventId) {

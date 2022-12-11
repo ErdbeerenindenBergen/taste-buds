@@ -12,9 +12,9 @@
                 
                     <div id="icons">
 
-                        <div id="add-restaurant-to-favorites">
-                            <a><font-awesome-icon icon="fa-solid fa-heart" class="zoom" id="heart-icon"/></a>
-                        </div>  
+                        <!-- <div id="add-restaurant-to-favorites">
+                            <a><font-awesome-icon icon="fa-solid fa-heart" class="zoom" id="heart-icon" v-if="userIsLoggedIn()"/></a>
+                        </div>   -->
 
 
                         <div id="yelp-icon-link">
@@ -29,11 +29,11 @@
                             </a>
                         </div>
                         
-                        <!-- <div id="event-icon-link">
+                        <div id="event-icon-link">
                             <a>
-                            <font-awesome-icon icon="fa-solid fa-utensils" class="zoom" id="event-icon"/>
+                            <font-awesome-icon icon="fa-solid fa-utensils" class="zoom" id="event-icon" v-on:click="addRestaurantToEventList()"/>
                             </a>
-                        </div> -->
+                        </div>
               
                         <!-- <div id="purple-heart-icon-link">
                             <button type="button" @click="created() ? addToFavorites() : $router.push('/log-in')"><img src="@/assets/purple-heart-icon.png" alt="purple-icon" id="purple-heart-icon" class="zoom"/></button>
@@ -61,7 +61,6 @@
                 
                     <div id="phone-button">
                         <a href="tel:${business.phone}" target="_blank"><button class="call-button" type="button call"><font-awesome-icon icon="phone" /> CALL TO ORDER</button></a>
-                        <!-- <p class="address">{{business.location[7]}}</p> -->   
                     </div>
                 </div>
 
@@ -73,7 +72,6 @@
 <script>
 
 import InviteService from '../services/InviteService';
-
 import fontawesome from "@fortawesome/fontawesome";
 import brands from "@fortawesome/fontawesome-free-brands";
 import solid from "@fortawesome/fontawesome-free-solid"; 
@@ -81,7 +79,7 @@ import solid from "@fortawesome/fontawesome-free-solid";
 fontawesome.library.add(brands, solid);
 
 export default {
-    name :'restaurant-card',
+    name :'restaurant-event-view',
     props: {
         business : Object,
     },
@@ -89,7 +87,12 @@ export default {
     },
     data() {
         return {
-        eventOrganizerId: "",
+        userId: "",
+        favorite: {
+            restaurantId: '',
+            userId: 0
+        },
+        restaurants: [] //to store eventRestaurants for generating an event
         }
      },
     methods: {
@@ -106,10 +109,25 @@ export default {
           })
 
         },
-        created() {
-            this.eventOrganizerId = this.$store.state.user.id;
+        addToInvitees() {
+            this.invitees.push({...this.invitation}); //learned about this really cool thing called the "spread operator" or "..." which makes a clone of input and therefore freezes it in time basically
+            //resetForm;
+            let target = document.getElementById('invitee-input');
+            target.value="";
+            console.log(this.invitation);
+        },
+        userIsLoggedIn() {
+            let $loggedIn = false;
+            if (this.userId != 0) {
+                $loggedIn = true;
+            } return $loggedIn;
+        },
+        addRestaurantToEventList() {
+            this.restaurants.push(this.eventRestaurant);
         }
-    
+    },
+    created() {
+        this.userId = this.$store.state.user.id;
     }
 }
 

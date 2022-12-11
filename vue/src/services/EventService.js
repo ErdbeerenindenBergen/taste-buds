@@ -8,5 +8,9 @@ export default {
 
     createEvent(event){
         return http.post(`/event/create`, event)
+    },
+
+    createInvitation(invitation){
+        return http.post(`/invitation/create`, invitation)
     }
 }

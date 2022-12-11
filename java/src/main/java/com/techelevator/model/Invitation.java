@@ -9,92 +9,34 @@ import java.util.List;
 public class Invitation {
 
     private int invitationId;
-    private String location;
-    private String zipCode;
-    private Date decisionDate;
-    private Time decisionTime;
-    private List<String> guestList;
-    private List<String> restaurantOptions;
-    private String uniqueInvitationLink;
+    private int eventId;
     private String emailAddress;
+    private boolean hasVoted;
 
-    public Invitation(int invitationId, String location, String zipCode, Date decisionDate, Time decisionTime,
-                      List<String> guestList, List<String> restaurantOptions, String uniqueInvitationLink, String emailAddress) {
+    public Invitation(int invitationId, int eventId, String emailAddress, boolean hasVoted) {
         this.invitationId = invitationId;
-        this.location = location;
-        this.zipCode = zipCode;
-        this.decisionDate = decisionDate;
-        this.decisionTime = decisionTime;
-        this.guestList = guestList;
-        this.restaurantOptions = restaurantOptions;
-        this.uniqueInvitationLink = uniqueInvitationLink;
-
+        this.eventId = eventId;
+        this.emailAddress = emailAddress;
+        this.hasVoted = hasVoted;
     }
 
-    public Invitation() {}
+    public Invitation() {
+    }
 
     public int getInvitationId() {
         return invitationId;
     }
 
-    public void setInvitationId(int inviteId) {
-        this.invitationId = inviteId;
+    public void setInvitationId(int invitationId) {
+        this.invitationId = invitationId;
     }
 
-    public String getLocation() {
-        return location;
+    public int getEventId() {
+        return eventId;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public Date getDecisionDate() {
-        return decisionDate;
-    }
-
-    public void setDecisionDate(Date decisionDate) {
-        this.decisionDate = decisionDate;
-    }
-
-    public Time getDecisionTime() {
-        return decisionTime;
-    }
-
-    public void setDecisionTime(Time decisionTime) {
-        this.decisionTime = decisionTime;
-    }
-
-    public List<String> getGuestList() {
-        return guestList;
-    }
-
-    public void setGuestList(List<String> guestList) {
-        this.guestList = guestList;
-    }
-
-    public List<String> getRestaurantOptions() {
-        return restaurantOptions;
-    }
-
-    public void setRestaurantOptions(List<String> restaurantOptions) {
-        this.restaurantOptions = restaurantOptions;
-    }
-
-    public String getUniqueInvitationLink() {
-        return uniqueInvitationLink;
-    }
-
-    public void setUniqueInvitationLink(String uniqueInvitationLink) {
-        this.uniqueInvitationLink = uniqueInvitationLink;
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
     }
 
     public String getEmailAddress() {
@@ -103,5 +45,13 @@ public class Invitation {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    public boolean isHasVoted() {
+        return hasVoted;
+    }
+
+    public void setHasVoted(boolean hasVoted) {
+        this.hasVoted = hasVoted;
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface EventRestaurantDao {
 
-    boolean createEventRestaurant(String yelpRestaurantId, int eventId);
+    boolean createEventRestaurant(EventRestaurant eventRestaurant);
 
     List<EventRestaurant> getEventRestaurantsByEventId(int eventId);
 

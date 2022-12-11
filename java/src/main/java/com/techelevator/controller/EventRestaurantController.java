@@ -27,9 +27,9 @@ public class EventRestaurantController {
 
     @PreAuthorize("hasRole('ROLE_USER')")
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(path = "/{eventId}/restaurant/{restaurantId}", method = RequestMethod.POST)
-    public boolean createEventRestaurant(@PathVariable("restaurantId") String yelpRestaurantId, @PathVariable("eventId") int eventId) {
-        return eventRestaurantDao.createEventRestaurant(yelpRestaurantId, eventId);
+    @RequestMapping(path = "/restaurant/create", method = RequestMethod.POST)
+    public boolean createEventRestaurant(@RequestBody EventRestaurant eventRestaurant) {
+        return eventRestaurantDao.createEventRestaurant(eventRestaurant);
     }
 
     //may not need this method, call method below this one to get all information from API
