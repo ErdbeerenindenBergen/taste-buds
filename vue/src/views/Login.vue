@@ -44,7 +44,6 @@
 
       <p>New to taste buds?</p>
       <router-link :to="{name:'register'}" class="register-link">Sign up here.</router-link>
-      <!-- <a class="register-link" href="../src/views/Register.vue">Sign up here.</a> -->
 
     </form>
     
@@ -197,15 +196,15 @@ a.router-link-active{
 
 
 /* SCREEN DIFFERENCES */
-@media screen and (max-width: 400px) {
-  body {
+@media screen and (max-width: 800px) and (min-width: 400px) {
+   body {
       display:flex;
       flex-direction: column;
   }
 
   h1{
     font-size:30px;
-    padding-top:0px;
+    padding-top:30px;
   }
 
   h2{
@@ -221,13 +220,5 @@ a.router-link-active{
   border-radius: 10px;
   width: 40%;
   }
-    
-}
-@media screen and (max-width: 800px) and (min-width: 400px) {
-  body {
-    display:flex;
-    flex-direction: column;
-  }
-  
 }
 </style>
