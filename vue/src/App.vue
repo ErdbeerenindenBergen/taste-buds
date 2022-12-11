@@ -268,5 +268,29 @@ a:hover{
         cursor: pointer;
     }
 }
+@media screen and (max-width: 400px) {
+  #header-title{
+    font-size: 40px;
+    margin:5px;
+    justify-content:center;
+    align-items: center;
+    margin:auto;
+  }
+ 
+  hr {
+  margin-bottom: 0px;
+  }
+
+  .bar {
+    margin:10px;
+    width: 30px;
+  }
+  
+  #header-padding{
+    padding:0px;
+    line-height:0px;
+  }
+
+}
 
 </style>
