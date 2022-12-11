@@ -23,9 +23,9 @@
                             </a>
                         </div>
 
-                        <div id="purple-heart-icon-link">
+                        <!-- <div id="purple-heart-icon-link">
                             <button type="button" @click="created() ? addToFavorites() : $router.push('/log-in')"><img src="@/assets/purple-heart-icon.png" alt="purple-icon" id="purple-heart-icon" class="zoom"/></button>
-                        </div>
+                        </div> -->
 
                     </div>
 
