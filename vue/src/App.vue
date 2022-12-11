@@ -291,6 +291,10 @@ a:hover{
     line-height:0px;
   }
 
+  .nav-item{
+    margin:10px;
+  }
+
 }
 
 </style>
