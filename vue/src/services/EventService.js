@@ -10,9 +10,9 @@ export default {
         return http.post(`/event/create`, event)
     },
 
-    createInvitation(invitation){
-        return http.post(`/invitation/create`, invitation)
-    },
+    // createInvitation(invitation){
+    //     return http.post('/invitation/create', invitation)
+    // },
 
     getEventById(eventId){
         return http.get(`/${eventId}`)
@@ -23,6 +23,6 @@ export default {
     },
 
     getAllEvents(){
-        return http.get('event') //does this have an endpoint? - nice catch! yes, it does! I fixed it.
+        return http.get('/event') //does this have an endpoint? - nice catch! yes, it does! I fixed it.
     }
 }

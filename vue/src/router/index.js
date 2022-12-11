@@ -107,6 +107,14 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
+    },
+    {
+      path: '/invitation/create',
+      name: 'create-event',
+      component: InviteBuds,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 })

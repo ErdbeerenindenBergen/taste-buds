@@ -4,6 +4,7 @@ import com.techelevator.dao.EventDao;
 import com.techelevator.dao.InvitationDao;
 import com.techelevator.model.Event;
 import com.techelevator.model.Invitation;
+import com.techelevator.security.jwt.TokenProvider;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +18,11 @@ import java.util.List;
 @RequestMapping("invitation")
 public class InvitationController {
 
-    InvitationDao invitationDao;
+    private final InvitationDao invitationDao;
+    private final TokenProvider tokenProvider;
 
-    public InvitationController(InvitationDao invitationDao) {
+    public InvitationController(TokenProvider tokenProvider, InvitationDao invitationDao) {
+        this.tokenProvider = tokenProvider;
         this.invitationDao = invitationDao;
     }
 

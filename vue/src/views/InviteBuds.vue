@@ -35,7 +35,7 @@
     <form id="invite-form" ref="invite-form" v-show=false @submit="addToInvitees()">
       <div class="email">
         <h1>Enter the email address of the bud you want to invite:</h1>
-        <input  type="text" id="invitee-input" class="date"  v-for="emailAddress in invitees" :key="emailAddress" v-bind:to="emailAddress" placeholder="your bud's email" @keydown.enter.exact.prevent="addToInvitees()"/>
+        <input  type="text" id="invitee-input" class="date"  v-model="invitation.emailAddress"  placeholder="your bud's email" @keydown.enter.exact.prevent="addToInvitees()"/>
                 <button type="button" id="invite-button" value='clearInput' v-on:click="addToInvitees()" >ADD</button>
       </div>
 
@@ -44,10 +44,10 @@
       </div>
 
         <h2>Below is a list of current invitees to this event:</h2>
-      <!-- <div id="current-list-of-invitees" v-for='invitation in invitees' :key='invitation.emailAddress'> -->
-        <!-- <h2 id='inviteeEmailAddress'>{{ invitation.emailAddress }}</h2> -->
+      <div id="current-list-of-invitees" v-for='invitation in invitees' :key='invitation.emailAddress'>
+        <h2 id='inviteeEmailAddress'>{{ invitation.emailAddress }}</h2>
           <!-- how to print current invitees in their own rows here? -->
-      <!-- </div> -->
+      </div>
 
     </form>
 
@@ -147,6 +147,7 @@
 import RestaurantEventView from "../components/RestaurantEventView.vue";
 import RestaurantService from "../services/RestaurantService.js";
 import EventService from "../services/EventService.js";
+import InvitationService from "../services/InvitationService.js"
 // import InviteService from '../services/InviteService';
 
 
@@ -163,7 +164,7 @@ export default {
         businesses: [], //this is for 'view restaurants list' button, OR this is what will hold the results of the queries? same thing?
         userId: '',
         event: {
-            eventId: '',
+            eventId: 0,
             eventName: "",
             eventDate: "",
             eventTime: "",
@@ -171,16 +172,17 @@ export default {
             deadlineDate: "", 
             deadlineTime: "", 
         },
+        state:'',
         eventRestaurant: {
           yelpRestaurantId: "",
-          eventId: ""
+          eventId: 0
         },
-        emailAddress:'',
         invitation: {
+          // invitationId: '',
           eventId: 0,
           emailAddress: '',
         },
-        invitationId: 0,
+        invitationIds: [],
         invitees: [], //this is to store invitees as they are added by user
         eventRestaurants: []
     };
@@ -194,21 +196,17 @@ export default {
         
         EventService.createEvent(this.event).then(response => {
           this.event.eventId = response.data.eventId;
-          // this.invitation.eventId = this.event.eventId;
 
-          this.invitees.forEach ((invitee) => {
-            this.invitation.eventId = this.event.eventId;
-            this.invitation.emailAddress = invitee;
-            console.log(this.invitation);
-            // this.invitations.push(this.invitation);
+          this.invitees.forEach ((invitation) => {
+            invitation.eventId = this.event.eventId;
+          InvitationService.createInvitation(invitation).then(response => {
+            this.invitationIds.push(response.data.invitationId);
           })
+        })
+          console.dir(this.invitees);
 
-          EventService.createInvitation(this.invitation).then(response => {
-            this.invitationId = response.data.invitationId;
-          })
-
-          RestaurantService.createEventRestaurantInDatabase(this.eventRestaurant);
-          })
+          // RestaurantService.createEventRestaurantInDatabase(this.eventRestaurant);
+        })
     },
     makeInvitationList() {
     },
@@ -238,10 +236,10 @@ export default {
     },
     //think I'm doing something wrong here
     addToInvitees() {
-      this.invitees.push(this.emailAddress);
+      this.invitees.push({...this.invitation});
        //learned about this really cool thing called the "spread operator" or "..." which makes a clone of input and therefore freezes it in time basically
       // document.getElementById("invitee-input").value = "";
-      // this.invitation.emailAddress="";
+      this.invitation.emailAddress="";
     },
     viewRestaurants() {
        return RestaurantService.findBusinessesByEventId(this.event.eventId).then(response => {

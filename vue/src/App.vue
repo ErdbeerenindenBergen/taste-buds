@@ -35,13 +35,13 @@
         </ul>
       </nav>
 
-    <v-menu :value="userProfileMenuIsOpen" :close-on-content-click="false">
+
       <div id="hamburger" class="hamburger" v-on:click="mobileMenu(), userProfileMenuIsOpen = true">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
       </div>
-    </v-menu>
+
     
     </header>
 

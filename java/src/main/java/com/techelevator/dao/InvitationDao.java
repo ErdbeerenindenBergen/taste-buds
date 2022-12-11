@@ -12,6 +12,8 @@ public interface InvitationDao {
 
     Invitation getInvitationByInvitationId(Integer invitationId);
 
+//    Invitation getInvitationByInvitationId(Integer invitationId);
+
     Invitation getInvitationByUserId(int userId);
 
 }
