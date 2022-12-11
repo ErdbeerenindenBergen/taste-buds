@@ -214,8 +214,8 @@ button{
   }
 
   h3{
-    padding-top:20px;
-    padding-bottom:10px;
+    padding-top:0px;
+    padding-bottom:5px;
   }
 
   input.form-control{
@@ -224,6 +224,7 @@ button{
 
   #create-account-button{
   font-size: 18px;
+  width:50%
   }
 
   a.register-link{

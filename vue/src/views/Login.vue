@@ -24,7 +24,7 @@
         type="text"
         id="username"
         class="form-control"
-        placeholder="email"
+        placeholder="Email"
         v-model="user.username"
         required
         autofocus/>
@@ -34,7 +34,7 @@
         type="password"
         id="password"
         class="form-control"
-        placeholder="password"
+        placeholder="Password"
         v-model="user.password"
         required/>
 
@@ -127,7 +127,7 @@ p{
   margin-bottom: 10px;
 }
 
-.register-link{
+a.register-link{
   display: flex;
   color:#a64d79ff;
   font-size:25px;
@@ -201,8 +201,26 @@ a.router-link-active{
   body {
       display:flex;
       flex-direction: column;
-    }
-    
+  }
+
+  h1{
+    font-size:30px;
+    padding-top:0px;
+  }
+
+  h2{
+    font-size:16px;
+  }
+  
+  input.form-control{
+    width: 50%;
+  }
+
+  #login-button{
+  font-size: 20px;
+  border-radius: 10px;
+  width: 40%;
+  }
     
 }
 @media screen and (max-width: 800px) and (min-width: 400px) {
