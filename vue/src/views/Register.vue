@@ -211,9 +211,25 @@ button{
   body {
       display:flex;
       flex-direction: column;
-    }
-    
-    
+  }
+
+  h3{
+    padding-top:20px;
+    padding-bottom:10px;
+  }
+
+  input.form-control{
+    font-size:14px;
+  }
+
+  #create-account-button{
+  font-size: 18px;
+  }
+
+  a.register-link{
+  font-size:20px;
+  }
+
 }
 @media screen and (max-width: 800px) and (min-width: 400px) {
   body {
