@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <p>If you can see this, you have logged in successfully!</p>
+    <p>You've logged in!</p>
   </div>
 </template>
 
@@ -32,7 +32,7 @@ a.router-link-active{
   font-weight: bold;
 }
 
-@media screen and (max-width: 800px) and (min-width: 400px) {
+@media screen and (max-width: 800px) and (min-width: 200px) {
   p{
   font-size: 20px;
   text-align: center;

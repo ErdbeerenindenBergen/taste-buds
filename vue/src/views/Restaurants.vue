@@ -119,16 +119,25 @@ body{
 
 .left-panel{
   width:30%;
-  position: fixed;
-  top: 250px;
-  left: 0;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+form.find-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .right-panel{
   width:70%;
+  flex-grow:1;
   justify-content: center;
   text-align: center;
-  padding-left: 30%;
+  padding-left: 0%;
 }
 
 p {
@@ -146,17 +155,6 @@ input.location {
   text-align: center;
   border-radius: 10px;
   font-size: 16px;
-}
-
-form.find-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: fix;
-    top: 0;
-    left: 0;
-    right: 0;
 }
 
 a.router-link-active{
@@ -201,33 +199,9 @@ option{
   background:#741b47ff;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 800px) and (min-width: 200px) {
 
 .container{
-    padding-top: 15px;
-    display:flex;
-    flex-direction: column;
-}
-
-  .left-panel{
-    width: 100%;
-    position: fixed;
-    top: 150px;
-    left: 0;
-    background: white;
-  }
-
-  .right-panel{
-    width:100%;
-    justify-content: center;
-    text-align: center;
-    padding-left: 0;
-    padding-top: 425px;
-  }
-}
-
-@media screen and (max-width: 800px) {
- .container{
     display:flex;
 }
 
@@ -240,6 +214,41 @@ option{
   justify-content: center;
   text-align: center;
 }
+
+p{
+  font-size: 21px;
 }
+
+label {
+  font-size: 20px;
+}
+
+}
+
+@media screen and (max-width: 1200px) {
+
+.container{
+    padding-top: 15px;
+    display:flex;
+    flex-direction: column;
+}
+
+  .left-panel{
+    width: 30%;
+    /* position: fixed; */
+    top: 175px; 
+    margin-top:50px;
+  }
+
+  .right-panel{
+    width:100%;
+    justify-content: center;
+    text-align: center;
+    padding-left: 0;
+    padding-top: 75px;
+  }
+}
+
+
 
 </style>

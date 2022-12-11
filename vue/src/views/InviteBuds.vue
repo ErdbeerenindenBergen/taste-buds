@@ -35,7 +35,7 @@
     <form id="invite-form" ref="invite-form" v-show=false @submit="addToInvitees()">
       <div class="email">
         <h1>Enter the email address of the bud you want to invite:</h1>
-        <input  type="text" id="invitee-input" class="date"  v-model="invitation.emailAddress"  placeholder="your bud's email" @keydown.enter.exact.prevent="addToInvitees()"/>
+        <input  type="text" id="invitee-input" class="date"  v-for="emailAddress in invitees" :key="emailAddress" v-bind:to="emailAddress" placeholder="your bud's email" @keydown.enter.exact.prevent="addToInvitees()"/>
                 <button type="button" id="invite-button" value='clearInput' v-on:click="addToInvitees()" >ADD</button>
       </div>
 
@@ -44,10 +44,10 @@
       </div>
 
         <h2>Below is a list of current invitees to this event:</h2>
-      <div id="current-list-of-invitees" v-for='invitation in invitees' :key='invitation.emailAddress'>
-        <h2 id='inviteeEmailAddress'>{{ invitation.emailAddress }}</h2>
+      <!-- <div id="current-list-of-invitees" v-for='invitation in invitees' :key='invitation.emailAddress'> -->
+        <!-- <h2 id='inviteeEmailAddress'>{{ invitation.emailAddress }}</h2> -->
           <!-- how to print current invitees in their own rows here? -->
-      </div>
+      <!-- </div> -->
 
     </form>
 
@@ -175,6 +175,7 @@ export default {
           yelpRestaurantId: "",
           eventId: ""
         },
+        emailAddress:'',
         invitation: {
           eventId: 0,
           emailAddress: '',
@@ -197,7 +198,7 @@ export default {
 
           this.invitees.forEach ((invitee) => {
             this.invitation.eventId = this.event.eventId;
-            this.invitation.emailAddress = invitee.emailAddress;
+            this.invitation.emailAddress = invitee;
             console.log(this.invitation);
             // this.invitations.push(this.invitation);
           })
@@ -210,7 +211,6 @@ export default {
           })
     },
     makeInvitationList() {
-
     },
     showFormStepOne() {
       const stepOneForm = document.getElementById('event-form');
@@ -238,9 +238,10 @@ export default {
     },
     //think I'm doing something wrong here
     addToInvitees() {
-      this.invitees.push({...this.invitation}); //learned about this really cool thing called the "spread operator" or "..." which makes a clone of input and therefore freezes it in time basically
+      this.invitees.push(this.emailAddress);
+       //learned about this really cool thing called the "spread operator" or "..." which makes a clone of input and therefore freezes it in time basically
       // document.getElementById("invitee-input").value = "";
-      this.invitation.emailAddress="";
+      // this.invitation.emailAddress="";
     },
     viewRestaurants() {
        return RestaurantService.findBusinessesByEventId(this.event.eventId).then(response => {
@@ -298,7 +299,6 @@ a.router-link-active{
 
 input {
   width: 25%;
-  height: 25%;
   align-self: center;
   padding: 10px 15px;
   border: 3px solid lightgray;
@@ -433,9 +433,17 @@ body{
 
 .left-panel{
   width:30%;
-  position: fixed;
-  top: 250px;
-  left: 0;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+form.find-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .right-panel{
@@ -460,17 +468,6 @@ input.location {
   text-align: center;
   border-radius: 10px;
   font-size: 16px;
-}
-
-form.find-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: fix;
-    top: 0;
-    left: 0;
-    right: 0;
 }
 
 #submit-button{
@@ -520,11 +517,10 @@ option{
 }
 
   .left-panel{
-    width: 100%;
-    position: fixed;
-    top: 200px;
-    left: 0;
-    background: white;
+    width: 30%;
+    /* position: fixed; */
+    top: 175px; 
+    margin-top:50px;
   }
 
   .right-panel{
@@ -536,9 +532,14 @@ option{
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 800px) and (min-width: 200px) {
  .container{
     display:flex;
+}
+
+.left-panel{
+  width:100%;
+  padding-bottom:20px;
 }
 
 .tab-buttons{
@@ -552,10 +553,6 @@ option{
   margin:5px;
 }
 
-.left-panel{
-  width:100%;
-  padding-bottom:20px;
-}
 .right-panel{
   width:100%;
   justify-content: center;

@@ -25,9 +25,9 @@
           <li class="nav-item">
           <router-link class="nav-link" v-bind:to="{ name: 'events' }">Events</router-link> 
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
           <router-link class="nav-link" v-bind:to="{ name: 'about' }">About</router-link> 
-          </li>
+          </li> -->
           <li class="nav-item">
           <router-link class="nav-link" active-class="active" v-bind:to="{ name: 'log-in'}" v-if="$store.state.token === ''" >Log in</router-link>
           <router-link class="nav-link" v-bind:to="{ name: 'log-out' }" v-if="$store.state.token != ''">Log out</router-link>
@@ -35,11 +35,13 @@
         </ul>
       </nav>
 
-      <div id="hamburger" class="hamburger" v-on:click="mobileMenu(),turnOffFindView()">
+    <v-menu :value="userProfileMenuIsOpen" :close-on-content-click="false">
+      <div id="hamburger" class="hamburger" v-on:click="mobileMenu(), userProfileMenuIsOpen = true">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
       </div>
+    </v-menu>
     
     </header>
 
@@ -64,6 +66,7 @@ export default {
   data() {
     return {
       fixed: false,
+      userProfileMenuIsOpen: false // Default to 'false'!
     };
   },
   methods: {
@@ -236,7 +239,7 @@ a:hover{
   font-weight: bold;
 }
 
-@media screen and (max-width: 800px) and (min-width: 400px) {
+@media screen and (max-width: 800px) and (min-width: 200px) {
   #header-title{
     font-size: 40px;
     margin:5px;
@@ -245,7 +248,6 @@ a:hover{
     margin:auto;
   }
  
-
   hr {
   margin-bottom: 0px;
   }
@@ -265,17 +267,26 @@ a:hover{
     line-height:0px;
   }
 
-  #header-left {
+  /* #header-left {
     padding-left:20px;
-  }
+  } */
 
   #hamburger{
+    display: block;
     padding-right:8px;
   }
 
   li.nav-item{
     margin:5px;
   }
+
+  #tb-logo {
+  padding-left: 10px;
+  padding-top:5px;
+    height: 45px;
+    width: auto;
+    margin: auto;
+}
 
 }
 
@@ -302,8 +313,8 @@ a:hover{
             0 10px 27px rgba(0, 0, 0, 0.05);
     }
 
-    .nav-item {
-        margin: 2.5rem 0;
+    li.nav-item {
+      margin:5px;
     }
 
     .hamburger {

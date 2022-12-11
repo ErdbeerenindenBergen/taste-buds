@@ -196,7 +196,7 @@ a.router-link-active{
 
 
 /* SCREEN DIFFERENCES */
-@media screen and (max-width: 800px) and (min-width: 400px) {
+@media screen and (max-width: 800px) and (min-width: 200px) {
    body {
       display:flex;
       flex-direction: column;
