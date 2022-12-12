@@ -33,7 +33,7 @@ import EventService from "../services/EventService.js";
 
 export default {
   name: "event-details",
-  //props: ["event"], //unsure if this is needed
+  props: ["event"], //unsure if this is needed
   data() {
     return {
       events: [],
@@ -53,9 +53,8 @@ export default {
           stepOneForm.style.display = 'block';
           stepTwoForm.style.display = 'none';
       
-      RestaurantService.findBusinessesByEventId(this.event.eventId).then(response => {
-            this.businesses = response.data;
-      })
+      return this.$store.state.approvedRestaurants;//trying to get the approvedRestaurants list from the store
+      
       // return this.$store.state.restaurants;
     },
     showViewInvitees() {
