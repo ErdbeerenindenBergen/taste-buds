@@ -149,9 +149,9 @@ export default {
         restaurantId: this.favorite.restaurantId,
         inviteId: this.favorite.userId
       };
-      InviteService.createFavorites(myFavorites).then((response) => {
+      InviteService.createFavorites(myFavorites).then((response) => {//need to rework "createFavorites"
         this.favoritesList = response.data;
-        this.$store.commit("SET_FAVORITES_LIST", this.favoritesList);
+        this.$store.commit("ADD_FAVORITES", this.favoritesList);
       });
     },
     created() {

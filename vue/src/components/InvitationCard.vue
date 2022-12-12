@@ -124,7 +124,7 @@
 </template>
 
 <script>
-import InviteService from "../services/InviteService";
+//import InviteService from "../services/InviteService";
 import fontawesome from "@fortawesome/fontawesome";
 import brands from "@fortawesome/fontawesome-free-brands";
 import solid from "@fortawesome/fontawesome-free-solid";
@@ -151,16 +151,16 @@ export default {
         }
      },
     methods: {
-        addToFavorites() {
-            const myFavorites = {
-            restaurantId: this.favorite.restaurantId,
-            userId: this.favorite.userId,
-      };
-        InviteService.createFavorites(myFavorites).then((response) => {
-            this.favoritesList = response.data;
-            this.$store.commit("SET_FAVORITES_LIST", this.favoritesList);
-      });
-    },
+    //     addToFavorites() {
+    //         const myFavorites = {
+    //         restaurantId: this.favorite.restaurantId,
+    //         userId: this.favorite.userId,
+    //   };
+    //     InviteService.createFavorites(myFavorites).then((response) => {
+    //         this.favoritesList = response.data;
+    //         this.$store.commit("ADD_FAVORITES", this.favoritesList);
+    //   });
+    // },
         addToInvitees() {
             this.invitees.push({...this.invitation}); //learned about this really cool thing called the "spread operator" or "..." which makes a clone of input and therefore freezes it in time basically
             //resetForm;

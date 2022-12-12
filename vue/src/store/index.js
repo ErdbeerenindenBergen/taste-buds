@@ -54,8 +54,8 @@ export default new Vuex.Store({
     ADD_RESTAURANTS(state, eventRestaurant) {
       state.restaurants.push(eventRestaurant);
     },
-    SET_FAVORITES_LIST(state, favoritesList) {
-      state.favoritesList = favoritesList;
+    ADD_FAVORITES_LIST(state, favoritesList) {
+      state.favoritesList = favoritesList; //unsure if i "push" it into the list or do i just keep as the way it is written
     },
     //capturing new invite.
     SET_PENDING_INVITE(state, data) {
