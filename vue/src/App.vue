@@ -41,9 +41,9 @@
                 >Events</router-link
               >
             </li>
-            <!-- <li class="nav-item">
+            <li class="nav-item">
           <router-link class="nav-link" v-bind:to="{ name: 'about' }">About</router-link> 
-          </li> -->
+          </li>
             <li class="nav-item">
               <router-link
                 class="nav-link"
