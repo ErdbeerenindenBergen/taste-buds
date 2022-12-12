@@ -20,10 +20,10 @@
     </div>
 
     <!---------------- Events Info ------------------>
-    <div id="event-name-info" v-for="event in events" :key="event.id">
       <h3>Events:</h3>
-      <!-- at the moment this reactive element breaks everything -->
-      <!-- <h2> {{ event.eventName }}</h2> -->
+
+    <div id="event-name-info" v-for="event in events" :key="event.id">
+      <h2> {{ event.eventName }}</h2>
     </div>
   </div>
 </template>
