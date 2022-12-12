@@ -20,8 +20,7 @@
     </div>
 
     <!---------------- Events Info ------------------>
-      <h3>Events:</h3>
-
+    <h3>Events:</h3>
     <div id="event-name-info" v-for="event in events" :key="event.id">
       <h2> {{ event.eventName }}</h2>
     </div>
@@ -54,7 +53,7 @@ export default {
           stepOneForm.style.display = 'block';
           stepTwoForm.style.display = 'none';
       
-      return RestaurantService.findBusinessesByEventId(this.event.eventId).then(response => {
+      RestaurantService.findBusinessesByEventId(this.event.eventId).then(response => {
             this.businesses = response.data;
       })
       // return this.$store.state.restaurants;
