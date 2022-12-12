@@ -23,7 +23,8 @@ export default new Vuex.Store({
     favoritesList: [],
     approvedRestaurants: [], //thumbs-up restaurants
     rejectedRestaurants: [], //thumbs-down restaurants
-    restaurants: [], 
+    restaurants: [],
+    pendingInvites:[], 
     inviteeLinks: [],
     invitees: [],
     eventRestaurant: {
