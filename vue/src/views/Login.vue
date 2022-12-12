@@ -1,22 +1,20 @@
-<template> 
- <body>
-   <form class="form-signin" @submit.prevent="login">
+<template>
+  <body>
+    <form class="form-signin" @submit.prevent="login">
       <h1>Welcome to taste buds</h1>
       <h2>where the first bite could change your life.</h2>
-      <br/>
-      <br/>
-      
-      <div
-        class="alert alert-danger"
-        role="alert"
-        v-if="invalidCredentials">
+      <br />
+      <br />
+
+      <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
         Invalid username and password!
-        </div>
+      </div>
 
       <div
         class="alert alert-success"
         role="alert"
-        v-if="this.$route.query.registration">
+        v-if="this.$route.query.registration"
+      >
         Thank you for registering, please sign in.
       </div>
 
@@ -27,8 +25,9 @@
         placeholder="Email"
         v-model="user.username"
         required
-        autofocus/>
-        <br/>
+        autofocus
+      />
+      <br />
 
       <input
         type="password"
@@ -36,19 +35,19 @@
         class="form-control"
         placeholder="Password"
         v-model="user.password"
-        required/>
+        required
+      />
 
-      <br/>
-      <br/>
+      <br />
+      <br />
       <button id="login-button" type="submit">LOG IN</button>
 
       <p>New to taste buds?</p>
-      <router-link :to="{name:'register'}" class="register-link">Sign up here.</router-link>
-
+      <router-link :to="{ name: 'register' }" class="register-link"
+        >Sign up here.</router-link
+      >
     </form>
-    
   </body>
-  
 </template>
 
 <script>
@@ -61,16 +60,16 @@ export default {
     return {
       user: {
         username: "",
-        password: ""
+        password: "",
       },
-      invalidCredentials: false
+      invalidCredentials: false,
     };
   },
   methods: {
     login() {
       authService
         .login(this.user)
-        .then(response => {
+        .then((response) => {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
@@ -78,7 +77,7 @@ export default {
             this.$router.push("/");
           }
         })
-        .catch(error => {
+        .catch((error) => {
           alert(error);
           const response = error.response;
 
@@ -86,17 +85,17 @@ export default {
             this.invalidCredentials = true;
           }
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
 
  <style scoped>
-body{
+body {
   color: #666666;
   background-color: white;
-  font-family:'Playfair Display';
+  font-family: "Playfair Display";
   font-weight: normal;
 }
 
@@ -110,30 +109,31 @@ h2 {
   padding-top: 7px;
 }
 
-h1,h2 {
+h1,
+h2 {
   text-align: center;
   line-height: 5px;
-  font-family:'Playfair Display';
+  font-family: "Playfair Display";
   font-weight: normal;
 }
 
-p{
+p {
   text-align: center;
   display: flex;
-  font-family:'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-weight: normal;
-  font-size:25px;
+  font-size: 25px;
   margin-bottom: 10px;
 }
 
-a.register-link{
+a.register-link {
   display: flex;
-  color:#a64d79ff;
-  font-size:25px;
+  color: #a64d79ff;
+  font-size: 25px;
   font-weight: bold;
 }
 
-form.form-signin{
+form.form-signin {
   order: 2;
   justify-content: center;
   display: flex;
@@ -143,7 +143,7 @@ form.form-signin{
 
 input.form-control {
   width: 30%;
-  font-family: 'Playfair Display';
+  font-family: "Playfair Display";
   padding: 10px 15px;
   border: 2px solid #b7b7b7;
   border-radius: 10px;
@@ -155,15 +155,15 @@ input.form-control:focus {
   border: 2px solid #666666;
 }
 
-#login-button{
+#login-button {
   background-color: #a64d79ff;
   color: white;
-  border:none;
+  border: none;
   justify-content: center;
   text-decoration: none;
   display: flex;
   font-size: 22px;
-  font-family: 'Playfair Display';
+  font-family: "Playfair Display";
   font-weight: bold;
   border-radius: 10px;
   width: 10%;
@@ -182,43 +182,43 @@ button.submit {
 button.submit:hover {
   background-color: plum;
   color: white;
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
-.alert{
-font-size: 22px;
-padding-bottom: 10px;
+.alert {
+  font-size: 22px;
+  padding-bottom: 10px;
 }
 
-a.router-link-active{
+a.router-link-active {
   font-weight: bold;
 }
 
-
 /* SCREEN DIFFERENCES */
 @media screen and (max-width: 800px) and (min-width: 200px) {
-   body {
-      display:flex;
-      flex-direction: column;
+  body {
+    display: flex;
+    flex-direction: column;
   }
 
-  h1{
-    font-size:30px;
-    padding-top:20px;
+  h1 {
+    font-size: 30px;
+    padding-top: 20px;
   }
 
-  h2{
-    font-size:16px;
+  h2 {
+    font-size: 16px;
   }
-  
-  input.form-control{
+
+  input.form-control {
     width: 50%;
   }
 
-  #login-button{
-  font-size: 20px;
-  border-radius: 10px;
-  width: 40%;
+  #login-button {
+    font-size: 20px;
+    border-radius: 10px;
+    width: 40%;
   }
 }
 </style>
