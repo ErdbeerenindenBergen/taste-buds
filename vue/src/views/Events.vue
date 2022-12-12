@@ -7,7 +7,7 @@
         class="button"
         v-on:click="showRestaurantList()"
       >
-        View Restaurant List
+        View Event Restaurant 
       </button>
       <button
         type="button"
