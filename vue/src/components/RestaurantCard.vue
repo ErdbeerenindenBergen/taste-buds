@@ -136,19 +136,23 @@ export default {
   data() {
     return {
       eventOrganizerId: "",
+      favorite: {
+        restaurantId: "",
+        userId: 0,
+      },
+      favoritesList:[]
     };
   },
   methods: {
     addToFavorites() {
-      const favorite = {
-        restaurantId: this.favRestaurants.restaurantId,
-        inviteId: this.favRestaurants.inviteId,
-        eventId: this.favRestaurants.eventId,
+      const myFavorites = {
+        restaurantId: this.favorite.restaurantId,
+        inviteId: this.favorite.userId,
         business: Object,
       };
-      InviteService.createFavorites(favorite).then((response) => {
-        this.invitation.inviteId = response.data;
-        this.$store.commit("SET_FAVORITES_LIST", response.data);
+      InviteService.createFavorites(myFavorites).then((response) => {
+        this.favoritesList = response.data;
+        this.$store.commit("SET_FAVORITES_LIST", this.favoritesList);
       });
     },
     created() {
