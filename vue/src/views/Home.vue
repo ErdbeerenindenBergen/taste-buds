@@ -18,12 +18,12 @@
     <!-- <font-awesome-icon icon="fa-solid fa-magnifying-glass" /> -->
     <!-- <font-awesome-icon icon="fa-regular fa-keyboard" /> -->
 
-    <div id="plan">
+    <!-- <div id="plan">
         <a>
           <font-awesome-icon icon="fa-solid fa-calendar-days" id="plan-icon" />
         </a>
         <p>Plan an event</p>
-    </div>
+    </div> -->
 
   </div>
 

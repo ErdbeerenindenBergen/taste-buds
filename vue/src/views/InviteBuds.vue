@@ -59,8 +59,6 @@
       <!-------------------Add Restaurants to Event ----------------------->
 
     <form id="restaurants-form" v-show=false>  
-<template>
- <body class="container">
 
     <div id="find" class="left-panel">
         <form class="find-form" @submit="find()">
@@ -137,13 +135,12 @@
         <restaurant-event-view class="card" v-for="business in businesses" v-bind:key="business.id" v-bind:business="business"> </restaurant-event-view>
     </div>
 
-  </body>
-</template>
-
     </form>
 
-  </div>
+    </div>
+
 </template>
+
 
 <script>
 
@@ -154,7 +151,6 @@ import EventService from "../services/EventService.js";
 import InvitationService from "../services/InvitationService.js";
 // import emailjs from '@emailjs/browser';
 // import InviteService from '../services/InviteService';
-
 
 export default {
   name: "create-event",
@@ -215,7 +211,7 @@ export default {
             })
           })
         })
-        this.$store.state.restaurants = [];
+        // this.$store.state.restaurants = [];
         this.$router.push({name: 'confirmation'});
 
             // console.dir(restaurants);

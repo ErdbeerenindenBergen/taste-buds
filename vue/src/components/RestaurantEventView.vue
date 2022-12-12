@@ -97,17 +97,17 @@ export default {
             restaurantId: '',
             userId: 0
         },
-        restaurants: [] //to store eventRestaurants for generating an event
+        // restaurants: [] //to store eventRestaurants for generating an event
         }
      },
     methods: {
         addRestaurantToEventList(id) {
             // this.$emit('addRestaurant', id);
             this.eventRestaurant.yelpRestaurantId = id;
-            this.$store.commit("ADD_RESTAURANTS", this.eventRestaurant);
+            this.$store.commit("ADD_RESTAURANTS", {...this.eventRestaurant});
             // this.restaurants.push(this.eventRestaurant);
             // console.dir(this.restaurants);
-            // console.dir(this.$store.state.restaurants);
+            console.dir(this.$store.state.restaurants);
             // console.log(id);
         },
         // addToFavorites() {
