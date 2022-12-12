@@ -2,13 +2,7 @@
   <div class="restaurant-options">
     <h1>This is where restaurant options will be.</h1>
     <div id="restaurant-options" class="right-panel">
-      <invitation-card
-        class="card"
-        v-for="business in businesses"
-        v-bind:key="business.id"
-        v-bind:business="business"
-      >
-      </invitation-card>
+      <invitation-card  class="card"  v-for="business in businesses"  v-bind:key="business.id"  v-bind:business="business"></invitation-card>
     </div>
   </div>
 </template>

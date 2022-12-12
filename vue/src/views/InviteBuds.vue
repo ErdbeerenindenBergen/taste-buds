@@ -259,6 +259,7 @@ export default {
           // console.log(eventRestaurant);
           RestaurantService.createEventRestaurantInDatabase(eventRestaurant);
         });
+        this.$store.state.invitees = [];
         this.$store.state.invitees = this.invitees;
         this.invitees.forEach((invitation) => {
           invitation.eventId = this.event.eventId;
@@ -270,8 +271,8 @@ export default {
             })
           })
         })
-        // this.$store.state.restaurants = [];
-        this.$router.push({name: 'confirmation'});
+        this.$store.state.restaurants = [];
+        this.$router.push({name: 'confirmation'}); 
 
             // console.dir(restaurants);
             // this.uniqueLink = "http://localhost:9000/invite-options/" + "invitation.invitationId";
