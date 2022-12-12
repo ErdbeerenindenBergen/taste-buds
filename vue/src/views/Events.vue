@@ -19,14 +19,22 @@
       </button>
     </div>
 
-    <!---------------- View Event Restaurant ------------------>
+    <!---------------- Event Name ------------------>
     <h3>Events:</h3>
     <div id="event-name-info" v-for="event in events" :key="event.id">
       <h2> {{ event.eventName }}</h2>
     </div>
 
-
-    <!---------------- View Invitees ------------------>
+                 
+    <!---------------- View Event Restaurant ------------------>
+    <event-restaurant-card
+        class="card"
+        v-for="business in businesses"
+        v-bind:key="business.id"
+        v-bind:business="business"
+    >
+    </event-restaurant-card>
+  
 
 
   </div>
@@ -35,9 +43,13 @@
 <script>
 //import RestaurantService from "../services/RestaurantService.js";
 import EventService from "../services/EventService.js";
+import EventRestaurantCard from "../components/EventRestaurantCard.vue"
 
 export default {
   name: "event-details",
+  components: {
+    EventRestaurantCard
+  },
   props:  {
     business: Object
     }, 
