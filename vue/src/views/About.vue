@@ -132,6 +132,7 @@ h5{
 
 p{
   font-size:25px;
+  padding: 0px 45px;
 }
 
 .linkedin{

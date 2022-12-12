@@ -273,6 +273,7 @@ export default {
         })
         this.$store.state.restaurants = [];
         this.$router.push({name: 'confirmation'}); 
+        this.$store.state.restaurants = [];
 
             // console.dir(restaurants);
             // this.uniqueLink = "http://localhost:9000/invite-options/" + "invitation.invitationId";
@@ -375,7 +376,6 @@ export default {
 
   created() {
     this.event.eventOrganizerId = this.$store.state.user.id;
-    this.showFormStepOne();
   },
 };
 </script>
