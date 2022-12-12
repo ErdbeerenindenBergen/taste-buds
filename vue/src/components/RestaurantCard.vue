@@ -152,6 +152,7 @@ export default {
       InviteService.createFavorites(myFavorites).then((response) => {//need to rework "createFavorites"
         this.favoritesList = response.data;
         this.$store.commit("ADD_FAVORITES", this.favoritesList);
+        // console.log(this.$store.state.favoritesList);
       });
     },
     created() {

@@ -145,22 +145,12 @@ export default {
             userId: 0
         },
         restaurants: [], //to store eventRestaurants for generating an event
-        favoritesList: [],
         approvedRestaurants: [], //to store 
         rejectedRestaurants: []//to store
         }
      },
     methods: {
-    //     addToFavorites() {
-    //         const myFavorites = {
-    //         restaurantId: this.favorite.restaurantId,
-    //         userId: this.favorite.userId,
-    //   };
-    //     InviteService.createFavorites(myFavorites).then((response) => {
-    //         this.favoritesList = response.data;
-    //         this.$store.commit("ADD_FAVORITES", this.favoritesList);
-    //   });
-    // },
+    
         addToInvitees() {
             this.invitees.push({...this.invitation}); //learned about this really cool thing called the "spread operator" or "..." which makes a clone of input and therefore freezes it in time basically
             //resetForm;
@@ -176,18 +166,15 @@ export default {
         },
         addRestaurantToYesList() {
             this.approvedRestaurants.push(this.eventRestaurant);
+            this.$store.commit("ADD_TO_YES_LIST", this.eventRestaurant);
         },
         addRestaurantToNoList() {
             this.rejectedRestaurants.push(this.eventRestaurant);
+            this.$store.commit("ADD_TO_NO_LIST", this.eventRestaurant);
+
         }
     },
-        addRestaurantToYesList() {
-         this.approvedRestaurants.push(this.eventRestaurant);
-    },
-        addRestaurantToNoList() {
-            this.rejectedRestaurants.push(this.eventRestaurant);
-    },
-  
+
   created() {
     this.userId = this.$store.state.user.id;
   }

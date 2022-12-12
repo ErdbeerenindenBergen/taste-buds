@@ -60,6 +60,13 @@ export default new Vuex.Store({
     //capturing new invite.
     SET_PENDING_INVITE(state, data) {
       state.pendingInvite = data;
+    },
+    ADD_TO_YES_LIST(state, eventRestaurant) {
+      state.approvedRestaurants = eventRestaurant;//again unsure of the push, my thinking is that the approvedRestaurants[] in the state above will capture the eventRestaurant data
+    },
+    ADD_TO_NO_LIST(state, eventRestaurant) {
+      state.rejectedRestaurants = eventRestaurant;//again unsure of the push
     }
+
   }
 })
