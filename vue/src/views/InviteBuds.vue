@@ -121,112 +121,99 @@
       </div>
     </form>
 
-    <!-------------------Add Restaurants to Event ----------------------->
+      <!-------------------Add Restaurants to Event ----------------------->
 
-    <form id="restaurants-form" v-show="false">
-      <template>
-        <body class="container">
-          <div id="find" class="left-panel">
-            <form class="find-form" @submit="find()">
-              <br />
-              <p>Enter a city or zipcode</p>
-              <br />
-              <input
-                id="city-or-zip"
-                type="text"
-                class="location"
-                v-model="location"
-                @keydown.enter.exact.prevent="find()"
-                placeholder="City or Zipcode"
-              />
-              <br />
-              <br />
-              <label for="state">If you'd like, you can specify a state.</label>
-              <br />
-              <select id="state" name="state" v-model="state" size="5">
-                <option value=",AL">Alabama</option>
-                <option value=",AK">Alaska</option>
-                <option value=",AZ">Arizona</option>
-                <option value=",AR">Arkansas</option>
-                <option value=",CA">California</option>
-                <option value=",CO">Colorado</option>
-                <option value=",CT">Connecticut</option>
-                <option value=",DE">Delaware</option>
-                <option value=",DC">District Of Columbia</option>
-                <option value=",FL">Florida</option>
-                <option value=",GA">Georgia</option>
-                <option value=",HI">Hawaii</option>
-                <option value=",ID">Idaho</option>
-                <option value=",IL">Illinois</option>
-                <option value=",IN">Indiana</option>
-                <option value=",IA">Iowa</option>
-                <option value=",KS">Kansas</option>
-                <option value=",KY">Kentucky</option>
-                <option value=",LA">Louisiana</option>
-                <option value=",ME">Maine</option>
-                <option value=",MD">Maryland</option>
-                <option value=",MA">Massachusetts</option>
-                <option value=",MI">Michigan</option>
-                <option value=",MN">Minnesota</option>
-                <option value=",MS">Mississippi</option>
-                <option value=",MO">Missouri</option>
-                <option value=",MT">Montana</option>
-                <option value=",NE">Nebraska</option>
-                <option value=",NV">Nevada</option>
-                <option value=",NH">New Hampshire</option>
-                <option value=",NJ">New Jersey</option>
-                <option value=",NM">New Mexico</option>
-                <option value=",NY">New York</option>
-                <option value=",NC">North Carolina</option>
-                <option value=",ND">North Dakota</option>
-                <option value=",OH">Ohio</option>
-                <option value=",OK">Oklahoma</option>
-                <option value=",OR">Oregon</option>
-                <option value=",PA">Pennsylvania</option>
-                <option value=",RI">Rhode Island</option>
-                <option value=",SC">South Carolina</option>
-                <option value=",SD">South Dakota</option>
-                <option value=",TN">Tennessee</option>
-                <option value=",TX">Texas</option>
-                <option value=",UT">Utah</option>
-                <option value=",VT">Vermont</option>
-                <option value=",VA">Virginia</option>
-                <option value=",WA">Washington</option>
-                <option value=",WV">West Virginia</option>
-                <option value=",WI">Wisconsin</option>
-                <option value=",WY">Wyoming</option>
+    <form id="restaurants-form" v-show=false>  
+
+    <div id="find" class="left-panel">
+        <form class="find-form" @submit="find()">
+          <br>
+          <p>Enter a city or zipcode</p>
+          <br>
+            <input id="city-or-zip" type="text" class="location" v-model="location"
+              @keydown.enter.exact.prevent="find()" placeholder="City or Zipcode"/>
+            <br>
+            <br>
+            <label for="state">If you'd like, you can specify a state.</label>
+            <br>
+            <select id="state" name="state" v-model="state" size="5"> 
+	<option value=",AL">Alabama</option>
+	<option value=",AK">Alaska</option>
+	<option value=",AZ">Arizona</option>
+	<option value=",AR">Arkansas</option>
+	<option value=",CA">California</option>
+	<option value=",CO">Colorado</option>
+	<option value=",CT">Connecticut</option>
+	<option value=",DE">Delaware</option>
+	<option value=",DC">District Of Columbia</option>
+	<option value=",FL">Florida</option>
+	<option value=",GA">Georgia</option>
+	<option value=",HI">Hawaii</option>
+	<option value=",ID">Idaho</option>
+	<option value=",IL">Illinois</option>
+	<option value=",IN">Indiana</option>
+	<option value=",IA">Iowa</option>
+	<option value=",KS">Kansas</option>
+	<option value=",KY">Kentucky</option>
+	<option value=",LA">Louisiana</option>
+	<option value=",ME">Maine</option>
+	<option value=",MD">Maryland</option>
+	<option value=",MA">Massachusetts</option>
+	<option value=",MI">Michigan</option>
+	<option value=",MN">Minnesota</option>
+	<option value=",MS">Mississippi</option>
+	<option value=",MO">Missouri</option>
+	<option value=",MT">Montana</option>
+	<option value=",NE">Nebraska</option>
+	<option value=",NV">Nevada</option>
+	<option value=",NH">New Hampshire</option>
+	<option value=",NJ">New Jersey</option>
+	<option value=",NM">New Mexico</option>
+	<option value=",NY">New York</option>
+	<option value=",NC">North Carolina</option>
+	<option value=",ND">North Dakota</option>
+	<option value=",OH">Ohio</option>
+	<option value=",OK">Oklahoma</option>
+	<option value=",OR">Oregon</option>
+	<option value=",PA">Pennsylvania</option>
+	<option value=",RI">Rhode Island</option>
+	<option value=",SC">South Carolina</option>
+	<option value=",SD">South Dakota</option>
+	<option value=",TN">Tennessee</option>
+	<option value=",TX">Texas</option>
+	<option value=",UT">Utah</option>
+	<option value=",VT">Vermont</option>
+	<option value=",VA">Virginia</option>
+	<option value=",WA">Washington</option>
+	<option value=",WV">West Virginia</option>
+	<option value=",WI">Wisconsin</option>
+	<option value=",WY">Wyoming</option>
               </select>
-              <br />
-              <button type="button" id="submit-button" v-on:click="find()">
-                Search
-              </button>
-            </form>
-          </div>
+            <br>
+            <button type="button" id="submit-button" v-on:click="find()">Search</button>
 
-          <div id="find-restaurants-results" class="right-panel">
-            <h2 id="search-directions">
-              Search, and then click the knife and fork icon to add a
-              restaurant.
-            </h2>
-            <restaurant-event-view
-              class="card"
-              v-for="business in businesses"
-              v-bind:key="business.id"
-              v-bind:business="business"
-            >
-            </restaurant-event-view>
-          </div>
-        </body>
-      </template>
+        </form>
+    </div>
+
+    <div id="find-restaurants-results" class="right-panel">
+          <h2 id="search-directions">Search, and then click the knife and fork icon to add a restaurant.</h2>
+        <restaurant-event-view class="card" v-for="business in businesses" v-bind:key="business.id" v-bind:business="business"> </restaurant-event-view>
+    </div>
+
     </form>
-  </div>
+
+    </div>
+
 </template>
+
 
 <script>
 import RestaurantEventView from "../components/RestaurantEventView.vue";
 import RestaurantService from "../services/RestaurantService.js";
 import EventService from "../services/EventService.js";
 import InvitationService from "../services/InvitationService.js";
+// import emailjs from '@emailjs/browser';
+// import InviteService from '../services/InviteService';
 
 export default {
   name: "create-event",
@@ -280,28 +267,30 @@ export default {
             this.uniqueLink =
               "http://localhost:9000/invite-options/" + invitation.invitationId;
             this.$store.state.inviteeLinks.push(this.uniqueLink);
-          });
-        });
-      });
-      this.$store.state.restaurants = [];
-      this.$router.push({ name: "confirmation" });
+            })
+          })
+        })
+        // this.$store.state.restaurants = [];
+        this.$router.push({name: 'confirmation'});
 
-      // console.dir(restaurants);
-      // this.uniqueLink = "http://localhost:9000/invite-options/" + "invitation.invitationId";
-      // let form = document.getElementById("invite-form");
-      //      emailjs.sendForm('service_taste_buds', 'template_brbme2t', this.$refs.form, 'KJnACSZksPfI7DBZ5')
-      // .then((result) => {
-      //     console.log('SUCCESS!', result.text);
-      // }, (error) => {
-      //     console.log('FAILED...', error.text);
-      // });
-      // this.invitationIds.push(response.data.invitationId);       THIS WORKS
-      // console.log(this.event);
-      // console.log(this.$store.state.user);
-      // console.dir(this.invitationIds);
-      // RestaurantService.createEventRestaurantInDatabase(this.eventRestaurant);
+            // console.dir(restaurants);
+            // this.uniqueLink = "http://localhost:9000/invite-options/" + "invitation.invitationId";
+            // let form = document.getElementById("invite-form");
+        //      emailjs.sendForm('service_taste_buds', 'template_brbme2t', this.$refs.form, 'KJnACSZksPfI7DBZ5')
+        // .then((result) => {
+        //     console.log('SUCCESS!', result.text);
+        // }, (error) => {
+        //     console.log('FAILED...', error.text);
+        // });
+            // this.invitationIds.push(response.data.invitationId);       THIS WORKS
+        // console.log(this.event);
+        // console.log(this.$store.state.user);
+          // console.dir(this.invitationIds);
+          // RestaurantService.createEventRestaurantInDatabase(this.eventRestaurant);
+
     },
-    makeInvitationList() {},
+    makeInvitationList() {
+    },
     showFormStepOne() {
       const stepOneForm = document.getElementById("event-form");
       const stepTwoForm = document.getElementById("restaurants-form");

@@ -174,12 +174,56 @@ export default {
       target.value = "";
       console.log(this.invitation);
     },
-    userIsLoggedIn() {
-      let $loggedIn = false;
-      if (this.userId != 0) {
-        $loggedIn = true;
-      }
-      return $loggedIn;
+    data() {
+        return {
+        userId: "",
+        eventRestaurant: {
+            yelpRestaurantId: '',
+            eventId: 0,
+            voteCount:0
+        },
+        favorite: {
+            restaurantId: '',
+            userId: 0
+        },
+        // restaurants: [] //to store eventRestaurants for generating an event
+        }
+     },
+    methods: {
+        addRestaurantToEventList(id) {
+            // this.$emit('addRestaurant', id);
+            this.eventRestaurant.yelpRestaurantId = id;
+            this.$store.commit("ADD_RESTAURANTS", {...this.eventRestaurant});
+            // this.restaurants.push(this.eventRestaurant);
+            // console.dir(this.restaurants);
+            console.dir(this.$store.state.restaurants);
+            // console.log(id);
+        },
+        // addToFavorites() {
+        //     const favorite = {
+        //         restaurantId: this.favRestaurants.restaurantId,
+        //         inviteId: this.favRestaurants.inviteId,
+        //         eventId: this.favRestaurants.eventId,
+        //         business: Object
+        //     };
+        //     InviteService.createFavorites(favorite).then(response => {
+        //       this.invitation.inviteId = response.data;
+        //       this.$store.commit("SET_FAVORITES_LIST", response.data);
+        //   })
+        // },
+        addToInvitees() {
+            this.invitees.push({...this.invitation}); //learned about this really cool thing called the "spread operator" or "..." which makes a clone of input and therefore freezes it in time basically
+            //resetForm;
+            let target = document.getElementById('invitee-input');
+            target.value="";
+            console.log(this.invitation);
+        },
+        userIsLoggedIn() {
+            let $loggedIn = false;
+            if (this.userId != 0) {
+                $loggedIn = true;
+            } return $loggedIn;
+        },
     },
   },
   created() {

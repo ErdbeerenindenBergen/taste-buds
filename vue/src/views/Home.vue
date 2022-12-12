@@ -11,13 +11,15 @@
         <p>Discover new places</p>
       </div>
 
-      <div id="plan">
+    <!-- <div id="plan">
         <a>
           <font-awesome-icon icon="fa-solid fa-calendar-days" id="plan-icon" />
         </a>
         <p>Plan an event</p>
-      </div>
-    </div>
+    </div> -->
+
+  </div>
+
   </div>
 </template>
 
