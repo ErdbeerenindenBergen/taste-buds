@@ -74,7 +74,7 @@
 
 <script>
 
-import InviteService from '../services/InviteService';
+//import InviteService from '../services/InviteService';
 import fontawesome from "@fortawesome/fontawesome";
 import brands from "@fortawesome/fontawesome-free-brands";
 import solid from "@fortawesome/fontawesome-free-solid"; 
@@ -95,23 +95,23 @@ export default {
             restaurantId: '',
             userId: 0
         },
-        restaurants: [] //to store eventRestaurants for generating an event
+        restaurants: [], //to store eventRestaurants for generating an event
+        approvedRestaurants: [], //to store 
+        rejectedRestaurants: []//to store
         }
      },
     methods: {
-        addToFavorites() {
-            const favorite = {
-                restaurantId: this.favRestaurants.restaurantId,
-                inviteId: this.favRestaurants.inviteId,
-                eventId: this.favRestaurants.eventId,
-                business: Object
-            };
-            InviteService.createFavorites(favorite).then(response => {
-              this.invitation.inviteId = response.data;
-              this.$store.commit("SET_FAVORITES_LIST", response.data);
-          })
+        // addToFavorites() {
+        //     const favorite = {
+        //         restaurantId: this.favorite.restaurantId,
+        //         userId: this.favorite.userId,
+        //   };
+        //     InviteService.createFavorites(favorite).then(response => {
+        //       this.favoritesList = response.data;
+        //       this.$store.commit("SET_FAVORITES_LIST", response.data);
+        //   })
 
-        },
+        //  },
         addToInvitees() {
             this.invitees.push({...this.invitation}); //learned about this really cool thing called the "spread operator" or "..." which makes a clone of input and therefore freezes it in time basically
             //resetForm;

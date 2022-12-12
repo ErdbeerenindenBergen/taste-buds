@@ -7,28 +7,30 @@
     </div>
     
     <!---------------- Events Info ------------------>
+    <div class="event-heading">
+    <h3>Events:</h3>
+    </div>
+
     <div id="event-name-info" v-for='event in events' :key='event.id'>
-      <h3>Events:</h3>
-      <!-- at the moment this reactive element breaks everything -->
-      <!-- <h2> {{ event.eventName }}</h2> -->
-      
+      <h2 id="event-name"> {{ event.eventName }}</h2>
     </div>
 
 </div>
 </template>
 
-<script>
+<script> 
 
 import RestaurantService from "../services/RestaurantService.js";
 import EventService from "../services/EventService.js";
 
 export default {
   name: "event-details",
-  props: ["event"],
+  //props: ["event"], //unsure if this is needed
   data() {
     return {
         events:[],
         invitees: [],
+        restaurants: [],
 
     }
   },
@@ -49,6 +51,7 @@ export default {
       return RestaurantService.findBusinessesByEventId(this.event.eventId).then(response => {
             this.businesses = response.data;
       })
+      // return this.$store.state.restaurants;
     },
     showViewInvitees() {
       const stepOneForm = document.getElementById('view-restaurants');
@@ -57,9 +60,10 @@ export default {
           stepTwoForm.style.display = 'block';
     
     
-    }
+    },
+    
   } 
-  }
+}
 </script>
 
 <style scoped>

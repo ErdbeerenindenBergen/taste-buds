@@ -20,10 +20,10 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    favoritesList: {},
-    pendingInvite: [],
-    rejected: [],
-    restaurants: [],
+    favoritesList: [],
+    approvedRestaurants: [], //thumbs-up restaurants
+    rejectedRestaurants: [], //thumbs-down restaurants
+    restaurants: [], 
     inviteeLinks: [],
     invitees:[],
     eventRestaurant: {
@@ -55,10 +55,6 @@ export default new Vuex.Store({
     },
     SET_FAVORITES_LIST(state, data){
       state.favoritesList = data;
-    },
-    //capturing new invite.
-    SET_PENDING_INVITE(state, data){
-      state.pendingInvite = data;
     }
 }
 })

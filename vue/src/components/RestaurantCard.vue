@@ -72,7 +72,7 @@
 
 <script>
 
-import InviteService from '../services/InviteService';
+//import InviteService from '../services/InviteService';
 
 import fontawesome from "@fortawesome/fontawesome";
 import brands from "@fortawesome/fontawesome-free-brands";
@@ -90,22 +90,25 @@ export default {
     data() {
         return {
         eventOrganizerId: "",
+        favorite: {
+            restaurantId: '',
+            userId: 0
+        },
+        favoritesList: []
         }
      },
     methods: {
-        addToFavorites() {
-            const favorite = {
-                restaurantId: this.favRestaurants.restaurantId,
-                inviteId: this.favRestaurants.inviteId,
-                eventId: this.favRestaurants.eventId,
-                business: Object
-            };
-            InviteService.createFavorites(favorite).then(response => {
-              this.invitation.inviteId = response.data;
-              this.$store.commit("SET_FAVORITES_LIST", response.data);
-          })
+        // addToFavorites() {
+        //     const favorite = {
+        //         restaurantId: this.favorite.restaurantId,
+        //         userId: this.favorite.userId,
+        //   };
+        //     InviteService.createFavorites(favorite).then(response => {
+        //       this.favoritesList = response.data;
+        //       this.$store.commit("SET_FAVORITES_LIST", response.data);
+        //   })
 
-        },
+        //  },
         created() {
             this.eventOrganizerId = this.$store.state.user.id;
         }
