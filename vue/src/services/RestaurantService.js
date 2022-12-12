@@ -15,7 +15,7 @@ export default {
     },
 
     createEventRestaurantInDatabase(eventRestaurant) {
-        return http.post(`/event/restaurant/`, eventRestaurant)
+        return http.post('/event/restaurant/create', eventRestaurant)
     },
 
     findBusinessesByEventId(eventId) {

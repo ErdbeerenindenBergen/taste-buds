@@ -11,6 +11,7 @@ import Events from '../views/Events.vue'
 import About from '../views/About.vue'
 import InviteOptions from '../views/InviteOptions.vue'
 import InviteBuds from '../views/InviteOptions.vue'
+import Confirmation from '../views/Confirmation.vue'
 
 
 Vue.use(Router)
@@ -114,6 +115,15 @@ const router = new Router({
       component: InviteBuds,
       meta: {
         requiresAuth: true
+      }
+    },
+    {
+      path: 'confirmation/:invitations',
+      name: 'confirmation',
+      component: Confirmation,
+      props: true,
+      meta: {
+        requiredAuth: true
       }
     }
   ]

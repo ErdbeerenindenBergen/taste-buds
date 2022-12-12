@@ -20,10 +20,10 @@ public class JdbcEventRestaurantDao implements EventRestaurantDao {
 
     @Override
     public boolean createEventRestaurant(EventRestaurant eventRestaurant) {
-        String insertEventSql = "INSERT INTO event_restaurant(\n" +
-                "\tyelp_restaurant_id, event_id, vote_count)\n" +
-                "\tVALUES (?, ?, 0);";
-        return jdbcTemplate.update(insertEventSql, eventRestaurant.getYelpRestaurantId(), eventRestaurant.getEventId()) == 1;
+        String insertEventSql = "INSERT INTO event_restaurant( " +
+                " yelp_restaurant_id, event_id, vote_count) " +
+                " VALUES (?, ?, ?);";
+        return jdbcTemplate.update(insertEventSql, eventRestaurant.getYelpRestaurantId(), eventRestaurant.getEventId(), eventRestaurant.getVoteCount()) == 1;
     }
 
     @Override

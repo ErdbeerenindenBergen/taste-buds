@@ -1,9 +1,9 @@
 package com.techelevator.model;
 
 public class EventRestaurant {
-    private String yelpRestaurantId;
     private int eventId;
     private int voteCount;
+    private String yelpRestaurantId;
 
     public String getYelpRestaurantId() {
         return yelpRestaurantId;

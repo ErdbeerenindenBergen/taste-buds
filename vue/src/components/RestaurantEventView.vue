@@ -31,7 +31,7 @@
                         
                         <div id="event-icon-link">
                             <a>
-                            <font-awesome-icon icon="fa-solid fa-utensils" class="zoom" id="event-icon" v-on:click="addRestaurantToEventList()"/>
+                            <font-awesome-icon icon="fa-solid fa-utensils" class="zoom" id="event-icon" v-on:click="addRestaurantToEventList(`${business.id}`)"/>
                             </a>
                         </div>
               
@@ -71,7 +71,7 @@
 
 <script>
 
-import InviteService from '../services/InviteService';
+// import InviteService from '../services/InviteService';
 import fontawesome from "@fortawesome/fontawesome";
 import brands from "@fortawesome/fontawesome-free-brands";
 import solid from "@fortawesome/fontawesome-free-solid"; 
@@ -81,7 +81,7 @@ fontawesome.library.add(brands, solid);
 export default {
     name :'restaurant-event-view',
     props: {
-        business : Object,
+        business : [],
     },
     components: {
     },
@@ -101,24 +101,27 @@ export default {
         }
      },
     methods: {
-        addRestaurantToEventList() {
-            // this.business.id = this.eventRestaurant.yelpRestaurantId;
-            this.restaurants.push(this.eventRestaurant);
-            console.dir(this.restaurants);
+        addRestaurantToEventList(id) {
+            // this.$emit('addRestaurant', id);
+            this.eventRestaurant.yelpRestaurantId = id;
+            this.$store.commit("ADD_RESTAURANTS", this.eventRestaurant);
+            // this.restaurants.push(this.eventRestaurant);
+            // console.dir(this.restaurants);
+            // console.dir(this.$store.state.restaurants);
+            // console.log(id);
         },
-        addToFavorites() {
-            const favorite = {
-                restaurantId: this.favRestaurants.restaurantId,
-                inviteId: this.favRestaurants.inviteId,
-                eventId: this.favRestaurants.eventId,
-                business: Object
-            };
-            InviteService.createFavorites(favorite).then(response => {
-              this.invitation.inviteId = response.data;
-              this.$store.commit("SET_FAVORITES_LIST", response.data);
-          })
-
-        },
+        // addToFavorites() {
+        //     const favorite = {
+        //         restaurantId: this.favRestaurants.restaurantId,
+        //         inviteId: this.favRestaurants.inviteId,
+        //         eventId: this.favRestaurants.eventId,
+        //         business: Object
+        //     };
+        //     InviteService.createFavorites(favorite).then(response => {
+        //       this.invitation.inviteId = response.data;
+        //       this.$store.commit("SET_FAVORITES_LIST", response.data);
+        //   })
+        // },
         addToInvitees() {
             this.invitees.push({...this.invitation}); //learned about this really cool thing called the "spread operator" or "..." which makes a clone of input and therefore freezes it in time basically
             //resetForm;

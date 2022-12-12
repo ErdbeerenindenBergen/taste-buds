@@ -149,7 +149,7 @@ p {
 }
 
 input.location {
-  width: 25%;
+  width: 175px;
   padding: 10px 15px;
   border: 3px solid lightgray;
   text-align: center;

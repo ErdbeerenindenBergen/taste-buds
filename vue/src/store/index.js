@@ -21,8 +21,16 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     favoritesList: {},
-    pendingInvite: []
-  
+    pendingInvite: [],
+    rejected: [],
+    restaurants: [],
+    inviteeLinks: [],
+    invitees:[],
+    eventRestaurant: {
+      yelpRestaurantId: '',
+      eventId: 0,
+      voteCount: 0
+    }
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -40,6 +48,10 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+      // state.restaurants = [];
+    },
+    ADD_RESTAURANTS(state, eventRestaurant) {
+      state.restaurants.push(eventRestaurant);
     },
     SET_FAVORITES_LIST(state, data){
       state.favoritesList = data;

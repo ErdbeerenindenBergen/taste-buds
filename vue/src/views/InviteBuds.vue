@@ -7,6 +7,7 @@
     <button  type="button"  id="step-1-create-event" class="button"  v-on:click="showFormStepOne()">Step 1: Info</button>
     <button  type="button"  id="step-2-create-event"  class="button" v-on:click="showFormStepTwo()" >Step 2: Tastes</button>
     <button  type="button"  id="step-3-create-event"  class="button" v-on:click="showFormStepThree()" >Step 3: Buds</button>
+    <button  type="button"  id="create-event-button" class="button" v-on:click="createEvent()">Submit</button>
     </div>
     <!-----------------------Event Form----------------------->
 
@@ -26,10 +27,10 @@
       <div class="invite-due-date-time">
         <h2>When must your buds respond by?</h2>
         <input  type="date"  class="event-input"  v-model="event.deadlineDate"  placeholder="mm/dd/yyyy" />
+        <br>
         <input  type="time"  class="event-input"  v-model="event.deadlineTime"  placeholder="hh:mm" />
       </div>
 
-      <button  type="button"  id="create-event-button"  v-on:click="createEvent()">SUBMIT</button>
     </form>
 
     <!-----------------------Invite Form----------------------->
@@ -50,6 +51,8 @@
         <h2 id='inviteeEmailAddress'>{{ invitation.emailAddress }}</h2>
           <!-- how to print current invitees in their own rows here? -->
       </div>
+
+
 
     </form>
 
@@ -124,24 +127,23 @@
 	<option value=",WY">Wyoming</option>
               </select>
             <br>
-            <button type="button" id="submit-button" v-on:click="find()">SUBMIT</button>
+            <button type="button" id="submit-button" v-on:click="find()">Search</button>
+
         </form>
     </div>
 
     <div id="find-restaurants-results" class="right-panel">
+          <h2 id="search-directions">Search, and then click the knife and fork icon to add a restaurant.</h2>
         <restaurant-event-view class="card" v-for="business in businesses" v-bind:key="business.id" v-bind:business="business"> </restaurant-event-view>
     </div>
 
   </body>
 </template>
 
-
     </form>
 
   </div>
 </template>
-
-
 
 <script>
 
@@ -176,10 +178,10 @@ export default {
             deadlineTime: "", 
         },
         state:'',
-        eventRestaurant: {
-          yelpRestaurantId: "",
-          eventId: 0
-        },
+        // eventRestaurant: {
+        //   yelpRestaurantId: "",
+        //   eventId: 0
+        // },
         uniqueLink: '',
         invitation: {
           invitationId: '',
@@ -195,14 +197,28 @@ export default {
     createEvent() {
         this.eventDate = this.moment(this.eventDate).format('YYYY-MM-DD');
         this.deadlineDate = this.moment(this.deadlineDate).format('YYYY-MM-DD');
-
         EventService.createEvent(this.event).then(response => {
           this.event.eventId = response.data.eventId;
-
+          // console.dir(this.$store.state.restaurants);
+          this.$store.state.restaurants.forEach ((eventRestaurant) => {
+            eventRestaurant.eventId = this.event.eventId;
+            // console.log(eventRestaurant);
+            RestaurantService.createEventRestaurantInDatabase(eventRestaurant);
+          })
+          this.$store.state.invitees = this.invitees;
           this.invitees.forEach ((invitation) => {
             invitation.eventId = this.event.eventId;
             InvitationService.createInvitation(invitation).then(response => {
             invitation.invitationId = response.data.invitationId;
+            this.uniqueLink = "http://localhost:9000/invite-options/" + invitation.invitationId;
+            this.$store.state.inviteeLinks.push(this.uniqueLink);
+            })
+          })
+        })
+        this.$store.state.restaurants = [];
+        this.$router.push({name: 'confirmation'});
+
+            // console.dir(restaurants);
             // this.uniqueLink = "http://localhost:9000/invite-options/" + "invitation.invitationId";
             // let form = document.getElementById("invite-form");
         //      emailjs.sendForm('service_taste_buds', 'template_brbme2t', this.$refs.form, 'KJnACSZksPfI7DBZ5')
@@ -214,11 +230,9 @@ export default {
             // this.invitationIds.push(response.data.invitationId);       THIS WORKS
         // console.log(this.event);
         // console.log(this.$store.state.user);
-            console.dir(this.invitationIds);
-          })
-        })
+          // console.dir(this.invitationIds);
           // RestaurantService.createEventRestaurantInDatabase(this.eventRestaurant);
-        })
+
     },
     makeInvitationList() {
     },
@@ -226,25 +240,52 @@ export default {
       const stepOneForm = document.getElementById('event-form');
       const stepTwoForm = document.getElementById('restaurants-form');
       const stepThreeForm = document.getElementById('invite-form');
+      const buttonOne = document.getElementById('step-1-create-event');
+      const buttonTwo = document.getElementById('step-2-create-event');
+      const buttonThree = document.getElementById('step-3-create-event');            
           stepOneForm.style.display = 'block';
           stepTwoForm.style.display = 'none';
           stepThreeForm.style.display = 'none';
+          buttonOne.style.backgroundColor = '#b1b1b1';
+          buttonTwo.style.backgroundColor = '#f0efef';
+          buttonThree.style.backgroundColor = '#f0efef';
+          buttonOne.style.color = 'white';
+          buttonTwo.style.color = '#666666';
+          buttonThree.style.color = '#666666';
     },
     showFormStepTwo() {
       const stepOneForm = document.getElementById('event-form');
       const stepTwoForm = document.getElementById('restaurants-form');
       const stepThreeForm = document.getElementById('invite-form');
+      const buttonOne = document.getElementById('step-1-create-event');
+      const buttonTwo = document.getElementById('step-2-create-event');
+      const buttonThree = document.getElementById('step-3-create-event');    
           stepOneForm.style.display = 'none';
           stepTwoForm.style.display = 'block';
           stepThreeForm.style.display = 'none';
+          buttonOne.style.backgroundColor = '#f0efef';
+          buttonTwo.style.backgroundColor = '#b1b1b1';
+          buttonThree.style.backgroundColor = '#f0efef';
+          buttonOne.style.color = '#666666';
+          buttonTwo.style.color = 'white';
+          buttonThree.style.color = '#666666';
     },
       showFormStepThree() {
       const stepOneForm = document.getElementById('event-form');
       const stepTwoForm = document.getElementById('restaurants-form');
       const stepThreeForm = document.getElementById('invite-form');
+      const buttonOne = document.getElementById('step-1-create-event');
+      const buttonTwo = document.getElementById('step-2-create-event');
+      const buttonThree = document.getElementById('step-3-create-event');    
           stepOneForm.style.display = 'none';
           stepTwoForm.style.display = 'none';
           stepThreeForm.style.display = 'block';
+          buttonOne.style.backgroundColor = '#f0efef';
+          buttonTwo.style.backgroundColor = '#f0efef';
+          buttonThree.style.backgroundColor = '#b1b1b1';
+          buttonOne.style.color = '#666666';
+          buttonTwo.style.color = '#666666';
+          buttonThree.style.color = 'white';
     },
     //think I'm doing something wrong here
     addToInvitees() {
@@ -283,12 +324,21 @@ export default {
 
 <style scoped>
 
+#event-form, #invite-form{
+  padding-top:45px;
+}
+
 h1 {
   font-family: Montserrat;
   color: #666666;
   font-weight: normal;
   text-align: center;
-  padding-top: 45px;
+  padding-top: 15px;
+}
+
+#step-1-create-event{
+  background-color: #b1b1b1;
+  color:white;
 }
 
 a.router-link-active{
@@ -308,7 +358,7 @@ a.router-link-active{
 } */
 
 input {
-  width: 25%;
+  width: 350px;
   align-self: center;
   padding: 10px 15px;
   border: 3px solid lightgray;
@@ -351,7 +401,7 @@ h2 {
 #create-event-button{
   background-color: #a64d79ff;
   color: white;
-  border:none;
+  /* border:none;
   text-decoration: none;
   font-size:15px;
   font-weight: bold;
@@ -361,10 +411,10 @@ h2 {
   display: flex;
   justify-content: center;
   margin: auto;
-  margin-top: 15px;
+  margin-top: 15px; */
 }
 
-#event-info-button, #invite-button, #restaurant-button{
+#invite-button, #restaurant-button{
   background-color: #a64d79ff;
   color: white;
   border:none;
@@ -375,6 +425,10 @@ h2 {
   width: 15%;
   height: 45px;
   padding: 12px 12px;
+}
+
+#search-directions{
+  padding-top:40px;
 }
 
 placeholder {
@@ -426,14 +480,6 @@ input.date{
   background:#741b47ff;
 }
 
-div.event-info, div.date-time, div.email, div.send-invite {
-    justify-content: space-between;
-    margin: 10px;
-    flex-wrap: wrap;
-    padding-bottom: 10px;
-    width: 100%
-}
-
 body{
     padding-top: 15px;
     display:flex;
@@ -446,7 +492,7 @@ body{
   display: flex;
   margin: auto;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 20px;
 }
 
 form.find-form {
@@ -472,7 +518,7 @@ p {
 }
 
 input.location {
-  width: 25%;
+  width: 175px;
   padding: 10px 15px;
   border: 3px solid lightgray;
   text-align: center;
@@ -537,8 +583,6 @@ option{
     width:100%;
     justify-content: center;
     text-align: center;
-    padding-left: 0;
-    padding-top: 475px;
   }
 }
 
@@ -569,5 +613,6 @@ option{
   text-align: center;
 }
 }
+
 
 </style>

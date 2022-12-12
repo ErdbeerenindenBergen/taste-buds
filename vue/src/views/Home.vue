@@ -2,10 +2,41 @@
   <div class="home">
     <h1>Home</h1>
     <p>You've logged in!</p>
+
+  <div id='icons'>
+
+    <div id="search">
+      <a>
+        <font-awesome-icon  icon="fa-brands fa-wpexplorer" id="search-icon"/>
+        </a>
+        <p>Discover new places</p>
+    </div>
+
+    <!-- <font-awesome-icon icon="fa-solid fa-earth-americas" /> -->
+    <!-- <font-awesome-icon icon="fa-solid fa-panorama" /> -->
+    <!-- <font-awesome-icon icon="fa-solid fa-kitchen-set" /> -->
+    <!-- <font-awesome-icon icon="fa-solid fa-magnifying-glass" /> -->
+    <!-- <font-awesome-icon icon="fa-regular fa-keyboard" /> -->
+
+    <div id="plan">
+        <a>
+          <font-awesome-icon icon="fa-solid fa-calendar-days" id="plan-icon" />
+        </a>
+        <p>Plan an event</p>
+    </div>
+
+  </div>
+
   </div>
 </template>
 
 <script>
+import fontawesome from "@fortawesome/fontawesome";
+import brands from "@fortawesome/fontawesome-free-brands";
+import solid from "@fortawesome/fontawesome-free-solid"; 
+
+fontawesome.library.add(brands, solid);
+
 export default {
   name: "home"
 };
@@ -17,6 +48,29 @@ h1{
   font-weight: normal;
   text-align: center;
   padding-top: 40px;
+}
+
+#icons{
+  display: flex;
+  justify-content: space-evenly;
+  padding-top:30px;
+}
+
+#plan, #search{
+  display: flex;
+  flex-direction: column;
+}
+
+#search-icon{
+  color: gray;
+  height:400px;
+  width:auto;
+}
+
+#plan-icon{
+  color: gray;
+  height:400px;
+  width:auto;
 }
 
 p{
