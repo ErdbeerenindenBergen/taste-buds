@@ -222,11 +222,6 @@
   </div>
 </template>
 
-    </form>
-
-  </div>
-</template>
-
 <script>
 import RestaurantEventView from "../components/RestaurantEventView.vue";
 import RestaurantService from "../services/RestaurantService.js";
