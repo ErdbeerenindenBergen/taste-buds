@@ -34,7 +34,7 @@ import EventService from "../services/EventService.js";
 
 export default {
   name: "event-details",
-  props: ["event"],
+  //props: ["event"], //unsure if this is needed
   data() {
     return {
       events: [],
@@ -49,25 +49,27 @@ export default {
   },
   methods: {
     showRestaurantList() {
-      const stepOneForm = document.getElementById("view-restaurants");
-      const stepTwoForm = document.getElementById("view-invitees");
-      stepOneForm.style.display = "block";
-      stepTwoForm.style.display = "none";
-
-      return RestaurantService.findBusinessesByEventId(this.event.eventId).then(
-        (response) => {
-          this.businesses = response.data;
-        }
-      );
+      const stepOneForm = document.getElementById('view-restaurants');
+      const stepTwoForm = document.getElementById('view-invitees');
+          stepOneForm.style.display = 'block';
+          stepTwoForm.style.display = 'none';
+      
+      return RestaurantService.findBusinessesByEventId(this.event.eventId).then(response => {
+            this.businesses = response.data;
+      })
+      // return this.$store.state.restaurants;
     },
     showViewInvitees() {
-      const stepOneForm = document.getElementById("view-restaurants");
-      const stepTwoForm = document.getElementById("view-invitees");
-      stepOneForm.style.display = "none";
-      stepTwoForm.style.display = "block";
+      const stepOneForm = document.getElementById('view-restaurants');
+      const stepTwoForm = document.getElementById('view-invitees');
+          stepOneForm.style.display = 'none';
+          stepTwoForm.style.display = 'block';
+    
+    
     },
-  },
-};
+    
+  } 
+}
 </script>
 
 <style scoped>

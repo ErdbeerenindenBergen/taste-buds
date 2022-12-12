@@ -167,12 +167,49 @@ export default {
       target.value = "";
       console.log(this.invitation);
     },
-    userIsLoggedIn() {
-      let $loggedIn = false;
-      if (this.userId != 0) {
-        $loggedIn = true;
-      }
-      return $loggedIn;
+    data() {
+        return {
+        userId: "",
+        favorite: {
+            restaurantId: '',
+            userId: 0
+        },
+        restaurants: [], //to store eventRestaurants for generating an event
+        approvedRestaurants: [], //to store 
+        rejectedRestaurants: []//to store
+        }
+     },
+    methods: {
+        // addToFavorites() {
+        //     const favorite = {
+        //         restaurantId: this.favorite.restaurantId,
+        //         userId: this.favorite.userId,
+        //   };
+        //     InviteService.createFavorites(favorite).then(response => {
+        //       this.favoritesList = response.data;
+        //       this.$store.commit("SET_FAVORITES_LIST", response.data);
+        //   })
+
+        //  },
+        addToInvitees() {
+            this.invitees.push({...this.invitation}); //learned about this really cool thing called the "spread operator" or "..." which makes a clone of input and therefore freezes it in time basically
+            //resetForm;
+            let target = document.getElementById('invitee-input');
+            target.value="";
+            console.log(this.invitation);
+        },
+        userIsLoggedIn() {
+            let $loggedIn = false;
+            if (this.userId != 0) {
+                $loggedIn = true;
+            } return $loggedIn;
+        },
+        addRestaurantToYesList() {
+            this.approvedRestaurants.push(this.eventRestaurant);
+        },
+        addRestaurantToNoList() {
+            this.rejectedRestaurants.push(this.eventRestaurant);
+        }
     },
     addRestaurantToYesList() {
       this.approvedRestaurants.push(this.eventRestaurant);

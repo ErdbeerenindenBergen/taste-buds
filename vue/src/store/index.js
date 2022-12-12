@@ -20,10 +20,10 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    favoritesList: {},
-    pendingInvite: [],
-    rejected: [],
-    restaurants: [],
+    favoritesList: [],
+    approvedRestaurants: [], //thumbs-up restaurants
+    rejectedRestaurants: [], //thumbs-down restaurants
+    restaurants: [], 
     inviteeLinks: [],
     invitees: [],
     eventRestaurant: {
