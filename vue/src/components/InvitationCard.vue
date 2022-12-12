@@ -29,15 +29,18 @@
                             </a>
                         </div>
                         
-                        <div id="event-icon-link">
+                        <div id="thumbs-up-icon-link">
                             <a>
-                            <font-awesome-icon icon="fa-solid fa-utensils" class="zoom" id="event-icon" v-on:click="addRestaurantToEventList()"/>
+                            <font-awesome-icon icon="fa-solid fa-thumbs-up" class="zoom" id="event-icon" v-on:click="addRestaurantToYesList()"/>
+                            </a>
+                        </div>
+
+                        <div id="thumbs-down-icon-link">
+                            <a>
+                            <font-awesome-icon icon="fa-solid fa-thumbs-down" class="zoom" id="event-icon" v-on:click="addRestaurantToNoList()"/>
                             </a>
                         </div>
               
-                        <!-- <div id="purple-heart-icon-link">
-                            <button type="button" @click="created() ? addToFavorites() : $router.push('/log-in')"><img src="@/assets/purple-heart-icon.png" alt="purple-icon" id="purple-heart-icon" class="zoom"/></button>
-                        </div> -->
 
                     </div>
 
@@ -79,7 +82,7 @@ import solid from "@fortawesome/fontawesome-free-solid";
 fontawesome.library.add(brands, solid);
 
 export default {
-    name :'restaurant-event-view',
+    name :'invitation-card',
     props: {
         business : Object,
     },
@@ -88,11 +91,6 @@ export default {
     data() {
         return {
         userId: "",
-        eventRestaurant: {
-            yelpRestaurantId: '',
-            eventId: 0,
-            voteCount:0
-        },
         favorite: {
             restaurantId: '',
             userId: 0
@@ -101,11 +99,6 @@ export default {
         }
      },
     methods: {
-        addRestaurantToEventList() {
-            // this.business.id = this.eventRestaurant.yelpRestaurantId;
-            this.restaurants.push(this.eventRestaurant);
-            console.dir(this.restaurants);
-        },
         addToFavorites() {
             const favorite = {
                 restaurantId: this.favRestaurants.restaurantId,
@@ -132,6 +125,12 @@ export default {
                 $loggedIn = true;
             } return $loggedIn;
         },
+        addRestaurantToYesList() {
+            this.approvedRestaurants.push(this.eventRestaurant);
+        },
+        addRestaurantToNoList() {
+            this.rejectedRestaurants.push(this.eventRestaurant);
+        }
     },
     created() {
         this.userId = this.$store.state.user.id;

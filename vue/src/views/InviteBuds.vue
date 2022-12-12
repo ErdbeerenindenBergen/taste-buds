@@ -1,6 +1,8 @@
 <template>
   <div id="invite-buds">
 
+    
+
     <div class="tab-buttons">
     <button  type="button"  id="step-1-create-event" class="button"  v-on:click="showFormStepOne()">Step 1: Info</button>
     <button  type="button"  id="step-2-create-event"  class="button" v-on:click="showFormStepTwo()" >Step 2: Tastes</button>
@@ -147,14 +149,15 @@
 import RestaurantEventView from "../components/RestaurantEventView.vue";
 import RestaurantService from "../services/RestaurantService.js";
 import EventService from "../services/EventService.js";
-import InvitationService from "../services/InvitationService.js"
+import InvitationService from "../services/InvitationService.js";
+// import emailjs from '@emailjs/browser';
 // import InviteService from '../services/InviteService';
 
 
 export default {
   name: "create-event",
   components: {
-    RestaurantEventView
+    RestaurantEventView,
   },
     props:[ 
       "business"],
@@ -177,8 +180,9 @@ export default {
           yelpRestaurantId: "",
           eventId: 0
         },
+        uniqueLink: '',
         invitation: {
-          // invitationId: '',
+          invitationId: '',
           eventId: 0,
           emailAddress: '',
         },
@@ -191,20 +195,28 @@ export default {
     createEvent() {
         this.eventDate = this.moment(this.eventDate).format('YYYY-MM-DD');
         this.deadlineDate = this.moment(this.deadlineDate).format('YYYY-MM-DD');
-        // console.log(this.event);
-        // console.log(this.$store.state.user);
-        
+
         EventService.createEvent(this.event).then(response => {
           this.event.eventId = response.data.eventId;
 
           this.invitees.forEach ((invitation) => {
             invitation.eventId = this.event.eventId;
-          InvitationService.createInvitation(invitation).then(response => {
-            this.invitationIds.push(response.data.invitationId);
+            InvitationService.createInvitation(invitation).then(response => {
+            invitation.invitationId = response.data.invitationId;
+            // this.uniqueLink = "http://localhost:9000/invite-options/" + "invitation.invitationId";
+            // let form = document.getElementById("invite-form");
+        //      emailjs.sendForm('service_taste_buds', 'template_brbme2t', this.$refs.form, 'KJnACSZksPfI7DBZ5')
+        // .then((result) => {
+        //     console.log('SUCCESS!', result.text);
+        // }, (error) => {
+        //     console.log('FAILED...', error.text);
+        // });
+            // this.invitationIds.push(response.data.invitationId);       THIS WORKS
+        // console.log(this.event);
+        // console.log(this.$store.state.user);
+            console.dir(this.invitationIds);
           })
         })
-          console.dir(this.invitees);
-
           // RestaurantService.createEventRestaurantInDatabase(this.eventRestaurant);
         })
     },
@@ -445,10 +457,10 @@ form.find-form {
 }
 
 .right-panel{
-  width:70%;
+  width:100%;
   justify-content: center;
   text-align: center;
-  padding-left: 30%;
+  /* padding-left: 10%; */
 }
 
 p {
