@@ -124,12 +124,7 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-
-//import InviteService from '../services/InviteService';
-=======
 import InviteService from "../services/InviteService";
->>>>>>> 3884c2b91837f1f259c9761141720ada666a7236
 import fontawesome from "@fortawesome/fontawesome";
 import brands from "@fortawesome/fontawesome-free-brands";
 import solid from "@fortawesome/fontawesome-free-solid";

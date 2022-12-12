@@ -119,7 +119,7 @@
 
 <script>
 
-//import InviteService from '../services/InviteService';
+import InviteService from '../services/InviteService';
 
 import fontawesome from "@fortawesome/fontawesome";
 import brands from "@fortawesome/fontawesome-free-brands";
@@ -181,6 +181,7 @@ export default {
         }
     
     }
+}
 }
 
 </script>
