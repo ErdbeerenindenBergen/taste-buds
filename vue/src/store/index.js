@@ -12,7 +12,7 @@ Vue.use(Vuex)
 const currentToken = localStorage.getItem('token')
 const currentUser = JSON.parse(localStorage.getItem('user'));
 
-if(currentToken != null) {
+if (currentToken != null) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${currentToken}`;
 }
 
@@ -20,12 +20,13 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    favoritesList: {},
-    pendingInvite: [],
-    rejected: [],
+    favoritesList: [],
+    approvedRestaurants: [], //thumbs-up restaurants
+    rejectedRestaurants: [], //thumbs-down restaurants
     restaurants: [],
+    pendingInvites:[], 
     inviteeLinks: [],
-    invitees:[],
+    invitees: [],
     eventRestaurant: {
       yelpRestaurantId: '',
       eventId: 0,
@@ -40,7 +41,7 @@ export default new Vuex.Store({
     },
     SET_USER(state, user) {
       state.user = user;
-      localStorage.setItem('user',JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(user));
     },
     LOGOUT(state) {
       localStorage.removeItem('token');
@@ -53,12 +54,19 @@ export default new Vuex.Store({
     ADD_RESTAURANTS(state, eventRestaurant) {
       state.restaurants.push(eventRestaurant);
     },
-    SET_FAVORITES_LIST(state, data){
-      state.favoritesList = data;
+    ADD_FAVORITES_LIST(state, favoritesList) {
+      state.favoritesList = favoritesList; //unsure if i "push" it into the list or do i just keep as the way it is written
     },
     //capturing new invite.
-    SET_PENDING_INVITE(state, data){
+    SET_PENDING_INVITE(state, data) {
       state.pendingInvite = data;
+    },
+    ADD_TO_YES_LIST(state, eventRestaurant) {
+      state.approvedRestaurants = eventRestaurant;//again unsure of the push, my thinking is that the approvedRestaurants[] in the state above will capture the eventRestaurant data
+    },
+    ADD_TO_NO_LIST(state, eventRestaurant) {
+      state.rejectedRestaurants = eventRestaurant;//again unsure of the push
     }
-}
+
+  }
 })

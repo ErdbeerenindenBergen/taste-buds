@@ -9,7 +9,7 @@ export default {
         return http.get(`/find/${location}`)
     },
 
-    //not sure this connects to anything in back- or frontend -KB
+
     collectRestaurantsForInvite(eventRestaurant) {
         return http.post('/restaurants/save', eventRestaurant)
     },
@@ -21,5 +21,5 @@ export default {
     findBusinessesByEventId(eventId) {
         return http.get(`/event/find/${eventId}`)
     }
-   
+
 }
