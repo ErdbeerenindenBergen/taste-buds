@@ -8,12 +8,12 @@ export default {
   created() {
     this.$store.commit("LOGOUT");
     this.$router.push("/log-in");
-  }
+  },
 };
 </script>
 
 <style scoped>
-a.router-link-active{
+a.router-link-active {
   font-weight: bold;
 }
 </style>

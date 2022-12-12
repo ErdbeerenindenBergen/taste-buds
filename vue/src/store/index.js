@@ -12,7 +12,7 @@ Vue.use(Vuex)
 const currentToken = localStorage.getItem('token')
 const currentUser = JSON.parse(localStorage.getItem('user'));
 
-if(currentToken != null) {
+if (currentToken != null) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${currentToken}`;
 }
 
@@ -25,7 +25,7 @@ export default new Vuex.Store({
     rejectedRestaurants: [], //thumbs-down restaurants
     restaurants: [], 
     inviteeLinks: [],
-    invitees:[],
+    invitees: [],
     eventRestaurant: {
       yelpRestaurantId: '',
       eventId: 0,
@@ -40,7 +40,7 @@ export default new Vuex.Store({
     },
     SET_USER(state, user) {
       state.user = user;
-      localStorage.setItem('user',JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(user));
     },
     LOGOUT(state) {
       localStorage.removeItem('token');
@@ -53,8 +53,12 @@ export default new Vuex.Store({
     ADD_RESTAURANTS(state, eventRestaurant) {
       state.restaurants.push(eventRestaurant);
     },
-    SET_FAVORITES_LIST(state, data){
+    SET_FAVORITES_LIST(state, data) {
       state.favoritesList = data;
+    },
+    //capturing new invite.
+    SET_PENDING_INVITE(state, data) {
+      state.pendingInvite = data;
     }
-}
+  }
 })

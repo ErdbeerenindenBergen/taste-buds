@@ -6,7 +6,7 @@ const http = axios.create({
 
 export default {
 
-    createInvitation(invitation){
+    createInvitation(invitation) {
         return http.post('/invitation/create', invitation)
     }
 
