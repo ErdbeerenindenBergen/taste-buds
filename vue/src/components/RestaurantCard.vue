@@ -147,8 +147,7 @@ export default {
     addToFavorites() {
       const myFavorites = {
         restaurantId: this.favorite.restaurantId,
-        inviteId: this.favorite.userId,
-        business: Object,
+        inviteId: this.favorite.userId
       };
       InviteService.createFavorites(myFavorites).then((response) => {
         this.favoritesList = response.data;
@@ -157,35 +156,8 @@ export default {
     },
     created() {
       this.eventOrganizerId = this.$store.state.user.id;
-    },
-    data() {
-        return {
-        eventOrganizerId: "",
-        favorite: {
-            restaurantId: '',
-            userId: 0
-        },
-        favoritesList: []
-        }
-     },
-    methods: {
-        // addToFavorites() {
-        //     const favorite = {
-        //         restaurantId: this.favorite.restaurantId,
-        //         userId: this.favorite.userId,
-        //   };
-        //     InviteService.createFavorites(favorite).then(response => {
-        //       this.favoritesList = response.data;
-        //       this.$store.commit("SET_FAVORITES_LIST", response.data);
-        //   })
-
-        //  },
-        created() {
-            this.eventOrganizerId = this.$store.state.user.id;
-        }
-    
+     }
     }
-}
 }
 
 </script>

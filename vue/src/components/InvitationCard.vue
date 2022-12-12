@@ -137,36 +137,6 @@ export default {
     business: Object,
   },
   components: {},
-  data() {
-    return {
-      userId: "",
-      favorite: {
-        restaurantId: "",
-        userId: 0,
-      },
-      restaurants: [], //to store eventRestaurants for generating an event
-    };
-  },
-  methods: {
-    addToFavorites() {
-      const favorite = {
-        restaurantId: this.favRestaurants.restaurantId,
-        inviteId: this.favRestaurants.inviteId,
-        eventId: this.favRestaurants.eventId,
-        business: Object,
-      };
-      InviteService.createFavorites(favorite).then((response) => {
-        this.invitation.inviteId = response.data;
-        this.$store.commit("SET_FAVORITES_LIST", response.data);
-      });
-    },
-    addToInvitees() {
-      this.invitees.push({ ...this.invitation }); //learned about this really cool thing called the "spread operator" or "..." which makes a clone of input and therefore freezes it in time basically
-      //resetForm;
-      let target = document.getElementById("invitee-input");
-      target.value = "";
-      console.log(this.invitation);
-    },
     data() {
         return {
         userId: "",
@@ -175,22 +145,22 @@ export default {
             userId: 0
         },
         restaurants: [], //to store eventRestaurants for generating an event
+        favoritesList: [],
         approvedRestaurants: [], //to store 
         rejectedRestaurants: []//to store
         }
      },
     methods: {
-        // addToFavorites() {
-        //     const favorite = {
-        //         restaurantId: this.favorite.restaurantId,
-        //         userId: this.favorite.userId,
-        //   };
-        //     InviteService.createFavorites(favorite).then(response => {
-        //       this.favoritesList = response.data;
-        //       this.$store.commit("SET_FAVORITES_LIST", response.data);
-        //   })
-
-        //  },
+        addToFavorites() {
+            const myFavorites = {
+            restaurantId: this.favorite.restaurantId,
+            userId: this.favorite.userId,
+      };
+        InviteService.createFavorites(myFavorites).then((response) => {
+            this.favoritesList = response.data;
+            this.$store.commit("SET_FAVORITES_LIST", this.favoritesList);
+      });
+    },
         addToInvitees() {
             this.invitees.push({...this.invitation}); //learned about this really cool thing called the "spread operator" or "..." which makes a clone of input and therefore freezes it in time basically
             //resetForm;
@@ -211,17 +181,17 @@ export default {
             this.rejectedRestaurants.push(this.eventRestaurant);
         }
     },
-    addRestaurantToYesList() {
-      this.approvedRestaurants.push(this.eventRestaurant);
+        addRestaurantToYesList() {
+         this.approvedRestaurants.push(this.eventRestaurant);
     },
-    addRestaurantToNoList() {
-      this.rejectedRestaurants.push(this.eventRestaurant);
+        addRestaurantToNoList() {
+            this.rejectedRestaurants.push(this.eventRestaurant);
     },
-  },
+  
   created() {
     this.userId = this.$store.state.user.id;
-  },
-};
+  }
+}
 </script>
 
 <style scoped>
