@@ -28,12 +28,14 @@
 </template>
 
 <script>
-import RestaurantService from "../services/RestaurantService.js";
+//import RestaurantService from "../services/RestaurantService.js";
 import EventService from "../services/EventService.js";
 
 export default {
   name: "event-details",
-  props: ["event"], //unsure if this is needed
+  props:  {
+    business: Object
+    }, 
   data() {
     return {
       events: [],
