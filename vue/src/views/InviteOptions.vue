@@ -54,8 +54,6 @@ export default {
             this.invitation.emailAddress = response.data.emailAddress;
             this.invitation.hasVoted = response.data.hasVoted;
         RestaurantService.findBusinessesByEventId(this.invitation.eventId).then((response) => {
-            // if (response.data.location.display_address != '') {
-            // this.businesses = response.data;
             response.data.forEach((object) => {
               this.businesses.push(object);
             })
