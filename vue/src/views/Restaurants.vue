@@ -76,8 +76,10 @@
         </button>
       </form>
     </div>
-
-    <img v-if="!find-restaurants-results" src="@/assets/cheers.gif"/>
+    
+    <!-- <div class="loading" v-if="isLoading">
+      <img  src="@/assets/cheers.gif"/>
+    </div> -->
 
     <div id="find-restaurants-results" class="right-panel">
       <restaurant-card
@@ -104,6 +106,7 @@ export default {
   props: ["business"],
   data() {
     return {
+      // isLoading: true,
       location: "",
       businesses: [],
     };
@@ -115,6 +118,7 @@ export default {
       }
       RestaurantService.find(this.location).then((response) => {
         this.businesses = response.data;
+        // this.isLoading = false;
       });
     },
   },

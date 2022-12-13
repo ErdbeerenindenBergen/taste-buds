@@ -53,9 +53,7 @@ export default {
   components: {
     EventRestaurantCard
   },
-  props:  {
-    business: Object
-    }, 
+  props:  ["business"], 
   data() {
     return {
       events: [],
@@ -121,26 +119,15 @@ export default {
   align-items: left ;
 }
 
-h1 {
-  font-family: "Playfair Display";
-  font-weight: normal;
-  text-align: center;
-  padding-top: 40px;
-}
-
-h2:hover {
-  display: flex;
-  font-family: Montserrat;
-  font-weight: normal;
-
-}
-
+h2,
 h3 {
   display: flex;
-  align-items: left;
   font-family: Montserrat;
   font-weight: normal;
+  color: #666666;
+
 }
+
 
 a.router-link-active {
   font-weight: bold;
