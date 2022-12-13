@@ -36,7 +36,26 @@ public class JdbcEventRestaurantDao implements EventRestaurantDao {
             eventRestaurants.add(eventRestaurant);
         } return eventRestaurants;
     }
-
+//    SELECT yelp_restaurant_id, COUNT(invitation_id), vote_count AS votes
+//    FROM public.event_restaurant
+//    JOIN event_invitation ON event_restaurant.event_id = event_invitation.event_id
+//    GROUP BY yelp_restaurant_id, vote_count
+//    ORDER BY votes DESC;
+    @Override
+    public List<EventRestaurant> getRestaurantRankedListByEventId(int eventId) {
+        List<EventRestaurant> eventRestaurants = new ArrayList<>();
+        String sql = "SELECT yelp_restaurant_id, COUNT(invitation_id), vote_count AS votes " +
+                     "FROM public.event_restaurant " +
+                     "WHERE event_invitation.event_id = ? " +
+                     "JOIN event_invitation ON event_restaurant.event_id = event_invitation.event_id " +
+                     "GROUP BY yelp_restaurant_id, vote_count " +
+                     "ORDER BY votes DESC;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, eventId);
+        while (results.next()) {
+            EventRestaurant eventRestaurant = mapRowToEventRestaurant(results);
+            eventRestaurants.add(eventRestaurant);
+        }  return eventRestaurants;
+    }
     private EventRestaurant mapRowToEventRestaurant(SqlRowSet rs) {
         EventRestaurant eventRestaurant = new EventRestaurant();
         eventRestaurant.setYelpRestaurantId(rs.getString("yelp_restaurant_id"));

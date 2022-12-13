@@ -9,9 +9,8 @@
       rel="stylesheet"
     />
 
-<!-- may need to comment out v-for loop out below and then uncomment it out to get this to print -->
     <div
-      id="restaurant-display"
+      id="restaurant-display"   
     >
       <div id="restaurant-left">
         <h2 id="name">{{ business.name }}</h2>
@@ -62,8 +61,8 @@
               <font-awesome-icon
                 icon="fa-solid fa-thumbs-up"
                 class="zoom"
-                id="event-icon"
-                v-on:click="addRestaurantToYesList()"
+                id="thumbs-up-icon"
+                v-on:click="addRestaurantToYesList(business.id), greenIfRestaurantApproved(`${business.id}`)"
               />
             </a>
           </div>
@@ -73,8 +72,8 @@
               <font-awesome-icon
                 icon="fa-solid fa-thumbs-down"
                 class="zoom"
-                id="event-icon"
-                v-on:click="addRestaurantToNoList()"
+                id="thumbs-down-icon"
+                v-on:click="addRestaurantToNoList(business.id), redIfRestaurantRejected(business.id)"
               />
             </a>
           </div>
@@ -149,6 +148,28 @@ export default {
         }
      },
     methods: {
+        greenIfRestaurantApproved(id) {
+          const thumbsUpIcon = document.getElementById('thumbs-up-icon');
+          const thumbsDownIcon = document.getElementById('thumbs-down-icon');
+          if (this.$store.state.approvedRestaurants.includes(id)) {
+            thumbsUpIcon.style.color = "rgb(3, 173, 3)";
+            thumbsUpIcon.style.display = "block";
+            thumbsUpIcon.style.height= "40px";
+            thumbsUpIcon.style.margin="10px";
+            thumbsDownIcon.style.color = "#a64d79ff";
+          } 
+        },
+        redIfRestaurantRejected(id) {
+          const thumbsDownIcon = document.getElementById('thumbs-down-icon');
+          const thumbsUpIcon = document.getElementById('thumbs-up-icon');
+          if (this.$store.state.rejectedRestaurants.includes(id)) {
+            thumbsDownIcon.style.color = "red";
+            thumbsDownIcon.style.display = "block";
+            thumbsDownIcon.style.height= "40px";
+            thumbsDownIcon.style.margin="10px";
+            thumbsUpIcon.style.color = "#a64d79ff";
+          }
+        },
         addToInvitees() {
             this.invitees.push({...this.invitation}); //learned about this really cool thing called the "spread operator" or "..." which makes a clone of input and therefore freezes it in time basically
             //resetForm;
@@ -162,13 +183,15 @@ export default {
                 $loggedIn = true;
             } return $loggedIn;
         },
-        addRestaurantToYesList() {
-            this.approvedRestaurants.push(this.eventRestaurant);
-            this.$store.commit("ADD_TO_YES_LIST", this.eventRestaurant);
+        addRestaurantToYesList(id) {
+            this.$store.commit("ADD_TO_YES_LIST", id);
+            console.log(this.$store.state.approvedRestaurants);
+            console.log(this.$store.state.rejectedRestaurants);
         },
-        addRestaurantToNoList() {
-            this.rejectedRestaurants.push(this.eventRestaurant);
-            this.$store.commit("ADD_TO_NO_LIST", this.eventRestaurant);
+        addRestaurantToNoList(id) {
+            this.$store.commit("ADD_TO_NO_LIST", id);
+            console.log(this.$store.state.approvedRestaurants);
+            console.log(this.$store.state.rejectedRestaurants);
         }
     },
   created() {
@@ -245,13 +268,15 @@ svg {
 
 #yelp-icon,
 #heart-icon,
-#event-icon {
+#thumbs-up-icon,
+#thumbs-down-icon {
   height: 40px;
   margin: 10px;
 }
 
 #heart-icon,
-#event-icon {
+#thumbs-up-icon,
+#thumbs-down-icon {
   color: #a64d79ff;
 }
 

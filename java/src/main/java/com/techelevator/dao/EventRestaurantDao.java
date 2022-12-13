@@ -10,4 +10,6 @@ public interface EventRestaurantDao {
 
     List<EventRestaurant> getEventRestaurantsByEventId(int eventId);
 
+    List<EventRestaurant> getRestaurantRankedListByEventId(int eventId);
+
 }
