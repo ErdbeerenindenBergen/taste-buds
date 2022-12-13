@@ -1,22 +1,29 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
-    <p>You've logged in!</p>
+    <!-- <h1>Home</h1>
+    <p>You've logged in!</p> -->
 
     <div id="icons">
       <div id="search">
         <a>
-          <font-awesome-icon icon="fa-brands fa-wpexplorer" id="search-icon" />
+          <font-awesome-icon icon="fa-brands fa-wpexplorer" id="search-icon" @click="pushToRestaurants()"/>
         </a>
         <p>Discover new places</p>
       </div>
 
     <!-- <div id="plan">
         <a>
-          <font-awesome-icon icon="fa-solid fa-calendar-days" id="plan-icon" />
+          <font-awesome-icon icon="fa-solid fa-calendar-days" id="plan-icon"/>
         </a>
         <p>Plan an event</p>
     </div> -->
+
+    <div id="plan">
+        <a>
+          <font-awesome-icon id="search-icon" icon="fa-solid fa-users" @click="pushToInviteBuds()"/>
+        </a>
+        <p>Plan an event</p>
+    </div>
 
   </div>
 
@@ -32,6 +39,14 @@ fontawesome.library.add(brands, solid);
 
 export default {
   name: "home",
+  methods: {
+    pushToRestaurants(){
+      this.$router.push({name: "find"})
+    },
+    pushToInviteBuds(){
+      this.$router.push({name: "invite-buds"})
+    }
+  }
 };
 </script>
 
@@ -47,6 +62,7 @@ h1 {
   display: flex;
   justify-content: space-evenly;
   padding-top: 30px;
+  padding-top: 150px;
 }
 
 #plan,
@@ -56,7 +72,7 @@ h1 {
 }
 
 #search-icon {
-  color: gray;
+  color: rgb(200, 199, 200);
   height: 400px;
   width: auto;
 }

@@ -76,12 +76,14 @@
         </button>
       </form>
     </div>
+
     
-    <div class="loading" v-if="isLoading">
-      <img  src="@/assets/cheers.gif"/>
+    <div id="loading" class="loading" v-if="isLoading">
+        <font-awesome-icon id="cheers" icon="fa-solid fa-champagne-glasses" />    
+      <!-- <img  src="@/assets/cheers.gif"/> -->
     </div>
 
-    <div id="find-restaurants-results" class="right-panel">
+    <div id="find-restaurants-results" class="right-panel" v-show="!isLoading">
       <restaurant-card
         class="card"
         v-for="business in businesses"
@@ -177,6 +179,20 @@ a.router-link-active {
   font-weight: bold;
 }
 
+#loading{
+  display: flex;
+  justify-content: center;
+  flex-grow:1;
+  padding-top: 120px;
+}
+
+#cheers{
+  height: 400px;
+  width: auto;
+  color: rgb(207, 204, 207);
+  margin:auto;
+}
+
 #submit-button {
   background-color: #a64d79ff;
   color: white;
@@ -237,6 +253,10 @@ option {
   label {
     font-size: 20px;
   }
+
+  #cheers{
+  height: 200px;
+}
 }
 
 @media screen and (max-width: 1200px) {
@@ -260,5 +280,10 @@ option {
     padding-left: 0;
     padding-top: 75px;
   }
+
+  #cheers{
+  height: 200px;
+  }
+
 }
 </style>

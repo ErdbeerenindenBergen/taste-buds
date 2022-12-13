@@ -6,9 +6,14 @@ import axios from 'axios';
 import moment from 'moment';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarDays, faChampagneGlasses, faMapLocationDot, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 
 library.add(faPhone);
+library.add(faCalendarDays);
+library.add(faCalendar);
+library.add(faMapLocationDot);
+library.add(faChampagneGlasses);
 
 Vue.component('icon', FontAwesomeIcon);
 

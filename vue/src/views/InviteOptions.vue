@@ -1,6 +1,6 @@
 <template>
   <div class="restaurant-options">
-    <h1>This is where restaurant options will be.</h1>
+    <h1>Please click the thumbs up or thumbs down to approve or reject a restaurant.</h1>
     <div id="restaurant-options" class="right-panel">
       <invitation-card  class="card"         
         v-for="business in businesses"
