@@ -275,20 +275,18 @@ export default {
         this.$router.push({name: 'confirmation'}); 
         this.$store.state.restaurants = [];
 
-            // console.dir(restaurants);
-            // this.uniqueLink = "http://localhost:9000/invite-options/" + "invitation.invitationId";
-            // let form = document.getElementById("invite-form");
+          // this.uniqueLink = "http://localhost:9000/invite-options/" + "invitation.invitationId";
+          // let form = document.getElementById("invite-form");
         //      emailjs.sendForm('service_taste_buds', 'template_brbme2t', this.$refs.form, 'KJnACSZksPfI7DBZ5')
         // .then((result) => {
         //     console.log('SUCCESS!', result.text);
         // }, (error) => {
         //     console.log('FAILED...', error.text);
         // });
-            // this.invitationIds.push(response.data.invitationId);       THIS WORKS
+          // this.invitationIds.push(response.data.invitationId);       THIS WORKS
         // console.log(this.event);
         // console.log(this.$store.state.user);
-          // console.dir(this.invitationIds);
-          // RestaurantService.createEventRestaurantInDatabase(this.eventRestaurant);
+        // console.dir(this.invitationIds);
 
     },
     makeInvitationList() {
