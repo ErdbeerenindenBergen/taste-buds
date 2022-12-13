@@ -23,7 +23,7 @@
   <div class="eventSide">
     <h3>Events:</h3>
     <div id="event-name-info" v-for="event in events" :key="event.id">
-      <h2> {{ events.eventName }}</h2> 
+      <h2> {{ event.eventName }}</h2> 
     </div>
   </div>
 
@@ -46,14 +46,15 @@
 <script>
 //import RestaurantService from "../services/RestaurantService.js";
 import EventService from "../services/EventService.js";
-import EventRestaurantCard from "../components/EventRestaurantCard.vue"
+// import EventRestaurantCard from "../components/EventRestaurantCard.vue"
 
 export default {
   name: "event-details",
   components: {
-    EventRestaurantCard
+    // EventRestaurantCard
   },
-  props:  ["business"], 
+  props:  ["business",
+  ], 
   data() {
     return {
       events: [],
