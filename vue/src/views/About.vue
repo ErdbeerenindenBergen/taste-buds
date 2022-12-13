@@ -1,7 +1,7 @@
 <template>
   <div class="about-us">
     <div class="about-title">
-      <h1>Meet the taste buds Team</h1>
+      <h1>Meet the taste buds Team!</h1>
     </div>
 
     <div class="Kassi">
