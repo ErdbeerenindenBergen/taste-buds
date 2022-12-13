@@ -20,16 +20,19 @@
     </div>
 
     <!---------------- Event Name ------------------>
+  <div class="eventSide">
     <h3>Events:</h3>
     <div id="event-name-info" v-for="event in events" :key="event.id">
-      <h2> {{ event.eventName }}</h2>
+      <h2> {{ events.eventName }}</h2> 
     </div>
+  </div>
 
                  
     <!---------------- View Event Restaurant ------------------>
+   <!-- this might be different....iterate through finalist list from store or another component -->
     <event-restaurant-card
         class="card"
-        v-for="business in businesses"
+        v-for="business in businesses" 
         v-bind:key="business.id"
         v-bind:business="business"
     >
@@ -72,9 +75,8 @@ export default {
           stepOneForm.style.display = 'block';
           stepTwoForm.style.display = 'none';
       
-      return this.$store.state.approvedRestaurants;//trying to get the approvedRestaurants list from the store
+      //return this.$store.state.approvedRestaurants;
       
-      // return this.$store.state.restaurants;
     },
     showViewInvitees() {
       const stepOneForm = document.getElementById('view-restaurants');
@@ -113,6 +115,12 @@ export default {
   display: flex;
 }
 
+.eventSide {
+  display: flex;
+  flex-direction: column;
+  align-items: left ;
+}
+
 h1 {
   font-family: "Playfair Display";
   font-weight: normal;
@@ -120,9 +128,16 @@ h1 {
   padding-top: 40px;
 }
 
-h2,
+h2:hover {
+  display: flex;
+  font-family: Montserrat;
+  font-weight: normal;
+
+}
+
 h3 {
-  text-align: left;
+  display: flex;
+  align-items: left;
   font-family: Montserrat;
   font-weight: normal;
 }
