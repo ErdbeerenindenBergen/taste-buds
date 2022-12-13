@@ -77,6 +77,8 @@
       </form>
     </div>
 
+    <img v-if="!find-restaurants-results" src="@/assets/cheers.gif"/>
+
     <div id="find-restaurants-results" class="right-panel">
       <restaurant-card
         class="card"
