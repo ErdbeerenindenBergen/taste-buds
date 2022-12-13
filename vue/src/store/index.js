@@ -27,6 +27,8 @@ export default new Vuex.Store({
     pendingInvites:[], 
     inviteeLinks: [],
     invitees: [],
+    yesList: [],
+    id:0,
     eventRestaurant: {
       yelpRestaurantId: '',
       eventId: 0,
@@ -49,7 +51,9 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
-      // state.restaurants = [];
+      state.restaurants = [];
+      state.approvedRestaurants = [];
+      state.rejectedRestaurants = [];
     },
     ADD_RESTAURANTS(state, eventRestaurant) {
       state.restaurants.push(eventRestaurant);
@@ -61,12 +65,27 @@ export default new Vuex.Store({
     SET_PENDING_INVITE(state, data) {
       state.pendingInvite = data;
     },
-    ADD_TO_YES_LIST(state, eventRestaurant) {
-      state.approvedRestaurants = eventRestaurant;//again unsure of the push, my thinking is that the approvedRestaurants[] in the state above will capture the eventRestaurant data
+    ADD_TO_YES_LIST(state, id) {
+      let temporaryYesList = state.approvedRestaurants.filter( (approvedBusiness) => {
+          return id != approvedBusiness;
+      });
+      let temporaryNoList = state.rejectedRestaurants.filter( (rejectedBusiness) => {
+          return id != rejectedBusiness;
+      });
+      state.approvedRestaurants = temporaryYesList;
+      state.rejectedRestaurants = temporaryNoList;
+      state.approvedRestaurants.push(id);
     },
-    ADD_TO_NO_LIST(state, eventRestaurant) {
-      state.rejectedRestaurants = eventRestaurant;//again unsure of the push
+    ADD_TO_NO_LIST(state, id) {
+    let temporaryYesList = state.approvedRestaurants.filter( (approvedBusiness) => {
+      return id != approvedBusiness;
+    });
+    let temporaryNoList = state.rejectedRestaurants.filter( (rejectedBusiness) => {
+      return id != rejectedBusiness;
+    });
+    state.approvedRestaurants = temporaryYesList;
+    state.rejectedRestaurants = temporaryNoList;
+    state.rejectedRestaurants.push(id);
     }
-
   }
 })
