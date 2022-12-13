@@ -42,6 +42,11 @@ public class EventRestaurantController {
     public List<EventRestaurant> getEventRestaurantsByEventId(@PathVariable("eventId") int eventId) {
         return eventRestaurantDao.getEventRestaurantsByEventId(eventId);
     }
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @RequestMapping(path = "/{eventId}/ranked-restaurants", method = RequestMethod.GET)
+    public List<EventRestaurant> getRestaurantRankedListByEventId(@PathVariable("eventId") int eventId) {
+        return eventRestaurantDao.getRestaurantRankedListByEventId(eventId);
+    }
 
     @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(path = "/find/{eventId}", method = RequestMethod.GET)

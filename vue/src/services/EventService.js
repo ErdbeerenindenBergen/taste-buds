@@ -20,5 +20,9 @@ export default {
 
     getAllEvents(){
         return http.get('/event')
+    },
+    
+    getRestaurantRankedListByEventId(eventId) {
+        return http.get(`/event/${eventId}/ranked-restaurants`, eventId)
     }
 }

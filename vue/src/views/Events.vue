@@ -23,13 +23,17 @@
   <div class="eventSide">
     <h3>Events:</h3>
     <div id="event-name-info" v-for="event in events" :key="event.id">
-      <h2> {{ events.eventName }}</h2> 
+      <button
+        type="button" 
+        class="event-name-button"
+      >
+      {{ event.eventName }}
+      </button> 
     </div>
   </div>
 
                  
     <!---------------- View Event Restaurant ------------------>
-   <!-- this might be different....iterate through finalist list from store or another component -->
     <event-restaurant-card
         class="card"
         v-for="business in businesses" 
@@ -37,23 +41,36 @@
         v-bind:business="business"
     >
     </event-restaurant-card>
-  
+
+
+      <!---------------- View Event Invitees ------------------>
+   <event-invitee 
+        id="invitee-info" 
+        v-bind:invitee="invitee"  
+        v-for="invitation in $store.state.invitees"  
+        :key="invitation.invitationId"
+    >
+    </event-invitee>
+
 
 
   </div>
 </template>
 
 <script>
-//import RestaurantService from "../services/RestaurantService.js";
+
 import EventService from "../services/EventService.js";
 import EventRestaurantCard from "../components/EventRestaurantCard.vue"
+import EventInvitee from "../components/EventInvitee.vue"
 
 export default {
   name: "event-details",
   components: {
-    EventRestaurantCard
+    EventRestaurantCard,
+    EventInvitee
   },
-  props:  ["business"], 
+  props:  ["business",
+  ], 
   data() {
     return {
       events: [],
@@ -72,8 +89,12 @@ export default {
       const stepTwoForm = document.getElementById('view-invitees');
           stepOneForm.style.display = 'block';
           stepTwoForm.style.display = 'none';
-      
-      //return this.$store.state.approvedRestaurants;
+
+      return EventService.getRestaurantRankedListByEventId(this.event.eventId).then(
+        (response) => {
+          this.businesses = response.data;
+        }
+      );    
       
     },
     showViewInvitees() {
@@ -93,7 +114,7 @@ export default {
 .tab-buttons {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: flex-end; 
 }
 
 .button {
@@ -113,10 +134,36 @@ export default {
   display: flex;
 }
 
+.event-name-button {
+  background-color: #f0efef;
+  color: #666666;
+  border: none;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: normal;
+  font-family: Montserrat;
+  border-radius: 10px;
+  width: 15%;
+  padding: 12px 12px;
+  margin-top: 40px;
+  margin-right: 60px;
+  margin-left: 50px;
+  display: flex;
+  /* box-shadow: 5px 10px #888888; */
+}
+
+.event-name-button:hover {
+    /* box-shadow: 5px 5px #888888; */
+    transform: scale(1.2);
+
+}
+
 .eventSide {
   display: flex;
   flex-direction: column;
-  align-items: left ;
+  align-items: left;
+  margin-left: 15%;
+  
 }
 
 h2,

@@ -5,17 +5,18 @@ import java.time.LocalTime;
 import java.util.List;
 
 //Are we doing a ranking system?
+//KA - We may not need this class
 
 public class Voting {
 
-    private String restaurantName;
+    private String restaurantId;
     private int thumbsUp;
     private int thumbsDown;
     private LocalDate decisionDate;
     private LocalTime decisionTime;
 
     public Voting(String restaurantName, int thumbsUp, int thumbsDown, LocalDate decisionDate, LocalTime decisionTime) {
-        this.restaurantName = restaurantName;
+        this.restaurantId = restaurantName;
         this.thumbsUp = thumbsUp;
         this.thumbsDown = thumbsDown;
         this.decisionDate = decisionDate;
@@ -23,11 +24,11 @@ public class Voting {
     }
 
     public String getRestaurantName() {
-        return restaurantName;
+        return restaurantId;
     }
 
     public void setRestaurantName(String restaurantName) {
-        this.restaurantName = restaurantName;
+        this.restaurantId = restaurantName;
     }
 
     public int getThumbsUp() {
