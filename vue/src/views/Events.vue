@@ -23,7 +23,12 @@
   <div class="eventSide">
     <h3>Events:</h3>
     <div id="event-name-info" v-for="event in events" :key="event.id">
-      <h2> {{ event.eventName }}</h2> 
+      <button
+        type="button" 
+        class="event-name-button"
+      >
+      {{ event.eventName }}
+      </button> 
     </div>
   </div>
 
@@ -127,6 +132,30 @@ export default {
   margin-right: 60px;
   margin-left: 50px;
   display: flex;
+}
+
+.event-name-button {
+  background-color: #f0efef;
+  color: #666666;
+  border: none;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: normal;
+  font-family: Montserrat;
+  border-radius: 10px;
+  width: 15%;
+  padding: 12px 12px;
+  margin-top: 40px;
+  margin-right: 60px;
+  margin-left: 50px;
+  display: flex;
+  /* box-shadow: 5px 10px #888888; */
+}
+
+.event-name-button:hover {
+    /* box-shadow: 5px 5px #888888; */
+    transform: scale(1.2);
+
 }
 
 .eventSide {
