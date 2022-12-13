@@ -110,14 +110,21 @@ export default {
   components: {},
   data() {
       return {
-
+       
       }
   },
+   created() {
+    this.userId = this.$store.state.user.id;
+   },
   methods: {
-                //i need to get the final restaurant
+      userIsLoggedIn() {
+        let $loggedIn = false;
+        if (this.userId != 0) {
+        $loggedIn = true;
+      } return $loggedIn;  
   }
-};
-
+ }
+}
 
 </script>
 

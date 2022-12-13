@@ -29,7 +29,6 @@
 
                  
     <!---------------- View Event Restaurant ------------------>
-   <!-- this might be different....iterate through finalist list from store or another component -->
     <event-restaurant-card
         class="card"
         v-for="business in businesses" 
@@ -37,21 +36,33 @@
         v-bind:business="business"
     >
     </event-restaurant-card>
-  
+
+
+      <!---------------- View Event Invitees ------------------>
+   <event-invitee 
+        id="invitee-info" 
+        v-bind:invitee="invitee"  
+        v-for="invitation in $store.state.invitees"  
+        :key="invitation.invitationId"
+    >
+    </event-invitee>
+
 
 
   </div>
 </template>
 
 <script>
-//import RestaurantService from "../services/RestaurantService.js";
+
 import EventService from "../services/EventService.js";
-// import EventRestaurantCard from "../components/EventRestaurantCard.vue"
+import EventRestaurantCard from "../components/EventRestaurantCard.vue"
+import EventInvitee from "../components/EventInvitee.vue"
 
 export default {
   name: "event-details",
   components: {
-    // EventRestaurantCard
+    EventRestaurantCard,
+    EventInvitee
   },
   props:  ["business",
   ], 
@@ -73,8 +84,12 @@ export default {
       const stepTwoForm = document.getElementById('view-invitees');
           stepOneForm.style.display = 'block';
           stepTwoForm.style.display = 'none';
-      
-      //return this.$store.state.approvedRestaurants;
+
+      return EventService.getRestaurantRankedListByEventId(this.event.eventId).then(
+        (response) => {
+          this.businesses = response.data;
+        }
+      );    
       
     },
     showViewInvitees() {
@@ -94,7 +109,7 @@ export default {
 .tab-buttons {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: flex-end; 
 }
 
 .button {
@@ -117,7 +132,9 @@ export default {
 .eventSide {
   display: flex;
   flex-direction: column;
-  align-items: left ;
+  align-items: left;
+  margin-left: 15%;
+  
 }
 
 h2,
