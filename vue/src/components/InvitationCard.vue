@@ -149,8 +149,8 @@ export default {
      },
     methods: {
         greenIfRestaurantApproved(id) {
-          const thumbsUpIcon = document.getElementById('thumbs-up-icon');
-          const thumbsDownIcon = document.getElementById('thumbs-down-icon');
+          let thumbsUpIcon = document.getElementById("thumbs-up-icon");
+          let thumbsDownIcon = document.getElementById("thumbs-down-icon");
           if (this.$store.state.approvedRestaurants.includes(id)) {
             thumbsUpIcon.style.color = "rgb(3, 173, 3)";
             thumbsUpIcon.style.display = "block";
@@ -160,8 +160,8 @@ export default {
           } 
         },
         redIfRestaurantRejected(id) {
-          const thumbsDownIcon = document.getElementById('thumbs-down-icon');
-          const thumbsUpIcon = document.getElementById('thumbs-up-icon');
+          let thumbsDownIcon = document.getElementById('thumbs-down-icon');
+          let thumbsUpIcon = document.getElementById('thumbs-up-icon');
           if (this.$store.state.rejectedRestaurants.includes(id)) {
             thumbsDownIcon.style.color = "red";
             thumbsDownIcon.style.display = "block";
@@ -175,7 +175,7 @@ export default {
             //resetForm;
             let target = document.getElementById('invitee-input');
             target.value="";
-            console.log(this.invitation);
+            // console.log(this.invitation);
         },
         userIsLoggedIn() {
             let $loggedIn = false;

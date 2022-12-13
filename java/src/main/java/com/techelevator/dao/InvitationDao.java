@@ -16,4 +16,6 @@ public interface InvitationDao {
 
     Invitation getInvitationByUserId(int userId);
 
+    void updateHasVoted(int invitationId);
+
 }

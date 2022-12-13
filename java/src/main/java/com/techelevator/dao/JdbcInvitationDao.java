@@ -17,6 +17,8 @@ public class JdbcInvitationDao implements InvitationDao  {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+
+
     @Override
     public List<Invitation> findAll() {
         List<Invitation> invitations = new ArrayList<>();
@@ -89,6 +91,14 @@ public class JdbcInvitationDao implements InvitationDao  {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public void updateHasVoted(int invitationId) {
+        String sql = " UPDATE event_invitation " +
+                " SET has_voted = TRUE " +
+                " WHERE invitation_id = ?; ";
+        jdbcTemplate.update(sql, invitationId);
     }
 
     //I fixed this method.-KB

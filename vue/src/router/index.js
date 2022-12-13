@@ -12,7 +12,7 @@ import About from '../views/About.vue'
 import InviteOptions from '../views/InviteOptions.vue'
 import InviteBuds from '../views/InviteOptions.vue'
 import Confirmation from '../views/Confirmation.vue'
-
+import VoteSubmitted from '../views/VoteSubmitted.vue'
 
 Vue.use(Router)
 
@@ -124,7 +124,15 @@ const router = new Router({
       meta: {
         requiredAuth: true
       }
+    },
+    {
+      path: '/vote-submitted',
+      name: 'voteSubmitted',
+      component: VoteSubmitted,
+      meta: {
+        requiredAuth: false
     }
+  }
   ]
 })
 

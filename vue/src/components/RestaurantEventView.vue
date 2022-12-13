@@ -152,7 +152,7 @@ export default {
             this.$store.commit("ADD_RESTAURANTS", {...this.eventRestaurant});
             // this.restaurants.push(this.eventRestaurant);
             // console.dir(this.restaurants);
-            console.dir(this.$store.state.restaurants);
+            // console.dir(this.$store.state.restaurants);
             // console.log(id);
         },
         // addToFavorites() {
@@ -172,7 +172,7 @@ export default {
             //resetForm;
             let target = document.getElementById('invitee-input');
             target.value="";
-            console.log(this.invitation);
+            // console.log(this.invitation);
         },
         userIsLoggedIn() {
             let $loggedIn = false;

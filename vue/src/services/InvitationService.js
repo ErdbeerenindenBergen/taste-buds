@@ -12,6 +12,10 @@ export default {
 
     getInvitationByInvitationId(invitationId) {
         return http.get(`/invitation/${invitationId}`)
+    },
+
+    updateHasVoted(invitationId) {
+        return http.put(`/invitation/vote-submitted/${invitationId}`)
     }
 
 }

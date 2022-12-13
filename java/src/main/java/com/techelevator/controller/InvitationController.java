@@ -3,12 +3,15 @@ package com.techelevator.controller;
 import com.techelevator.dao.EventDao;
 import com.techelevator.dao.InvitationDao;
 import com.techelevator.model.Event;
+import com.techelevator.model.EventRestaurant;
 import com.techelevator.model.Invitation;
+import com.techelevator.model.Vote;
 import com.techelevator.security.jwt.TokenProvider;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin
@@ -56,4 +59,12 @@ public class InvitationController {
     public Invitation createInvitation(@RequestBody Invitation invitation) {
         return invitationDao.createInvitation(invitation);
     }
+
+    @CrossOrigin
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @RequestMapping(path = "/vote-submitted/{invitationId}", method = RequestMethod.PUT)
+    public void updateHasVoted(@PathVariable int invitationId) {
+        invitationDao.updateHasVoted(invitationId);
+    }
+
 }
