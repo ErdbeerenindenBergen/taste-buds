@@ -10,12 +10,12 @@
         <p >{{ invitation.emailAddress }}</p>
       </div>
 
-      <div id="right-side">
+      <!-- <div id="right-side">
         <p  id="invitee-links"  
       >
         http://localhost:9000/invite-options/{{invitation.invitationId}}
         </p>
-      </div>
+      </div> -->
 
       <button
         type="button"
@@ -23,23 +23,13 @@
         class="button"
         v-on:click="pushToInviteOptions(invitation.invitationId)"
       >
-        View link here
+        http://localhost:9000/invite-options/{{invitation.invitationId}}
       </button>
 
       <!-- <div id="right-side">
         <a  id="invitee-links"  
         :href="'http://localhost:9000/invite-options/' + `${invitation.invitationId}`" @click="pushToInviteOptions()">
         http://localhost:9000/invite-options/{{invitation.invitationId}}
-        </a>
-      </div> -->
-
-      <!-- <div id="right-side">
-        <a  id="invitee-links"  
-        v-bind:uniqueLink="uniqueLink"  
-        v-for="uniqueLink in $store.state.inviteeLinks"  
-        :key="uniqueLink"  
-        @click="pushToInviteOptions()">
-        {{uniqueLink}}
         </a>
       </div> -->
 
@@ -68,6 +58,26 @@ h1 {
   font-weight: normal;
   text-align: center;
   padding-top: 40px;
+}
+
+button{
+  background:none;
+  border:none;
+  font-family: Montserrat;
+  font-weight: normal;
+  font-size: 25px;
+  color:#666666;
+}
+
+button:hover{
+
+  color: #a64d79ff;
+  border: none;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 10px;
+
+  padding: 12px 12px;
 }
 
 a.router-link-active {

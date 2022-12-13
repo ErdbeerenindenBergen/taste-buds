@@ -271,9 +271,9 @@ export default {
             })
           })
         })
-        this.$store.state.restaurants = [];
+        // this.$store.state.restaurants = [];
         this.$router.push({name: 'confirmation'}); 
-        this.$store.state.restaurants = [];
+        // this.$store.state.restaurants = [];
 
           // this.uniqueLink = "http://localhost:9000/invite-options/" + "invitation.invitationId";
           // let form = document.getElementById("invite-form");
