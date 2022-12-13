@@ -17,7 +17,6 @@ public class JdbcInvitationDao implements InvitationDao  {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-
     @Override
     public List<Invitation> findAll() {
         List<Invitation> invitations = new ArrayList<>();

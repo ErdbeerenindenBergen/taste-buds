@@ -195,7 +195,7 @@ hr {
   color: #999999;
   margin-left: 2rem;
   margin-right: 2rem;
-  background: white;
+  background: #999999;
   margin-bottom: 20px;
 }
 

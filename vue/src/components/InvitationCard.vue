@@ -9,10 +9,9 @@
       rel="stylesheet"
     />
 
+<!-- may need to comment out v-for loop out below and then uncomment it out to get this to print -->
     <div
       id="restaurant-display"
-      v-for="business in business"
-      :key="business.id"
     >
       <div id="restaurant-left">
         <h2 id="name">{{ business.name }}</h2>
@@ -150,7 +149,6 @@ export default {
         }
      },
     methods: {
-    
         addToInvitees() {
             this.invitees.push({...this.invitation}); //learned about this really cool thing called the "spread operator" or "..." which makes a clone of input and therefore freezes it in time basically
             //resetForm;
@@ -171,10 +169,8 @@ export default {
         addRestaurantToNoList() {
             this.rejectedRestaurants.push(this.eventRestaurant);
             this.$store.commit("ADD_TO_NO_LIST", this.eventRestaurant);
-
         }
     },
-
   created() {
     this.userId = this.$store.state.user.id;
   }

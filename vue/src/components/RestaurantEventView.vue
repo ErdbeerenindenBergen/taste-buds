@@ -143,7 +143,6 @@ export default {
             restaurantId: '',
             userId: 0
         },
-        // restaurants: [] //to store eventRestaurants for generating an event
         }
      },
     methods: {
