@@ -24,7 +24,8 @@ public class JdbcEventDao implements EventDao {
     @Override
     public List<Event> findAll() {
         List<Event> events = new ArrayList<>();
-        String sql = "select * from tb_event";
+        String sql = "SELECT * FROM tb_event\n" +
+                "ORDER BY event_id DESC;";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()) {

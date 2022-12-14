@@ -54,6 +54,15 @@
             </a>
           </div>
 
+          <div id="trophy">
+            <a>
+              <font-awesome-icon icon="fa-solid fa-trophy"
+                class="zoom"
+                id="trophy-icon"
+              />
+            </a>
+          </div>
+
         </div>
       </div>
 
@@ -100,7 +109,7 @@
 
 <script>
 
-export default {
+export default {    
   name: "event-restaurant-card",
   props: {
       business: []
@@ -120,8 +129,8 @@ export default {
         if (this.userId != 0) {
         $loggedIn = true;
       } return $loggedIn;  
+  },
   }
- }
 }
 
 </script>
@@ -206,7 +215,8 @@ svg {
 #yelp-icon,
 #heart-icon,
 #thumbs-up-icon,
-#thumbs-down-icon {
+#thumbs-down-icon,
+#trophy-icon {
   height: 40px;
   margin: 10px;
 }
@@ -215,6 +225,10 @@ svg {
 #thumbs-up-icon,
 #thumbs-down-icon {
   color: #a64d79ff;
+}
+
+#trophy-icon{
+  color: goldenrod;
 }
 
 #google-icon {

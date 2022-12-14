@@ -7,7 +7,7 @@
       <br />
 
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
-        Invalid username and password!
+        Invalid username and password
       </div>
 
       <div

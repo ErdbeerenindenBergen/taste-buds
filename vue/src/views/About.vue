@@ -114,7 +114,8 @@ h3{
 }
 
 .Kevin{
-  width:100%;
+  width:50%;
+  margin: auto;
 }
 
 .picture,.big-picture,.bigger-picture{
