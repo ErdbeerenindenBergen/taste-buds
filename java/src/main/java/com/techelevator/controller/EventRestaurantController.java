@@ -44,8 +44,9 @@ public class EventRestaurantController {
     }
     @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping(path = "/{eventId}/ranked-restaurants", method = RequestMethod.GET)
-    public List<EventRestaurant> getRestaurantRankedListByEventId(@PathVariable("eventId") int eventId) {
-        return eventRestaurantDao.getRestaurantRankedListByEventId(eventId);
+    public List<Business> getRestaurantRankedListByEventId(@PathVariable("eventId") int eventId) {
+        List<EventRestaurant> eventRestaurants = eventRestaurantDao.getRestaurantRankedListByEventId(eventId);
+        return yelpRestaurantService.getBusinessesByYelpRestaurantId(eventRestaurants);
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")

@@ -1,13 +1,13 @@
 <template>
   <div class="events">
-    <div class="tab-buttons">
+    <!-- <div class="tab-buttons">
       <button
         type="button"
         id="view-restaurants"
         class="button"
         v-on:click="showRestaurantList()"
       >
-        View Event Restaurant 
+        View Restaurant Ranking 
       </button>
       <button
         type="button"
@@ -17,30 +17,34 @@
       >
         View Invitees
       </button>
-    </div>
+    </div> -->
 
     <!---------------- Event Name ------------------>
-  <div class="eventSide">
+  <div class="event-side">
+
     <h3>Events:</h3>
+
     <div id="event-name-info" v-for="event in events" :key="event.id">
       <button
         type="button" 
         class="event-name-button"
+        @click="displayRestaurantRanking(`${event.eventId}`)"
       >
       {{ event.eventName }}
       </button> 
     </div>
   </div>
-
                  
     <!---------------- View Event Restaurant ------------------>
-    <event-restaurant-card
-        class="card"
-        v-for="business in businesses" 
-        v-bind:key="business.id"
-        v-bind:business="business"
-    >
-    </event-restaurant-card>
+    <div class="restaurant-side">
+      <event-restaurant-card
+          class="card"
+          v-for="business in businesses" 
+          v-bind:key="business.id"
+          v-bind:business="business"
+      >
+      </event-restaurant-card>
+    </div>
 
 
       <!---------------- View Event Invitees ------------------>
@@ -69,42 +73,59 @@ export default {
     EventRestaurantCard,
     EventInvitee
   },
-  props:  ["business",
+  props:  ["business"
   ], 
   data() {
     return {
       events: [],
       invitees: [],
+      eventId: Number,
+      businesses: [],
+      event: {
+        eventId: 0,
+        eventName: "",
+        eventCity: "",
+        eventState: "",
+        zipcode: Number,
+        userLatitude: Number,
+        userLongitude: Number,
+        eventDate: Date,
+        eventTime: "",
+        eventOrganizerId: Number,
+        deadlineDate: Date,
+        deadlineTime: ""
+      }
     };
   },
   created() {
     EventService.getAllEvents().then((response) => {
       this.events = response.data;
-      console.log(this.events);
+      // console.log(this.events);
     });
   },
   methods: {
-    showRestaurantList() {
-      const stepOneForm = document.getElementById('view-restaurants');
-      const stepTwoForm = document.getElementById('view-invitees');
-          stepOneForm.style.display = 'block';
-          stepTwoForm.style.display = 'none';
-
-      return EventService.getRestaurantRankedListByEventId(this.event.eventId).then(
+    // showRestaurantList() {
+    //    const stepOneForm = document.getElementById('view-restaurants');
+    //    const stepTwoForm = document.getElementById('view-invitees');
+    //        stepOneForm.style.display = 'block';
+    //        stepTwoForm.style.display = 'none';
+    displayRestaurantRanking(eventId) {
+      console.log(eventId);
+      this.eventId = this.event.eventId;
+      return EventService.getRestaurantRankedListByEventId(eventId).then(
         (response) => {
           this.businesses = response.data;
+          console.dir(this.businesses);
         }
       );    
-      
+    // }
     },
-    showViewInvitees() {
-      const stepOneForm = document.getElementById('view-restaurants');
-      const stepTwoForm = document.getElementById('view-invitees');
-          stepOneForm.style.display = 'none';
-          stepTwoForm.style.display = 'block';
-    
-    
-    },
+    // showViewInvitees() {
+    //   const stepOneForm = document.getElementById('view-restaurants');
+    //   const stepTwoForm = document.getElementById('view-invitees');
+    //       stepOneForm.style.display = 'none';
+    //       stepTwoForm.style.display = 'block';
+    // },
     
   } 
 }
@@ -129,52 +150,68 @@ export default {
   width: 15%;
   padding: 12px 12px;
   margin-top: 40px;
-  margin-right: 60px;
-  margin-left: 50px;
   display: flex;
 }
 
 .event-name-button {
-  background-color: #f0efef;
-  color: #666666;
+  background-color: white;
+  color: #a64d79ff;
   border: none;
-  text-decoration: none;
-  font-size: 22px;
-  font-weight: normal;
-  font-family: Montserrat;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: "Playfair Display";
   border-radius: 10px;
-  width: 15%;
-  padding: 12px 12px;
-  margin-top: 40px;
-  margin-right: 60px;
-  margin-left: 50px;
+  width: 75%;
+  justify-content: center;
+  /* padding: 24px 12px; */
+  margin:auto;
+  margin-top: 10px;
   display: flex;
   /* box-shadow: 5px 10px #888888; */
 }
 
 .event-name-button:hover {
-    /* box-shadow: 5px 5px #888888; */
-    transform: scale(1.2);
-
+  transform: scale(1.2);
 }
 
-.eventSide {
+.events{
+  display: flex;
+}
+
+#submit-button:focus {
+  background-color: #e06666;
+}
+
+.event-side {
   display: flex;
   flex-direction: column;
   align-items: left;
-  margin-left: 15%;
-  
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 40%;
+}
+
+.restaurant-side{
+  margin-top:75px;
+  width: 100%;
+  margin-right:20px;
 }
 
 h2,
 h3 {
   display: flex;
-  font-family: Montserrat;
   font-weight: normal;
   color: #666666;
-
+  text-align: center;
 }
 
+h3{
+  justify-content: center;
+  padding-top: 60px;
+  font-family: "Playfair Display";
+  font-weight: bold;
+  font-size: 40px;
+}
 
 a.router-link-active {
   font-weight: bold;

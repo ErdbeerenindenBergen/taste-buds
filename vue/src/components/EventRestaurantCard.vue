@@ -11,8 +11,6 @@
 
     <div
       id="restaurant-display"
-      v-for="business in business"
-      :key="business.id"
     >
       <div id="restaurant-left">
         <h2 id="name">{{ business.name }}</h2>
@@ -138,5 +136,161 @@ h1 {
 
 a.router-link-active {
   font-weight: bold;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display");
+
+#restaurant-display {
+  font-family: "Playfair Display";
+  font-size: 20px;
+  /* border: 1px solid #999999; */
+  border-radius: 10px;
+  margin: 20px 0 10px 0;
+  padding: 0 30px 0 30px;
+  text-align: center;
+  font-weight: normal;
+  display: flex;
+  background: #f0efef;
+  flex: grow;
+}
+
+#restaurant-left {
+  display: flex;
+  flex-direction: column;
+  flex: grow;
+  width: 50%;
+  justify-content: center;
+  text-align: center;
+}
+
+#restaurant-right {
+  display: flex;
+  flex-direction: column;
+  flex: grow;
+  width: 50%;
+  justify-content: center;
+  text-align: center;
+}
+
+.call-button {
+  background-color: #a64d79ff;
+  color: white;
+  border: none;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 10px;
+  width: 200px;
+  padding: 12px 12px;
+  margin-bottom: 20px;
+}
+
+.thumbnail {
+  float: left;
+  height: 400px;
+  width: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: auto;
+}
+
+svg {
+  margin-right: 10px;
+}
+
+#icons {
+  display: flex;
+  justify-content: center;
+}
+
+#yelp-icon,
+#heart-icon,
+#thumbs-up-icon,
+#thumbs-down-icon {
+  height: 40px;
+  margin: 10px;
+}
+
+#heart-icon,
+#thumbs-up-icon,
+#thumbs-down-icon {
+  color: #a64d79ff;
+}
+
+#google-icon {
+  height: 40px;
+  margin: 10px;
+}
+
+#purple-heart-icon {
+  height: 40px;
+  margin: 10px;
+  border: 0px;
+  text-decoration: none;
+}
+
+p {
+  font-size: 25px;
+  font-family: Montserrat;
+}
+
+button:focus {
+  background: #e06666;
+}
+
+button:hover {
+  background: #741b47ff;
+}
+
+.zoom:hover {
+  transform: scale(1.2);
+  transition: all ease 500ms;
+}
+
+@media screen and (max-width: 1350px) {
+  .thumbnail {
+    margin: auto;
+    height: 300px;
+    width: 300px;
+  }
+  #restaurant-right {
+    justify-content: center;
+    margin: auto;
+  }
+  #restaurant-left {
+    justify-content: center;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  #root {
+    padding-top: 100px;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  #restaurant-display {
+    flex-direction: column;
+  }
+
+  #root {
+    padding-top: 100px;
+  }
+
+  .thumbnail {
+    float: left;
+    height: 225px;
+    width: 225px;
+    object-fit: cover;
+    border-radius: 10px;
+    justify-content: center;
+    /* margin: auto; */
+  }
+  #restaurant-display {
+    flex: grow;
+    justify-content: center;
+    padding: 0 30px 0 30px;
+  }
 }
 </style>
