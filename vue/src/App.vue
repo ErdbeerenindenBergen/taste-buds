@@ -159,7 +159,7 @@ a {
 }
 
 #tb-logo {
-  padding-left: 10px;
+  padding-left: 5px;
   height: 60px;
   width: auto;
   margin: auto;
@@ -176,7 +176,6 @@ a {
   font-family: "Playfair Display", serif;
   font-weight: medium;
   font-size: 4rem;
-  padding-left: 20px;
   min-width: 20px;
   line-height: 13px;
 }
@@ -197,8 +196,8 @@ a.router-link-active {
 
 hr {
   color: #999999;
-  margin-left: 2rem;
-  margin-right: 2rem;
+  margin-left: 20px;
+  margin-right: 35px;
   background: #999999;
   margin-bottom: 20px;
 }
@@ -241,11 +240,6 @@ nav {
   padding: 20px 10px 0 0px;
 }
 
-.with-bar {
-  border-right: solid 2px;
-  border-color: #666666;
-}
-
 a {
   text-decoration: none;
   justify-content: space-evenly;
@@ -255,7 +249,6 @@ a {
   font-weight: normal;
   font-size: 22px;
   color: #434343;
-  padding-left: 20px;
   padding-right: 20px;
 }
 
@@ -271,13 +264,21 @@ a:hover {
   font-weight: bold;
 }
 
+#header-title{
+  padding-left:3px;
+}
+
+
 @media screen and (max-width: 800px) and (min-width: 200px) {
   #header-title {
     font-size: 40px;
-    margin: 5px;
+    margin: 3px;
     justify-content: center;
     align-items: center;
     margin: auto;
+    margin-left: 0px;
+    margin-top: 35px;
+    padding-left: 0px;
   }
 
   hr {
@@ -299,10 +300,6 @@ a:hover {
     line-height: 0px;
   }
 
-  /* #header-left {
-    padding-left:20px;
-  } */
-
   #hamburger {
     display: block;
     padding-right: 8px;
@@ -313,28 +310,35 @@ a:hover {
   }
 
   #tb-logo {
-    padding-left: 10px;
-    padding-top: 5px;
+    padding-left: 15px;
     height: 45px;
     width: auto;
     margin: auto;
+    margin-right:0px;
   }
+
+  #router-link{
+    padding-left:none;
+    margin-left: none;
+  }
+
+  ul{
+    padding-left:0px;
+  }
+
 }
 
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 1200px) {
   .nav-menu {
     position: fixed;
     left: -100%;
-    top: 5rem;
+    top: 120px;
     flex-direction: column;
-    /* background-color: #fff; */
     width: 100%;
     border-radius: 10px;
     text-align: center;
     transition: 0.3s;
     z-index: 999999999999 !important;
-    /* box-shadow:
-            0 10px 27px rgba(0, 0, 0, 0.05); */
   }
 
   .nav-menu.active {
@@ -350,6 +354,8 @@ a:hover {
   .hamburger {
     display: block;
     cursor: pointer;
+    margin-right:26px;
+  
   }
 }
 </style>

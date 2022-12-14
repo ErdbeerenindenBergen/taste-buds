@@ -96,7 +96,7 @@ export default {
       if (this.required_characters === false) {
         this.registrationErrors = true;
         this.registrationErrorMsg =
-          "Password must be a minimum of 8 characters ~ Must have at least 1 uppercase ~ Must have at least one number ~ Must have at least 1 special character. ";
+          "Password must be a minimum of 8 characters, have at least one uppercase character, one special character, and one number. ";
       } else if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
         this.registrationErrorMsg = "Password & Confirm Password do not match.";
@@ -172,7 +172,9 @@ a.register-link {
   color: red;
   font-weight: bold;
   justify-content: center;
+  text-align: center;
   margin: auto;
+  padding-bottom:15px;
 }
 
 input.form-control {
