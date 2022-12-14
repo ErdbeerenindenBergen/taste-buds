@@ -16,12 +16,16 @@
         />
 
         <div id="header-left">
-          <img
+         <router-link v-bind:to="{ name: 'home' }"><img
             id="tb-logo"
             src="../src/assets/Taste-Buds.png"
             alt="taste-buds-logo"
           />
+          </router-link>
+
+          <router-link v-bind:to="{ name: 'home' }">
           <h1 id="header-title">taste buds</h1>
+          </router-link>
         </div>
 
         <nav id="myLinks" class="navbar">
