@@ -206,7 +206,6 @@
 
 </template>
 
-
 <script>
 import RestaurantEventView from "../components/RestaurantEventView.vue";
 import RestaurantService from "../services/RestaurantService.js";
@@ -287,7 +286,6 @@ export default {
         // console.log(this.event);
         // console.log(this.$store.state.user);
         // console.dir(this.invitationIds);
-
     },
     makeInvitationList() {
     },
@@ -371,11 +369,10 @@ export default {
       }
     },
   },
-
   created() {
     this.event.eventOrganizerId = this.$store.state.user.id;
-  },
-};
+  }
+}
 </script>
 
 <style scoped>

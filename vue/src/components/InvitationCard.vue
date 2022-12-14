@@ -10,7 +10,7 @@
     />
 
     <div
-      id="restaurant-display"   
+      id="restaurant-display"
     >
       <div id="restaurant-left">
         <h2 id="name">{{ business.name }}</h2>
@@ -56,24 +56,26 @@
             </a>
           </div>
 
-          <div id="thumbs-up-icon-link">
+          <div id="thumbs-up-link">
             <a>
               <font-awesome-icon
                 icon="fa-solid fa-thumbs-up"
-                class="zoom"
+                class="zoom thumbs-up-icon"
                 id="thumbs-up-icon"
-                v-on:click="addRestaurantToYesList(business.id), greenIfRestaurantApproved(`${business.id}`)"
+                :class="isApproved ? 'green' : '' "
+                v-on:click="addRestaurantToYesList(business.id)"
               />
             </a>
           </div>
 
-          <div id="thumbs-down-icon-link">
+          <div id="thumbs-down-link">
             <a>
               <font-awesome-icon
                 icon="fa-solid fa-thumbs-down"
-                class="zoom"
+                class="zoom thumbs-down-icon"
                 id="thumbs-down-icon"
-                v-on:click="addRestaurantToNoList(business.id), redIfRestaurantRejected(business.id)"
+                :class="isRejected ? 'red' : ''"
+                v-on:click="addRestaurantToNoList(business.id)"
               />
             </a>
           </div>
@@ -142,34 +144,30 @@ export default {
             restaurantId: '',
             userId: 0
         },
-        restaurants: [], //to store eventRestaurants for generating an event
-        approvedRestaurants: [], //to store 
-        rejectedRestaurants: []//to store
+        isApproved: false,
+        isRejected: false,
+        restaurants: [],
+        approvedRestaurants: [],
+        rejectedRestaurants: [],
         }
      },
     methods: {
-        greenIfRestaurantApproved(id) {
-          let thumbsUpIcon = document.getElementById("thumbs-up-icon");
-          let thumbsDownIcon = document.getElementById("thumbs-down-icon");
-          if (this.$store.state.approvedRestaurants.includes(id)) {
-            thumbsUpIcon.style.color = "rgb(3, 173, 3)";
-            thumbsUpIcon.style.display = "block";
-            thumbsUpIcon.style.height= "40px";
-            thumbsUpIcon.style.margin="10px";
-            thumbsDownIcon.style.color = "#a64d79ff";
-          } 
-        },
-        redIfRestaurantRejected(id) {
-          let thumbsDownIcon = document.getElementById('thumbs-down-icon');
-          let thumbsUpIcon = document.getElementById('thumbs-up-icon');
-          if (this.$store.state.rejectedRestaurants.includes(id)) {
-            thumbsDownIcon.style.color = "red";
-            thumbsDownIcon.style.display = "block";
-            thumbsDownIcon.style.height= "40px";
-            thumbsDownIcon.style.margin="10px";
-            thumbsUpIcon.style.color = "#a64d79ff";
-          }
-        },
+        // greenIfRestaurantApproved(id) {
+        //   let thumbsDownIcon = document.getElementById('thumbs-down-icon');
+        //   let thumbsUpIcon = document.getElementById('thumbs-up-icon');
+        //    if (this.$store.state.approvedRestaurants.includes(id)) {
+        //     thumbsUpIcon.style.color = "rgb(3, 173, 3)";
+        //     thumbsDownIcon.style.color = "#a64d79ff";
+        //   } 
+        // },
+        // redIfRestaurantRejected(id){
+        //   let thumbsDownIcon = document.getElementById('thumbs-down-icon');
+        //   let thumbsUpIcon = document.getElementById('thumbs-up-icon');
+        //    if (this.$store.state.rejectedRestaurants.includes(id)) {
+        //     thumbsDownIcon.style.color = "red";
+        //     thumbsUpIcon.style.color = "#a64d79ff";
+        //    }
+        // },
         addToInvitees() {
             this.invitees.push({...this.invitation}); //learned about this really cool thing called the "spread operator" or "..." which makes a clone of input and therefore freezes it in time basically
             //resetForm;
@@ -185,17 +183,32 @@ export default {
         },
         addRestaurantToYesList(id) {
             this.$store.commit("ADD_TO_YES_LIST", id);
-            console.log(this.$store.state.approvedRestaurants);
-            console.log(this.$store.state.rejectedRestaurants);
+            console.log("added", this.$store.state.approvedRestaurants);
+            console.log("removed", this.$store.state.rejectedRestaurants);
+            this.isApproved = true;
+            this.isRejected = false;
+            // let thumbsDownIcon = document.getElementsByClassName('thumbs-down-icon');
+            // let thumbsUpIcon = document.getElementsByClassName('thumbs-up-icon');
+            // console.dir(thumbsDownIcon);
+            // thumbsUpIcon.style.color = "rgb(3, 173, 3)";
+            // thumbsDownIcon.style.color = "#a64d79ff";
         },
         addRestaurantToNoList(id) {
             this.$store.commit("ADD_TO_NO_LIST", id);
             console.log(this.$store.state.approvedRestaurants);
             console.log(this.$store.state.rejectedRestaurants);
+            this.isApproved = false;
+            this.isRejected = true;
+            // let thumbsDownIcon = document.getElementsByClassName('thumbs-down-icon');
+            // let thumbsUpIcon = document.getElementsByClassName('thumbs-up-icon');
+            // thumbsDownIcon.style.color = "red";
+            // thumbsUpIcon.style.color = "#a64d79ff";
         }
     },
   created() {
     this.userId = this.$store.state.user.id;
+    // this.thumbsUpIcon = document.getElementById('thumbs-up-icon');
+    // this.thumbsDownIcon = document.getElementById('thumbs-down-icon');
   }
 }
 </script>
@@ -266,17 +279,25 @@ svg {
   justify-content: center;
 }
 
+.green path {
+  fill: rgb(3, 173, 3);
+}
+
+.red path {
+  fill: red;
+}
+
 #yelp-icon,
 #heart-icon,
-#thumbs-up-icon,
-#thumbs-down-icon {
+.thumbs-up-icon,
+.thumbs-down-icon {
   height: 40px;
   margin: 10px;
 }
 
 #heart-icon,
-#thumbs-up-icon,
-#thumbs-down-icon {
+.thumbs-up-icon,
+.thumbs-down-icon {
   color: #a64d79ff;
 }
 

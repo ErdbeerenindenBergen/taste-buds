@@ -53,6 +53,22 @@ export default {
     };
   },
   methods: {
+      greenIfRestaurantApproved(id) {
+          this.thumbsDownIcon = document.getElementsByClassName('thumbs-down-icon');
+          this.thumbsUpIcon = document.getElementsByClassName('thumbs-up-icon');
+           if (this.$store.state.approvedRestaurants.includes(id)) {
+            this.thumbsUpIcon.style.color = "rgb(3, 173, 3)";
+            this.thumbsDownIcon.style.color = "#a64d79ff";
+          } 
+        },
+      redIfRestaurantRejected(id){
+          let thumbsDownIcon = document.getElementsByClassName('thumbs-down-icon');
+          let thumbsUpIcon = document.getElementsByClassName('thumbs-up-icon');
+           if (this.$store.state.rejectedRestaurants.includes(id)) {
+            thumbsDownIcon.style.color = "red";
+            thumbsUpIcon.style.color = "#a64d79ff";
+           }
+        },
     submitVote(){
       this.$store.state.approvedRestaurants.forEach(restaurant => {
       InvitationService.getInvitationByInvitationId(this.$route.params.id).then((response) => {

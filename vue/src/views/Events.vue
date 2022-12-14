@@ -240,7 +240,7 @@ router-link.active {
 }
 
 @media screen and (max-width: 800px) and (min-width: 200px) {
-  .events {
+  .container {
     display: flex;
   }
 
