@@ -25,18 +25,22 @@
       >
         Step 3: Buds
       </button>
+     
       <button
         type="button"
         id="create-event-button"
         class="button"
         v-on:click="createEvent()"
+
       >
         Submit
       </button>
     </div>
     <!-----------------------Event Form----------------------->
 
-    <form id="event-form" @submit="createEvent()">
+    <!-- <form id="event-form" name="frm" @submit="isEmpty()"> -->
+      <form id="event-form" name="frm" @submit="createEvent()">
+
       <h1>Enter your event information below:</h1>
 
       <div class="event-info">
@@ -44,6 +48,7 @@
         <input
           type="text"
           class="event-input"
+          name="event-in"
           v-model="event.eventName"
           placeholder="your event name"
         />
@@ -51,6 +56,7 @@
         <input
           type="date"
           class="event-input"
+          name="date-in"
           v-model="event.eventDate"
           placeholder="mm/dd/yyyy"
         />
@@ -58,6 +64,7 @@
         <input
           type="time"
           class="event-input"
+          name="time-in"
           v-model="event.eventTime"
           placeholder="hh:mm"
         />
@@ -68,6 +75,7 @@
         <input
           type="date"
           class="event-input"
+          name="due-date"
           v-model="event.deadlineDate"
           placeholder="mm/dd/yyyy"
         />
@@ -75,6 +83,7 @@
         <input
           type="time"
           class="event-input"
+          name="due-time"
           v-model="event.deadlineTime"
           placeholder="hh:mm"
         />
@@ -251,6 +260,17 @@ export default {
   },
   methods: {
     createEvent() {
+      let eventNameInput = document.forms["frm"]["event-in"].value;
+      let eventDateInput = document.forms["frm"]["date-in"].value;
+      let eventTimeInput = document.forms["frm"]["time-in"].value;
+      let eventDueDateInput = document.forms["frm"]["due-date"].value;
+      let eventDueTimeInput = document.forms["frm"]["due-time"].value;
+    
+        if (eventNameInput == null || eventNameInput == "", eventDateInput == null || eventDateInput == "", eventTimeInput == null || eventTimeInput == "", eventDueDateInput == null || eventDueDateInput == "", eventDueTimeInput == null || eventDueTimeInput == "" ) {
+        alert("All Fields Must Be Filled");
+        return false;
+        } 
+
       this.eventDate = this.moment(this.eventDate).format("YYYY-MM-DD");
       this.deadlineDate = this.moment(this.deadlineDate).format("YYYY-MM-DD");
       EventService.createEvent(this.event).then((response) => {
@@ -351,8 +371,8 @@ export default {
       RestaurantService.find(this.location).then((response) => {
         this.businesses = response.data;
       });
+    }
     },
-  },
 
   created() {
     this.event.eventOrganizerId = this.$store.state.user.id;
