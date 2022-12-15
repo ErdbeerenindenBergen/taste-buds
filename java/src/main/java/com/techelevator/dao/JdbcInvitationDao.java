@@ -18,7 +18,6 @@ public class JdbcInvitationDao implements InvitationDao  {
     }
 
 
-
     @Override
     public List<Invitation> findAll() {
         List<Invitation> invitations = new ArrayList<>();

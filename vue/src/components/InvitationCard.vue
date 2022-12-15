@@ -9,9 +9,7 @@
       rel="stylesheet"
     />
 
-    <div
-      id="restaurant-display"
-    >
+    <div id="restaurant-display">
       <div id="restaurant-left">
         <h2 id="name">{{ business.name }}</h2>
 
@@ -62,7 +60,7 @@
                 icon="fa-solid fa-thumbs-up"
                 class="zoom thumbs-up-icon"
                 id="thumbs-up-icon"
-                :class="isApproved ? 'green' : '' "
+                :class="isApproved ? 'green' : ''"
                 v-on:click="addRestaurantToYesList(business.id)"
               />
             </a>
@@ -83,7 +81,33 @@
       </div>
 
       <div id="restaurant-right">
-        <h2 id="stars">Average rating: {{ business.rating }}</h2>
+        <div
+          class="rating"
+          :class="
+            (ifRestaurant5(business.rating) ? 'r-5' : '') +
+            '' +
+            (ifRestaurant45(business.rating) ? 'r-45' : '') +
+            '' +
+            (ifRestaurant4(business.rating) ? 'r-4' : '') +
+            '' +
+            (ifRestaurant35(business.rating) ? 'r-35' : '') +
+            '' +
+            (ifRestaurant3(business.rating) ? 'r-3' : '') +
+            '' +
+            (ifRestaurant25(business.rating) ? 'r-25' : '') +
+            '' +
+            (ifRestaurant2(business.rating) ? 'r-2' : '') +
+            '' +
+            (ifRestaurant15(business.rating) ? 'r-15' : '') +
+            '' +
+            (ifRestaurant1(business.rating) ? 'r-1' : '') +
+            '' +
+            (ifRestaurant05(business.rating) ? 'r-05' : '') +
+            '' +
+            (ifRestaurant00(business.rating) ? 'r-0' : '')
+          "
+        ></div>
+
         <h2 id="isClosed">
           {{ business.is_closed === false ? "Open now" : "Closed" }}
         </h2>
@@ -136,56 +160,177 @@ export default {
     business: Object,
   },
   components: {},
-    data() {
-        return {
-        userId: "",
-        favorite: {
-            restaurantId: '',
-            userId: 0
-        },
-        isApproved: false,
-        isRejected: false,
-        restaurants: [],
-        approvedRestaurants: [],
-        rejectedRestaurants: [],
-        }
-     },
-    methods: {
-        addToInvitees() {
-            this.invitees.push({...this.invitation});
-            //resetForm;
-            let target = document.getElementById('invitee-input');
-            target.value="";
-        },
-        userIsLoggedIn() {
-            let $loggedIn = false;
-            if (this.userId != 0) {
-                $loggedIn = true;
-            } return $loggedIn;
-        },
-        addRestaurantToYesList(id) {
-            this.$store.commit("ADD_TO_YES_LIST", id);
-            console.log("added", this.$store.state.approvedRestaurants);
-            console.log("removed", this.$store.state.rejectedRestaurants);
-            this.isApproved = true;
-            this.isRejected = false;
-        },
-        addRestaurantToNoList(id) {
-            this.$store.commit("ADD_TO_NO_LIST", id);
-            console.log(this.$store.state.approvedRestaurants);
-            console.log(this.$store.state.rejectedRestaurants);
-            this.isApproved = false;
-            this.isRejected = true;
-        }
+  data() {
+    return {
+      userId: "",
+      favorite: {
+        restaurantId: "",
+        userId: 0,
+      },
+      isApproved: false,
+      isRejected: false,
+      restaurants: [],
+      approvedRestaurants: [],
+      rejectedRestaurants: [],
+    };
+  },
+  methods: {
+    addToInvitees() {
+      this.invitees.push({ ...this.invitation });
+      //resetForm;
+      let target = document.getElementById("invitee-input");
+      target.value = "";
     },
+    userIsLoggedIn() {
+      let $loggedIn = false;
+      if (this.userId != 0) {
+        $loggedIn = true;
+      }
+      return $loggedIn;
+    },
+    addRestaurantToYesList(id) {
+      this.$store.commit("ADD_TO_YES_LIST", id);
+      this.isApproved = true;
+      this.isRejected = false;
+    },
+    addRestaurantToNoList(id) {
+      this.$store.commit("ADD_TO_NO_LIST", id);
+      this.isApproved = false;
+      this.isRejected = true;
+    },
+    ifRestaurant5(rating) {
+
+      if (rating === 5) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    ifRestaurant45(rating) {
+      if (rating === 4.5) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    ifRestaurant4(rating) {
+      if (rating === 4) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    ifRestaurant35(rating) {
+      if (rating === 3.5) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    ifRestaurant3(rating) {
+      if (rating === 3) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    ifRestaurant25(rating) {
+      if (rating === 2.5) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    ifRestaurant2(rating) {
+      if (rating === 2) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    ifRestaurant15(rating) {
+      if (rating === 1.5) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    ifRestaurant1(rating) {
+      if (rating === 1) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    ifRestaurant05(rating) {
+      if (rating === 0.5) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    ifRestaurant00(rating) {
+      if (rating === 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
   created() {
     this.userId = this.$store.state.user.id;
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display");
+
+div.rating {
+  font-family: FontAwesome;
+  font-size: 40px;
+  display: inline-block;
+  padding-top: 20px;
+}
+/* div.rating:before { content: "\f006\f006\f006\f006\f006"; color: Gray;  } */
+div.rating:after {
+  color: rgb(255, 217, 0);
+  left: 0;
+}
+
+.r-0:before {
+  content: "";
+}
+.r-05:after {
+  content: "\f089\00a0";
+}
+.r-1:after {
+  content: "\f005";
+}
+.r-15:after {
+  content: "\f005\f089\00a0";
+}
+.r-2:after {
+  content: "\f005\f005";
+}
+.r-25:after {
+  content: "\f005\f005\f089\00a0";
+}
+.r-3:after {
+  content: "\f005\f005\f005";
+}
+.r-35:after {
+  content: "\f005\f005\f005\f089\00a0";
+}
+.r-4:after {
+  content: "\f005\f005\f005\f005";
+}
+.r-45:after {
+  content: "\f005\f005\f005\f005\f089\00a0";
+}
+.r-5:after {
+  content: "\f005\f005\f005\f005\f005";
+}
 
 #restaurant-display {
   font-family: "Playfair Display";

@@ -27,6 +27,7 @@ import InvitationCard from "../components/InvitationCard.vue";
 import InvitationService from "../services/InvitationService.js";
 import RestaurantService from "../services/RestaurantService.js";
 import VoteService from "../services/VoteService.js";
+import EventService from "../services/EventService.js";
 
 export default {
   name: "invite-options",
@@ -49,26 +50,46 @@ export default {
         eventId: 0,
         voteCount: 0
       },
-      votes: []
+      votes: [],
+      event: {
+        eventId: 0,
+        eventName: "",
+        eventCity: "",
+        eventState: "",
+        zipcode: Number,
+        userLatitude: Number,
+        userLongitude: Number,
+        eventDate: Date,
+        eventTime: "",
+        eventOrganizerId: Number,
+        deadlineDate: Date,
+        deadlineTime: ""
+      }
     };
   },
   methods: {
-      greenIfRestaurantApproved(id) {
-          this.thumbsDownIcon = document.getElementsByClassName('thumbs-down-icon');
-          this.thumbsUpIcon = document.getElementsByClassName('thumbs-up-icon');
-           if (this.$store.state.approvedRestaurants.includes(id)) {
-            this.thumbsUpIcon.style.color = "rgb(3, 173, 3)";
-            this.thumbsDownIcon.style.color = "#a64d79ff";
-          } 
-        },
-      redIfRestaurantRejected(id){
-          let thumbsDownIcon = document.getElementsByClassName('thumbs-down-icon');
-          let thumbsUpIcon = document.getElementsByClassName('thumbs-up-icon');
-           if (this.$store.state.rejectedRestaurants.includes(id)) {
-            thumbsDownIcon.style.color = "red";
-            thumbsUpIcon.style.color = "#a64d79ff";
-           }
-        },
+    checkIfVoted(){
+      InvitationService.getInvitationByInvitationId(this.$route.params.id).then(
+        (response) => {
+          this.invitation.hasVoted = response.data.hasVoted;
+      if (this.invitation.hasVoted === true) {
+        this.$router.push({name: 'vote-submitted'});
+      }
+      })
+    },
+    checkIfPastDeadline(){
+      InvitationService.getInvitationByInvitationId(this.$route.params.id).then((response) => {
+      this.vote.eventId = response.data.eventId;  
+      EventService.getEventById(this.vote.eventId).then(result =>
+      this.event = result.data);
+      console.dir(this.event.deadlineDate);
+      let rightNow = Date.now();
+      console.log("date", rightNow);
+      if (this.event.deadlineDate > rightNow && this.event.deadlineTime > Date.now()) {
+        this.$router.push({name: 'invitation-expired'}); //need to change to new page
+      } 
+      })
+    },
     submitVote(){
       this.$store.state.approvedRestaurants.forEach(restaurant => {
       InvitationService.getInvitationByInvitationId(this.$route.params.id).then((response) => {
@@ -87,7 +108,7 @@ export default {
       })
     }),
       InvitationService.updateHasVoted(this.$route.params.id);
-      this.$router.push({name: 'voteSubmitted'});
+      this.$router.push({name: 'vote-submitted'});
     },
     showRestaurantInfo() {
       InvitationService.getInvitationByInvitationId(this.$route.params.id).then(
@@ -102,14 +123,16 @@ export default {
               this.businesses.push(object);
             });
             // }
-            console.dir(this.businesses);
+            // console.dir(this.businesses);
           });
-        }
+        },
       );
     },
   },
   created() {
     this.showRestaurantInfo();
+    this.checkIfVoted(); //not able to test yet
+    this.checkIfPastDeadline();
   },
 };
 </script>

@@ -101,7 +101,7 @@
 
 <script>
 export default {
-  name: "Timer",
+ //needs to be named Timer?
   data() {
     return {
       fixed: false,
@@ -251,6 +251,7 @@ nav {
   flex-direction: row;
   margin: auto;
   padding: 20px 10px 0 0px;
+
 }
 
 a {
@@ -262,7 +263,6 @@ a {
   font-weight: normal;
   font-size: 22px;
   color: #434343;
-  padding-right: 20px;
 }
 
 a:link,
@@ -279,6 +279,10 @@ a:hover {
 
 #header-title{
   padding-left:3px;
+}
+
+.nav-item{
+  padding-right: 20px;
 }
 
 
@@ -320,6 +324,10 @@ a:hover {
 
   li.nav-item {
     margin: 5px;
+  }
+
+  .nav-item{
+    padding-right: 20px;
   }
 
   #tb-logo {

@@ -70,13 +70,11 @@ button{
 }
 
 button:hover{
-
   color: #a64d79ff;
   border: none;
   text-decoration: none;
   font-weight: bold;
   border-radius: 10px;
-
   padding: 12px 12px;
 }
 

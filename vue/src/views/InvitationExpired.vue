@@ -1,12 +1,12 @@
 <template>
-  <div class="vote-submitted">
-    <h1>Your vote has been submitted!</h1>
+  <div class="invitation-expired">
+    <h1>Voting for this event has ended.</h1>
     </div>
 </template>
         
 <script>
 export default {
-  name: "vote-submitted",
+  name: "invitation-expired",
   components: {
   },
   methods: {

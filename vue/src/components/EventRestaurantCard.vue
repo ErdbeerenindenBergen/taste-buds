@@ -69,9 +69,22 @@
 
       <div id="restaurant-right">
 
-        <div class="rating r-25"></div>
 
-        <h2 id="stars">Average rating: {{ business.rating }}</h2>
+        <div class="rating" 
+          :class="(ifRestaurant5(business.rating) ? 'r-5' : '') + '' +  
+          (ifRestaurant45(business.rating) ? 'r-45' : '')  + '' +
+          (ifRestaurant4(business.rating) ? 'r-4' : '') + '' + 
+          (ifRestaurant35(business.rating) ? 'r-35' : '')  + '' +
+          (ifRestaurant3(business.rating) ? 'r-3' : '')  + '' +
+          (ifRestaurant25(business.rating) ? 'r-25' : '')  + '' +
+          (ifRestaurant2(business.rating) ? 'r-2' : '')  + '' +
+          (ifRestaurant15(business.rating) ? 'r-15' : '')  + '' +
+          (ifRestaurant1(business.rating) ? 'r-1' : '')  + '' +
+          (ifRestaurant05(business.rating) ? 'r-05' : '') + '' +
+          (ifRestaurant00(business.rating) ? 'r-0' : '') "
+        ></div>
+
+        <!-- <h2 id="stars">Average rating: {{ business.rating }}</h2> -->
         <h2 id="isClosed">
           {{ business.is_closed === false ? "Open now" : "Closed" }}
         </h2>
@@ -100,7 +113,7 @@
         </div>
 
         <div id="phone-button">
-          <a href="tel:${business.phone}" target="_blank"
+          <a href="tel:${business.phone}" id="call-to-order" target="_blank"
             ><button class="call-button" type="button call">
               <font-awesome-icon icon="phone" /> CALL TO ORDER
             </button></a
@@ -129,6 +142,83 @@ export default {
     this.restaurantWinner({...this.business.yelpRestaurantId});
    },
   methods: {
+    ifRestaurant5(rating){
+      if (rating === 5) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    ifRestaurant45(rating){
+      if (rating === 4.5) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    ifRestaurant4(rating){
+      if (rating === 4) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    ifRestaurant35(rating){
+      if (rating === 3.5) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    ifRestaurant3(rating){
+      if (rating === 3) {
+        return true;
+      } else {
+        return false;
+      }
+    },  
+    ifRestaurant25(rating){
+      if (rating === 2.5) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    ifRestaurant2(rating){
+      if (rating === 2) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    ifRestaurant15(rating){
+      if (rating === 1.5) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    ifRestaurant1(rating){
+      if (rating === 1) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    ifRestaurant05(rating){
+      if (rating === 0.5) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    ifRestaurant00(rating){
+      if (rating === 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     userIsLoggedIn() {
       let $loggedIn = false;
       if (this.userId != 0) {
@@ -142,13 +232,16 @@ export default {
         return false;
       }
     }
-  }
+  },
 }
 
 </script>
 
 <style scoped>
 
+#rating-box{
+  display: flex;
+}
 
 h1 {
   font-family: "Playfair Display";
@@ -156,6 +249,11 @@ h1 {
   text-align: center;
   padding-top: 40px;
 }
+
+h2 {
+  font-size:24px;
+}
+
 
 a.router-link-active {
   font-weight: bold;
@@ -274,6 +372,10 @@ button:hover {
   background: #741b47ff;
 }
 
+#call-to-order-button{
+  padding-right:0 !important;
+}
+
 .zoom:hover {
   transform: scale(1.2);
   transition: all ease 500ms;
@@ -286,13 +388,13 @@ button:hover {
   color: gold;
 }
 
-/* trying to figure out these stars */
-/* div.rating { font-family: FontAwesome; position: relative; display: inline-block; }
-div.rating:before { content: "\f006\f006\f006\f006\f006"; color: Gray;  }
-div.rating:after { color: gold; position: absolute; left: 0;}  
 
-.r-0:before { content: "" !important; }
-.r-05:after { content: "\f089\00a0"; }
+div.rating { font-family: FontAwesome; font-size: 40px;  display: inline-block; padding-top:20px;}
+/* div.rating:before { content: "\f006\f006\f006\f006\f006"; color: Gray;  } */
+div.rating:after { color: rgb(255, 217, 0); left: 0;}  
+
+.r-0:before { content: ""; }
+.r-05:after { content: "\f089\00a0";}
 .r-1:after { content: "\f005"; }
 .r-15:after { content: "\f005\f089\00a0"; }
 .r-2:after { content: "\f005\f005"; }
@@ -300,8 +402,8 @@ div.rating:after { color: gold; position: absolute; left: 0;}
 .r-3:after { content: "\f005\f005\f005"; }
 .r-35:after { content: "\f005\f005\f005\f089\00a0"; }
 .r-4:after { content: "\f005\f005\f005\f005"; }
-.r-45:after { content: "\f005\f005\f005\f005\f089\00a0"; }
-.r-5:after { content: "\f005\f005\f005\f005\f005"; } */
+.r-45:after { content: "\f005\f005\f005\f005\f089\00a0";  }
+.r-5:after { content: "\f005\f005\f005\f005\f005"; }
 
 
 @media screen and (max-width: 1350px) {

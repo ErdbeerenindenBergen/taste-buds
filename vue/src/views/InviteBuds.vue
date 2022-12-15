@@ -255,11 +255,11 @@ export default {
       this.deadlineDate = this.moment(this.deadlineDate).format("YYYY-MM-DD");
       EventService.createEvent(this.event).then((response) => {
         this.event.eventId = response.data.eventId;
-        console.dir(this.$store.state.restaurants);
+        // console.dir(this.$store.state.restaurants);
         this.$store.state.restaurants.forEach((id) => {
           this.eventRestaurant.yelpRestaurantId = id;
           this.eventRestaurant.eventId = this.event.eventId;
-          console.log(this.eventRestaurant);
+          // console.log(this.eventRestaurant);
           RestaurantService.createEventRestaurantInDatabase({...this.eventRestaurant});
         });
         this.$store.state.invitees = [];
