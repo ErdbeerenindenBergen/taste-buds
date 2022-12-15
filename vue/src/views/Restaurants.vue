@@ -90,6 +90,7 @@
         v-bind:key="business.id"
         v-bind:business="business"
       >
+      <!-- check above in views for duplicate key error -->
       </restaurant-card>
     </div>
   </body>

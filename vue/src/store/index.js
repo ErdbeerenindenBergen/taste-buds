@@ -33,7 +33,8 @@ export default new Vuex.Store({
       yelpRestaurantId: '',
       eventId: 0,
       voteCount: 0
-    }
+    },
+    winner: Object,
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -71,6 +72,9 @@ export default new Vuex.Store({
       })
       state.restaurants = [];
       state.restaurants = temporaryRestaurants;
+    },
+    FIND_WINNING_RESTAURANT(state, businesses) {
+      state.winningRestaurant = businesses[0];
     },
     ADD_RESTAURANT_ID(state, id) {
       let temporaryYesList = state.approvedRestaurants.filter((approvedBusiness) => {

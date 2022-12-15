@@ -80,6 +80,7 @@ export default {
       events: [],
       invitees: [],
       eventId: Number,
+      winner: Object,
       businesses: [],
       event: {
         eventId: 0,
@@ -116,6 +117,8 @@ export default {
         (response) => {
           this.businesses = response.data;
           console.dir(this.businesses);
+          console.log(this.businesses[0].id)
+          this.$store.state.winner = this.businesses[0].id;
         }
       );    
     // }
@@ -126,6 +129,10 @@ export default {
     //       stepOneForm.style.display = 'none';
     //       stepTwoForm.style.display = 'block';
     // },
+    //   trophyDisplayed(businesses){
+    //     this.$store.winner = businesses[0];
+    // }
+      },
       goldIfFirstPlace() {
         let trophy = document.getElementById("trophy-icon");
         if (this.business.indexOf(this.business) == 0) {
@@ -140,7 +147,7 @@ export default {
         }
       }
   } 
-}
+
 </script>
 
 <style scoped>

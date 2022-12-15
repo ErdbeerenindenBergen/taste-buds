@@ -57,8 +57,9 @@
           <div id="trophy">
             <a>
               <font-awesome-icon icon="fa-solid fa-trophy"
-                class="zoom"
-                id="trophy-icon"
+                class="zoom trophy-icon"
+                :class="restaurantWinner(business.id) ? 'winner' : '' "
+                
               />
             </a>
           </div>
@@ -67,6 +68,9 @@
       </div>
 
       <div id="restaurant-right">
+
+        <div class="rating r-25"></div>
+
         <h2 id="stars">Average rating: {{ business.rating }}</h2>
         <h2 id="isClosed">
           {{ business.is_closed === false ? "Open now" : "Closed" }}
@@ -112,30 +116,40 @@
 export default {    
   name: "event-restaurant-card",
   props: {
-      business: []
+      business: Object
   },
   components: {},
   data() {
       return {
-       
+       isWinner: false,
       }
   },
    created() {
     this.userId = this.$store.state.user.id;
+    this.restaurantWinner({...this.business.yelpRestaurantId});
    },
   methods: {
-      userIsLoggedIn() {
-        let $loggedIn = false;
-        if (this.userId != 0) {
-        $loggedIn = true;
-      } return $loggedIn;  
+    userIsLoggedIn() {
+      let $loggedIn = false;
+      if (this.userId != 0) {
+      $loggedIn = true;
+    } return $loggedIn;  
   },
+    restaurantWinner(id) {
+      if (id === this.$store.state.winner) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
 }
 
 </script>
 
 <style scoped>
+
+
 h1 {
   font-family: "Playfair Display";
   font-weight: normal;
@@ -215,10 +229,14 @@ svg {
 #yelp-icon,
 #heart-icon,
 #thumbs-up-icon,
-#thumbs-down-icon,
-#trophy-icon {
+#thumbs-down-icon {
   height: 40px;
   margin: 10px;
+}
+
+/* might need to delete below */
+.trophy-icon{
+  display:none;
 }
 
 #heart-icon,
@@ -227,8 +245,8 @@ svg {
   color: #a64d79ff;
 }
 
-#trophy-icon{
-  color: gold;
+.trophy{
+display: none;
 }
 
 #google-icon {
@@ -260,6 +278,31 @@ button:hover {
   transform: scale(1.2);
   transition: all ease 500ms;
 }
+
+.winner {
+  display: block;
+  height: 40px;
+  margin: 10px;
+  color: gold;
+}
+
+/* trying to figure out these stars */
+/* div.rating { font-family: FontAwesome; position: relative; display: inline-block; }
+div.rating:before { content: "\f006\f006\f006\f006\f006"; color: Gray;  }
+div.rating:after { color: gold; position: absolute; left: 0;}  
+
+.r-0:before { content: "" !important; }
+.r-05:after { content: "\f089\00a0"; }
+.r-1:after { content: "\f005"; }
+.r-15:after { content: "\f005\f089\00a0"; }
+.r-2:after { content: "\f005\f005"; }
+.r-25:after { content: "\f005\f005\f089\00a0"; }
+.r-3:after { content: "\f005\f005\f005"; }
+.r-35:after { content: "\f005\f005\f005\f089\00a0"; }
+.r-4:after { content: "\f005\f005\f005\f005"; }
+.r-45:after { content: "\f005\f005\f005\f005\f089\00a0"; }
+.r-5:after { content: "\f005\f005\f005\f005\f005"; } */
+
 
 @media screen and (max-width: 1350px) {
   .thumbnail {
