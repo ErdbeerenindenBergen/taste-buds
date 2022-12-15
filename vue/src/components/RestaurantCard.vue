@@ -11,8 +11,6 @@
 
     <div
       id="restaurant-display"
-      v-for="business in business"
-      :key="business.id"
     >
       <div id="restaurant-left">
         <h2 id="name">{{ business.name }}</h2>

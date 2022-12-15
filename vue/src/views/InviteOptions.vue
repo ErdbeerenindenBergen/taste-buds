@@ -29,7 +29,7 @@ import RestaurantService from "../services/RestaurantService.js";
 import VoteService from "../services/VoteService.js";
 
 export default {
-  name: "restaurant-options",
+  name: "invite-options",
   components: {
     InvitationCard,
   },

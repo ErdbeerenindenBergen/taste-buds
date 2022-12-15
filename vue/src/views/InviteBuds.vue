@@ -102,7 +102,6 @@
         <button
           type="button"
           id="invite-button"
-          value="clearInput"
           v-on:click="addToInvitees()"
         >
           ADD
@@ -212,7 +211,6 @@ import RestaurantService from "../services/RestaurantService.js";
 import EventService from "../services/EventService.js";
 import InvitationService from "../services/InvitationService.js";
 // import emailjs from '@emailjs/browser';
-// import InviteService from '../services/InviteService';
 
 export default {
   name: "create-event",
@@ -244,6 +242,11 @@ export default {
       invitationIds: [],
       invitees: [],
       eventRestaurants: [],
+      eventRestaurant: {
+        yelpRestaurantId: '',
+        eventId: 0,
+        voteCount:0
+        },
     };
   },
   methods: {
@@ -252,11 +255,12 @@ export default {
       this.deadlineDate = this.moment(this.deadlineDate).format("YYYY-MM-DD");
       EventService.createEvent(this.event).then((response) => {
         this.event.eventId = response.data.eventId;
-        // console.dir(this.$store.state.restaurants);
-        this.$store.state.restaurants.forEach((eventRestaurant) => {
-          eventRestaurant.eventId = this.event.eventId;
-          // console.log(eventRestaurant);
-          RestaurantService.createEventRestaurantInDatabase(eventRestaurant);
+        console.dir(this.$store.state.restaurants);
+        this.$store.state.restaurants.forEach((id) => {
+          this.eventRestaurant.yelpRestaurantId = id;
+          this.eventRestaurant.eventId = this.event.eventId;
+          console.log(this.eventRestaurant);
+          RestaurantService.createEventRestaurantInDatabase({...this.eventRestaurant});
         });
         this.$store.state.invitees = [];
         this.$store.state.invitees = this.invitees;
@@ -270,25 +274,9 @@ export default {
             })
           })
         })
-        // this.$store.state.restaurants = [];
         this.$router.push({name: 'confirmation'}); 
-        // this.$store.state.restaurants = [];
+    },
 
-          // this.uniqueLink = "http://localhost:9000/invite-options/" + "invitation.invitationId";
-          // let form = document.getElementById("invite-form");
-        //      emailjs.sendForm('service_taste_buds', 'template_brbme2t', this.$refs.form, 'KJnACSZksPfI7DBZ5')
-        // .then((result) => {
-        //     console.log('SUCCESS!', result.text);
-        // }, (error) => {
-        //     console.log('FAILED...', error.text);
-        // });
-          // this.invitationIds.push(response.data.invitationId);       THIS WORKS
-        // console.log(this.event);
-        // console.log(this.$store.state.user);
-        // console.dir(this.invitationIds);
-    },
-    makeInvitationList() {
-    },
     showFormStepOne() {
       const stepOneForm = document.getElementById("event-form");
       const stepTwoForm = document.getElementById("restaurants-form");
@@ -306,6 +294,7 @@ export default {
       buttonTwo.style.color = "#666666";
       buttonThree.style.color = "#666666";
     },
+
     showFormStepTwo() {
       const stepOneForm = document.getElementById("event-form");
       const stepTwoForm = document.getElementById("restaurants-form");
@@ -323,6 +312,7 @@ export default {
       buttonTwo.style.color = "white";
       buttonThree.style.color = "#666666";
     },
+
     showFormStepThree() {
       const stepOneForm = document.getElementById("event-form");
       const stepTwoForm = document.getElementById("restaurants-form");
@@ -362,13 +352,8 @@ export default {
         this.businesses = response.data;
       });
     },
-
-    clearInput(target) {
-      if (target.value == "clear input") {
-        target.value = "";
-      }
-    },
   },
+
   created() {
     this.event.eventOrganizerId = this.$store.state.user.id;
   }

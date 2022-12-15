@@ -67,13 +67,11 @@
 
 import EventService from "../services/EventService.js";
 import EventRestaurantCard from "../components/EventRestaurantCard.vue"
-// import EventInvitee from "../components/EventInvitee.vue"
 
 export default {
   name: "event-details",
   components: {
     EventRestaurantCard,
-    // EventInvitee
   },
   props:  ["business"
   ], 

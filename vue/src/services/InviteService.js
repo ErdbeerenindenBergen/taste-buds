@@ -9,7 +9,4 @@ export default {
         return http.get(`/invite-buds/${inviteID}`) //check with backend to match endpoint
     },
 
-    // createInvitation(invitation) {
-    //     return http.get(`/invite-buds/create`, invitation) //check with backend to match endpoint
-    // }
 }

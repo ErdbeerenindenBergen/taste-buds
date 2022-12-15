@@ -69,8 +69,8 @@
           </div>
 
           <!-- <div id="purple-heart-icon-link">
-                            <button type="button" @click="created() ? addToFavorites() : $router.push('/log-in')"><img src="@/assets/purple-heart-icon.png" alt="purple-icon" id="purple-heart-icon" class="zoom"/></button>
-                        </div> -->
+            <button type="button" @click="created() ? addToFavorites() : $router.push('/log-in')"><img src="@/assets/purple-heart-icon.png" alt="purple-icon" id="purple-heart-icon" class="zoom"/></button>
+          </div> -->
         </div>
       </div>
 
@@ -149,10 +149,19 @@ export default {
      },
     methods: {
         addRestaurantToEventList(id) {
-            // this.$emit('addRestaurant', id);
-            this.eventRestaurant.yelpRestaurantId = id;
-            this.$store.commit("ADD_RESTAURANTS", {...this.eventRestaurant});
+          if (this.$store.state.restaurants.includes(id)) {
+            this.$store.commit("REMOVE_RESTAURANT_ID", id);
+            this.isAdded = false;
+          } else {
+            this.$store.commit("ADD_RESTAURANT_ID", id);
             this.isAdded = true;
+          }
+           console.dir(this.$store.state.restaurants);
+
+//BELOW TWO LINES WORK
+            // this.eventRestaurant.yelpRestaurantId = id;
+            // this.$store.commit("ADD_RESTAURANT", {...this.eventRestaurant});
+
             // this.restaurants.push(this.eventRestaurant);
             // console.dir(this.restaurants);
             // console.dir(this.$store.state.restaurants);
@@ -186,6 +195,7 @@ export default {
     },
     created() {
         this.userId = this.$store.state.user.id;
+        this.$store.state.restaurants = [];
     },
 };
 </script>

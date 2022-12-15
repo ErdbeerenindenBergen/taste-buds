@@ -55,8 +55,36 @@ export default new Vuex.Store({
       state.approvedRestaurants = [];
       state.rejectedRestaurants = [];
     },
-    ADD_RESTAURANTS(state, eventRestaurant) {
+    CLEAR_STATE_RESTAURANTS(state) {
+      state.restaurants = [];
+    },
+    ADD_RESTAURANT(state, eventRestaurant) {
+      let temporaryYesList = state.restaurants.filter(() => {
+        return !eventRestaurant;
+    });
+      state.restaurants = temporaryYesList;
       state.restaurants.push(eventRestaurant);
+    },
+    REMOVE_RESTAURANT(state, toDelete) {
+      let temporaryRestaurants = state.restaurants.filter((business) => {
+      return toDelete != business;
+      })
+      state.restaurants = [];
+      state.restaurants = temporaryRestaurants;
+    },
+    ADD_RESTAURANT_ID(state, id) {
+      let temporaryYesList = state.approvedRestaurants.filter((approvedBusiness) => {
+        return id != approvedBusiness;
+      });
+      state.approvedRestaurants = temporaryYesList;
+      state.restaurants.push(id);
+    },
+    REMOVE_RESTAURANT_ID(state, id) {
+      let temporaryRestaurants = state.restaurants.filter((business) => {
+      return id != business;
+      });
+      state.restaurants = [];
+      state.restaurants = temporaryRestaurants;
     },
     ADD_FAVORITES_LIST(state, favoritesList) {
       state.favoritesList = favoritesList; //unsure if i "push" it into the list or do i just keep as the way it is written
