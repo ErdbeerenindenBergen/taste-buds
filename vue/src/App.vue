@@ -41,12 +41,13 @@
               >
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" v-bind:to="{ name: 'events' }"
+              <router-link class="nav-link"  v-bind:to="{ name: 'events' }"
                 >Events</router-link
               >
             </li>
             <li class="nav-item">
-          <router-link class="nav-link" v-bind:to="{ name: 'about' }">About</router-link> 
+              <router-link class="nav-link" :click="mobileMenu()" v-bind:to="{ name: 'about' }"
+              >About</router-link> 
           </li>
             <li class="nav-item">
               <router-link
@@ -69,8 +70,12 @@
         <div
           id="hamburger"
           class="hamburger"
-          v-on:click="mobileMenu(), (userProfileMenuIsOpen = true)"
+          v-on:click="mobileMenu()"
         >
+
+        <!-- v-on:click="mobileMenu(), (userProfileMenuIsOpen = true)" -->
+
+
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
@@ -115,6 +120,12 @@ export default {
         targetDiv.style.alignContent = "center";
       }
     },
+    doNotDisplayHamburgerMenu() {
+      let hamburger = document.querySelector(".hamburger");
+      let navMenu = document.querySelector(".nav-menu");
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
+    }
   },
 };
 </script>
@@ -300,7 +311,7 @@ a:hover {
     line-height: 0px;
   }
 
-  #hamburger {
+  .hamburger {
     display: block;
     padding-right: 8px;
   }
