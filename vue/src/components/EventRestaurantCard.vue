@@ -228,7 +228,7 @@ svg {
 }
 
 #trophy-icon{
-  color: goldenrod;
+  color: gold;
 }
 
 #google-icon {

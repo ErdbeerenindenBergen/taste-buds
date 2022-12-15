@@ -15,6 +15,8 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         />
 
+        <div class="header-with-hamburger">
+        
         <div id="header-left">
          <router-link v-bind:to="{ name: 'home' }"><img
             id="tb-logo"
@@ -28,28 +30,44 @@
           </router-link>
         </div>
 
+        <div id="header-right">
+          <div class="hamburger-menu-shape">
+            <div
+              id="hamburger"
+              class="hamburger"
+              v-on:click="mobileMenu()"
+            >
+            <!-- v-on:click="mobileMenu(), (userProfileMenuIsOpen = true)" -->
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </div>
+          </div>
+        </div>
+        
+        </div>
+
         <nav id="myLinks" class="navbar">
           <ul class="nav-menu">
-            <li class="nav-item">
+            <li class="nav-item" @click="mobileMenu()">
               <router-link class="nav-link" v-bind:to="{ name: 'find' }"
                 >Find restaurant</router-link
               >
             </li>
-            <li class="nav-item">
+            <li class="nav-item" @click="mobileMenu()">
               <router-link class="nav-link" v-bind:to="{ name: 'invite-buds' }"
                 >Invite buds</router-link
               >
             </li>
-            <li class="nav-item">
+            <li class="nav-item" @click="mobileMenu()">
               <router-link class="nav-link"  v-bind:to="{ name: 'events' }"
                 >Events</router-link
               >
             </li>
-            <li class="nav-item">
-              <router-link class="nav-link" :click="mobileMenu()" v-bind:to="{ name: 'about' }"
-              >About</router-link> 
+            <li class="nav-item" @click="mobileMenu()">
+              <router-link class="nav-link" v-bind:to="{ name: 'about' }">About</router-link> 
           </li>
-            <li class="nav-item">
+            <li class="nav-item" @click="mobileMenu()">
               <router-link
                 class="nav-link"
                 active-class="active"
@@ -67,19 +85,7 @@
           </ul>
         </nav>
 
-        <div
-          id="hamburger"
-          class="hamburger"
-          v-on:click="mobileMenu()"
-        >
 
-        <!-- v-on:click="mobileMenu(), (userProfileMenuIsOpen = true)" -->
-
-
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
       </header>
 
       <div class="background-white">
@@ -106,8 +112,10 @@ export default {
     mobileMenu() {
       let hamburger = document.querySelector(".hamburger");
       let navMenu = document.querySelector(".nav-menu");
+      let navBar = document.querySelector(".nav-bar");
       hamburger.classList.toggle("active");
       navMenu.classList.toggle("active");
+      navBar.classList.toggle("active");
     },
     turnOffFindView() {
       let targetDiv = document.getElementById("find");
@@ -120,12 +128,6 @@ export default {
         targetDiv.style.alignContent = "center";
       }
     },
-    doNotDisplayHamburgerMenu() {
-      let hamburger = document.querySelector(".hamburger");
-      let navMenu = document.querySelector(".nav-menu");
-      hamburger.classList.toggle("active");
-      navMenu.classList.toggle("active");
-    }
   },
 };
 </script>
@@ -362,11 +364,27 @@ a:hover {
     margin: 5px;
   }
 
+  .nav-bar {
+    display: none;
+  }
+
   .hamburger {
     display: block;
     cursor: pointer;
     margin-right:26px;
-  
+  }
+
+  .hamburger-menu-shape{
+    display: flex;
+  }
+
+  .header-with-hamburger{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #header-right{
+    align-content: right;
   }
 }
 </style>
