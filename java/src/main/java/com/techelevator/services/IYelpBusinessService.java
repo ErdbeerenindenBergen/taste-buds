@@ -7,7 +7,7 @@ import com.techelevator.model.EventRestaurant;
 import java.util.List;
 
 public interface IYelpBusinessService {
-    Businesses getBusinesses(String location);
+    public List<Business> getBusinesses(String location);
 
     public List<Business> getBusinessesByYelpRestaurantId(List<EventRestaurant> eventRestaurants);
 }

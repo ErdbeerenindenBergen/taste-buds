@@ -60,8 +60,6 @@
     >
     </event-invitee> -->
 
-
-
   </div>
 </template>
 

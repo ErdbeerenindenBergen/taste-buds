@@ -19,10 +19,14 @@ public class YelpBusinessService implements IYelpBusinessService {
     private RestTemplate restTemplate = new RestTemplate();
     private final int TOTAL_BUSINESSES_LIMIT = 40;
 
-    public Businesses getBusinesses(String location) throws RestClientException {
+    public List<Business> getBusinesses(String location) throws RestClientException {
         ResponseEntity<Businesses> response = restTemplate.exchange(API_BASE_URL + "businesses/search?location=" + location, HttpMethod.GET, makeAuthEntity(), Businesses.class);
         Businesses businesses = response.getBody();
-        return businesses;
+        List<Business> returnArray = new ArrayList<>();
+        for (Business business : businesses.getBusinesses()) {
+            returnArray.add(business);
+        }
+        return returnArray;
     }
 
     public List<Business> getBusinessesByYelpRestaurantId(List<EventRestaurant> eventRestaurants) throws RestClientException {

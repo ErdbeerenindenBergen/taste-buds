@@ -11,8 +11,6 @@
 
     <div
       id="restaurant-display"
-      v-for="business in business"
-      :key="business.id"
     >
       <div id="restaurant-left">
         <h2 id="name">{{ business.name }}</h2>
@@ -64,6 +62,7 @@
                 icon="fa-solid fa-utensils"
                 class="zoom"
                 id="event-icon"
+                :class="isAdded ? 'added' : '' "
                 v-on:click="addRestaurantToEventList(`${business.id}`)"
               />
             </a>
@@ -95,6 +94,7 @@
                 : ""
             }}
           </p>
+          <!-- add fontawesome pick up icon here? -->
           <p id="delivery">
             {{
               business.transactions.includes("delivery")
@@ -102,6 +102,7 @@
                 : ""
             }}
           </p>
+          <!-- add fontawesome delivery icon here? -->
         </div>
 
         <div id="phone-button">
@@ -127,7 +128,7 @@ fontawesome.library.add(brands, solid);
 export default {
   name: "restaurant-event-view",
   props: {
-    business: [],
+    business: Object,
   },
   components: {},
 
@@ -143,6 +144,7 @@ export default {
             restaurantId: '',
             userId: 0
         },
+        isAdded: false,
         }
      },
     methods: {
@@ -150,6 +152,7 @@ export default {
             // this.$emit('addRestaurant', id);
             this.eventRestaurant.yelpRestaurantId = id;
             this.$store.commit("ADD_RESTAURANTS", {...this.eventRestaurant});
+            this.isAdded = true;
             // this.restaurants.push(this.eventRestaurant);
             // console.dir(this.restaurants);
             // console.dir(this.$store.state.restaurants);
@@ -263,6 +266,10 @@ svg {
 #heart-icon,
 #event-icon {
   color: #a64d79ff;
+}
+
+.added path {
+  fill:rgb(235, 174, 20);
 }
 
 #google-icon {

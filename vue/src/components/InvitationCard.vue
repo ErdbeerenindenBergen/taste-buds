@@ -23,8 +23,8 @@
 
         <div id="icons">
           <!-- <div id="add-restaurant-to-favorites">
-                            <a><font-awesome-icon icon="fa-solid fa-heart" class="zoom" id="heart-icon" v-if="userIsLoggedIn()"/></a>
-                        </div>   -->
+                  <a><font-awesome-icon icon="fa-solid fa-heart" class="zoom" id="heart-icon" v-if="userIsLoggedIn()"/></a>
+                </div>   -->
 
           <div id="yelp-icon-link">
             <a id="url" :href="`${business.url}`" target="_blank">
@@ -124,7 +124,6 @@
 </template>
 
 <script>
-//import InviteService from "../services/InviteService";
 import fontawesome from "@fortawesome/fontawesome";
 import brands from "@fortawesome/fontawesome-free-brands";
 import solid from "@fortawesome/fontawesome-free-solid";
@@ -152,28 +151,11 @@ export default {
         }
      },
     methods: {
-        // greenIfRestaurantApproved(id) {
-        //   let thumbsDownIcon = document.getElementById('thumbs-down-icon');
-        //   let thumbsUpIcon = document.getElementById('thumbs-up-icon');
-        //    if (this.$store.state.approvedRestaurants.includes(id)) {
-        //     thumbsUpIcon.style.color = "rgb(3, 173, 3)";
-        //     thumbsDownIcon.style.color = "#a64d79ff";
-        //   } 
-        // },
-        // redIfRestaurantRejected(id){
-        //   let thumbsDownIcon = document.getElementById('thumbs-down-icon');
-        //   let thumbsUpIcon = document.getElementById('thumbs-up-icon');
-        //    if (this.$store.state.rejectedRestaurants.includes(id)) {
-        //     thumbsDownIcon.style.color = "red";
-        //     thumbsUpIcon.style.color = "#a64d79ff";
-        //    }
-        // },
         addToInvitees() {
-            this.invitees.push({...this.invitation}); //learned about this really cool thing called the "spread operator" or "..." which makes a clone of input and therefore freezes it in time basically
+            this.invitees.push({...this.invitation});
             //resetForm;
             let target = document.getElementById('invitee-input');
             target.value="";
-            // console.log(this.invitation);
         },
         userIsLoggedIn() {
             let $loggedIn = false;
@@ -187,11 +169,6 @@ export default {
             console.log("removed", this.$store.state.rejectedRestaurants);
             this.isApproved = true;
             this.isRejected = false;
-            // let thumbsDownIcon = document.getElementsByClassName('thumbs-down-icon');
-            // let thumbsUpIcon = document.getElementsByClassName('thumbs-up-icon');
-            // console.dir(thumbsDownIcon);
-            // thumbsUpIcon.style.color = "rgb(3, 173, 3)";
-            // thumbsDownIcon.style.color = "#a64d79ff";
         },
         addRestaurantToNoList(id) {
             this.$store.commit("ADD_TO_NO_LIST", id);
@@ -199,16 +176,10 @@ export default {
             console.log(this.$store.state.rejectedRestaurants);
             this.isApproved = false;
             this.isRejected = true;
-            // let thumbsDownIcon = document.getElementsByClassName('thumbs-down-icon');
-            // let thumbsUpIcon = document.getElementsByClassName('thumbs-up-icon');
-            // thumbsDownIcon.style.color = "red";
-            // thumbsUpIcon.style.color = "#a64d79ff";
         }
     },
   created() {
     this.userId = this.$store.state.user.id;
-    // this.thumbsUpIcon = document.getElementById('thumbs-up-icon');
-    // this.thumbsDownIcon = document.getElementById('thumbs-down-icon');
   }
 }
 </script>
@@ -219,7 +190,6 @@ export default {
 #restaurant-display {
   font-family: "Playfair Display";
   font-size: 20px;
-  /* border: 1px solid #999999; */
   border-radius: 10px;
   margin: 20px 0 10px 0;
   padding: 0 30px 0 30px;
