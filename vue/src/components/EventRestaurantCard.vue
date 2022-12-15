@@ -85,8 +85,8 @@
         ></div>
 
         <!-- <h2 id="stars">Average rating: {{ business.rating }}</h2> -->
-        <h2 id="isClosed">
-          {{ business.is_closed === false ? "Open now" : "Closed" }}
+        <h2 id="isClosed" >
+          {{ business.hours[0].openNow === true ? "Open now" : "Closed" }}
         </h2>
 
         <div id="contact-information">

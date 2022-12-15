@@ -28,6 +28,7 @@ public class Business {
     private List<BusinessCategories> categories;
     private BusinessCoordinates coordinates;
     private String[] transactions;
+    private List<Hours> hours;
 
     public Business(String restaurantName, int stars, String phoneNumber, boolean isClosed, String thumbnailImageURL) {
         this.restaurantName = restaurantName;
@@ -36,6 +37,7 @@ public class Business {
         this.isClosed = isClosed;
         this.thumbnailImageURL = thumbnailImageURL;
     }
+
     public Business(){}
 
     public String[] getTransactions() {
@@ -44,6 +46,14 @@ public class Business {
 
     public void setTransactions(String[] transactions) {
         this.transactions = transactions;
+    }
+
+    public List<Hours> getHours() {
+        return hours;
+    }
+
+    public void setHours(List<Hours> hours) {
+        this.hours = hours;
     }
 
     public String getDisplayPhoneNumber() {

@@ -100,7 +100,7 @@
         ></div>
 
         <h2 id="isClosed">
-          {{ business.is_closed === false ? "Open now" : "Closed" }}
+          {{ business.hours[0].openNow === true ? "Open now" : "Closed" }}
         </h2>
 
         <div id="contact-information">

@@ -266,7 +266,14 @@ export default {
       let eventDueDateInput = document.forms["frm"]["due-date"].value;
       let eventDueTimeInput = document.forms["frm"]["due-time"].value;
     
-        if (eventNameInput == null || eventNameInput == "", eventDateInput == null || eventDateInput == "", eventTimeInput == null || eventTimeInput == "", eventDueDateInput == null || eventDueDateInput == "", eventDueTimeInput == null || eventDueTimeInput == "" ) {
+        if (eventNameInput == null || eventNameInput == "" || 
+        eventDateInput == null || eventDateInput == "" || 
+        eventTimeInput == null || eventTimeInput == "" ||
+        eventDueDateInput == null || eventDueDateInput == "" ||
+        eventDueTimeInput == null || eventDueTimeInput == "" ||
+        this.$store.state.restaurants.length === 0 ||
+        this.invitees.length === 0
+        ) {
         alert("All Fields Must Be Filled");
         return false;
         } 
@@ -370,6 +377,7 @@ export default {
       }
       RestaurantService.find(this.location).then((response) => {
         this.businesses = response.data;
+        console.dir(this.businesses);
       });
     }
     },
