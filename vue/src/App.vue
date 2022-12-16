@@ -294,7 +294,7 @@ a:hover {
     align-items: center;
     margin: auto;
     margin-left: 0px;
-    margin-top: 35px;
+    margin-top: 25px;
     padding-left: 0px;
   }
 
@@ -335,7 +335,8 @@ a:hover {
     height: 45px;
     width: auto;
     margin: auto;
-    margin-right:0px;
+    margin-top: 5px;
+    margin-right:7px;
   }
 
   #router-link{
@@ -345,6 +346,11 @@ a:hover {
 
   ul{
     padding-left:0px;
+  }
+
+  .hamburger-menu-shape{
+    right: 5px;
+    position: absolute;
   }
 
 }
