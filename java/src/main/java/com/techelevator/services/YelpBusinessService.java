@@ -53,6 +53,7 @@ public class YelpBusinessService implements IYelpBusinessService {
         Business business = null;
         for (EventRestaurant eventRestaurant : eventRestaurants) {
             business = restTemplate.exchange(API_BASE_URL + "/businesses/" + eventRestaurant.getYelpRestaurantId(), HttpMethod.GET, makeAuthEntity(), Business.class).getBody();
+            business.setNumVotes(eventRestaurant.getVoteCount());
             returnedBusinesses.add(business);
         }
         return returnedBusinesses;

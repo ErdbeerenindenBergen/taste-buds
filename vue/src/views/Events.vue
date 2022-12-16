@@ -95,7 +95,22 @@ export default {
         eventOrganizerId: Number,
         deadlineDate: Date,
         deadlineTime: ""
+      },
+      numVotes:Number,
+      restaurant:[
+        {
+        numVotes:Number,
+        id:''
       }
+      ],
+      eventRestaurant: {
+        yelpRestaurantId: '',
+        eventId: Number,
+        voteCount: 0
+      },
+      returnedRestaurants: [],
+      returnedRestaurant: Object,
+      temporaryBusinesses:[]
     };
   },
   created() {
@@ -111,27 +126,25 @@ export default {
     //        stepOneForm.style.display = 'block';
     //        stepTwoForm.style.display = 'none';
     displayRestaurantRanking(eventId) {
-      console.log(eventId);
+      this.$store.state.contenders = [];
       this.eventId = this.event.eventId;
       return EventService.getRestaurantRankedListByEventId(eventId).then(
-        (response) => {
-          this.businesses = response.data;
-          console.dir(this.businesses);
-          console.log(this.businesses[0].id)
-          this.$store.state.winner = this.businesses[0].id;
-        }
-      );    
-    // }
+         (response) => {
+           this.$store.state.contenders = response.data;
+           this.businesses = response.data;
+           console.log(this.$store.state.contenders);
+          
+      let winningVoteCount = this.$store.state.contenders[0].numVotes;
+       console.log(winningVoteCount);
+
+      let temporaryBusinesses = this.$store.state.contenders.filter((business) => {
+        return business.numVotes == winningVoteCount;
+      });
+      
+      return this.$store.state.winningRestaurants = temporaryBusinesses;
+         });   
+
     },
-    // showViewInvitees() {
-    //   const stepOneForm = document.getElementById('view-restaurants');
-    //   const stepTwoForm = document.getElementById('view-invitees');
-    //       stepOneForm.style.display = 'none';
-    //       stepTwoForm.style.display = 'block';
-    // },
-    //   trophyDisplayed(businesses){
-    //     this.$store.winner = businesses[0];
-    // }
       },
       goldIfFirstPlace() {
         let trophy = document.getElementById("trophy-icon");

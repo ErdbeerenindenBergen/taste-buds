@@ -57,9 +57,8 @@
           <div id="trophy">
             <a>
               <font-awesome-icon icon="fa-solid fa-trophy"
-                class="zoom trophy-icon"
-                :class="restaurantWinner(business.id) ? 'winner' : '' "
-                
+                class= "zoom trophy-icon"
+                :class="isRestaurantWinner(business) === true ? 'winner' : ''"
               />
             </a>
           </div>
@@ -129,7 +128,7 @@
 export default {    
   name: "event-restaurant-card",
   props: {
-      business: Object
+      business: Object,
   },
   components: {},
   data() {
@@ -139,7 +138,9 @@ export default {
   },
    created() {
     this.userId = this.$store.state.user.id;
-    this.restaurantWinner({...this.business.yelpRestaurantId});
+    // this.restaurantWinner({...this.business.yelpRestaurantId});
+    this.winningRestaurants = this.$store.state.winningRestaurants;
+    this.isRestaurantWinner({...this.business});
    },
   methods: {
     ifRestaurant5(rating){
@@ -225,13 +226,25 @@ export default {
       $loggedIn = true;
     } return $loggedIn;  
   },
-    restaurantWinner(id) {
-      if (id === this.$store.state.winner) {
+    isRestaurantWinner(business) {
+      // this.$store.state.winningRestaurants.forEach((restaurant) => {
+      //   if (id === restaurant.id) {
+      //     this.isWinner === true;
+      //   }
+      // })
+      if (this.$store.state.winningRestaurants.includes(business)) {
         return true;
       } else {
         return false;
       }
-    }
+    },
+    // restaurantWinner(id) {
+    //   if (id === this.$store.state.winner) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // }
   },
 }
 

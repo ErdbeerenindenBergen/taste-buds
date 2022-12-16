@@ -101,7 +101,7 @@
 
 <script>
 export default {
- //needs to be named Timer?
+  name: 'Timer', //needs to be named Timer?
   data() {
     return {
       fixed: false,
@@ -278,7 +278,7 @@ a:hover {
 }
 
 #header-title{
-  padding-left:3px;
+  padding-left:15px;
 }
 
 .nav-item{

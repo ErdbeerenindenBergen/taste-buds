@@ -12,4 +12,5 @@ public interface EventRestaurantDao {
 
     List<EventRestaurant> getRestaurantRankedListByEventId(int eventId);
 
+    EventRestaurant getEventRestaurantById(String yelpRestaurantId, int eventId);
 }

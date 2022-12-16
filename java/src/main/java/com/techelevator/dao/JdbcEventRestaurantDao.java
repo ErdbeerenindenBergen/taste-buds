@@ -20,11 +20,25 @@ public class JdbcEventRestaurantDao implements EventRestaurantDao {
 
     @Override
     public boolean createEventRestaurant(EventRestaurant eventRestaurant) {
-        String insertEventSql = "INSERT INTO event_restaurant( " +
+        String sql = "INSERT INTO event_restaurant( " +
                 " yelp_restaurant_id, event_id, vote_count) " +
                 " VALUES (?, ?, ?);";
-        return jdbcTemplate.update(insertEventSql, eventRestaurant.getYelpRestaurantId(), eventRestaurant.getEventId(), eventRestaurant.getVoteCount()) == 1;
+        return jdbcTemplate.update(sql, eventRestaurant.getYelpRestaurantId(), eventRestaurant.getEventId(), eventRestaurant.getVoteCount()) == 1;
     }
+
+    @Override
+    public EventRestaurant getEventRestaurantById(String yelpRestaurantId, int eventId) {
+        String sql = " SELECT yelp_restaurant_id, event_id, vote_count " +
+                " FROM event_restaurant " +
+                " WHERE yelp_restaurant_id = ? AND event_id = ?; ";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, yelpRestaurantId, eventId);
+        if (results.next()) {
+            return mapRowToEventRestaurant(results);
+        } else {
+            return null;
+        }
+    }
+
 
     @Override
     public List<EventRestaurant> getEventRestaurantsByEventId(int eventId) {

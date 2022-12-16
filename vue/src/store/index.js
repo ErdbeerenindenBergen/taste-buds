@@ -25,15 +25,24 @@ export default new Vuex.Store({
     rejectedRestaurants: [], //thumbs-down restaurants
     restaurants: [],
     pendingInvites:[], 
+    eventRestaurants:[
+      {
+        voteCount: 0,
+        yelpRestaurantId: '',
+        eventId: Number,
+      }
+    ],
     inviteeLinks: [],
     invitees: [],
     yesList: [],
+    winningRestaurants: [],
     id:0,
-    eventRestaurant: {
-      yelpRestaurantId: '',
-      eventId: 0,
-      voteCount: 0
-    },
+    contenders:[],
+    // eventRestaurant: {
+    //   yelpRestaurantId: '',
+    //   eventId: 0,
+    //   voteCount: 0
+    // },
     winner: Object,
   },
   mutations: {
@@ -55,6 +64,8 @@ export default new Vuex.Store({
       state.restaurants = [];
       state.approvedRestaurants = [];
       state.rejectedRestaurants = [];
+      state.eventRestaurants = [];
+      state.winningRestaurants = [];
     },
     CLEAR_STATE_RESTAURANTS(state) {
       state.restaurants = [];
@@ -82,6 +93,12 @@ export default new Vuex.Store({
       });
       state.approvedRestaurants = temporaryYesList;
       state.restaurants.push(id);
+    },
+    ADD_WINNING_RESTAURANT(state, id) {
+      state.winningRestaurants.push(id);
+    },
+    ADD_RESTAURANT_CONTENDER(state, eventRestaurant) {
+      state.winningRestaurants.push(eventRestaurant);
     },
     REMOVE_RESTAURANT_ID(state, id) {
       let temporaryRestaurants = state.restaurants.filter((business) => {

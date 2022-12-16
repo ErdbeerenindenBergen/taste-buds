@@ -24,5 +24,9 @@ export default {
     
     getRestaurantRankedListByEventId(eventId) {
         return http.get(`/event/${eventId}/ranked-restaurants`)
+    },
+
+    getRestaurantById(yelpRestaurantId, eventId) {
+        return http.get(`/event/restaurant/${yelpRestaurantId}/${eventId}`)
     }
 }
