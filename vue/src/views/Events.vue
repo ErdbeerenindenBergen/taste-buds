@@ -186,8 +186,8 @@ export default {
 }
 
 .event-name-button {
-  background-color: white;
-  color: #a64d79ff;
+  background-color: rgb(236, 236, 236);
+  color: #666666;
   border: none;
   font-size: 30px;
   font-weight: bold;

@@ -9,7 +9,6 @@ export default {
         return http.get(`/find/${location}`)
     },
 
-
     collectRestaurantsForInvite(eventRestaurant) {
         return http.post('/restaurants/save', eventRestaurant)
     },

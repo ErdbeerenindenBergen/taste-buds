@@ -59,7 +59,7 @@
         races and finishes his work.<a
           class="linkedin"
           href="https://www.linkedin.com/in/matthew-reynolds-jsd/"
-          >Matthew's Linkedin.</a
+          >Matthew's Linkedin</a
         >
       </p>
     </div>
@@ -72,7 +72,7 @@
         Kevin makes delicious mac'n cheese, but don't ask him for his recipe he
         won't share it. Trust us, we have been asking for months.
         <a class="linkedin" href="https://www.linkedin.com/in/kapolinario/"
-          >Kevin's Linkedin.</a
+          >Kevin's Linkedin</a
         >
       </p>
     </div>
