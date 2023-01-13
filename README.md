@@ -53,7 +53,8 @@ We included an "About page" if you want to read more about our team.
 
 Finally, we ensured that our webpage was made mobile friendly. We also built all our CSS from scratch (without Bootstrap, Vuetify, etc.) so everything right down to the bars of the hamburger menu were hard-coded with care!
 
-<img width="294" alt="Screen Shot 2023-01-13 at 12 20 49 AM" src="https://user-images.githubusercontent.com/114823741/212243498-71af7b0d-db2d-46c8-9c0b-b00d20aebd1a.png">     <img width="319" alt="Screen Shot 2023-01-13 at 12 21 27 AM" src="https://user-images.githubusercontent.com/114823741/212243502-10208125-8fc7-43c2-ba56-b1d6078f22d5.png">    <img width="324" alt="Screen Shot 2023-01-13 at 12 23 30 AM" src="https://user-images.githubusercontent.com/114823741/212243710-ef932f8e-f4b1-41cd-b25a-c9e70324f0f2.png">
+
+<img width="319" alt="Screen Shot 2023-01-13 at 12 24 47 AM" src="https://user-images.githubusercontent.com/114823741/212243884-3d479baa-a7ae-4733-8b64-6f3aa49820db.png">     <img width="319" alt="Screen Shot 2023-01-13 at 12 21 27 AM" src="https://user-images.githubusercontent.com/114823741/212243502-10208125-8fc7-43c2-ba56-b1d6078f22d5.png">    <img width="324" alt="Screen Shot 2023-01-13 at 12 23 30 AM" src="https://user-images.githubusercontent.com/114823741/212243710-ef932f8e-f4b1-41cd-b25a-c9e70324f0f2.png">
 
 
 
