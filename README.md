@@ -15,16 +15,17 @@ If you do not have an account, you can make one:
 
 
 From there you can select whether to search for restaurants (and perhaps save some new favorites!) or to plan an event:
-<img width="900" alt="Screen Shot 2023-01-13 at 12 40 22 AM" src="https://user-images.githubusercontent.com/114823741/212245988-97104351-eece-437b-9d75-683c21daf59e.png">
+
 ​
 
 
 If you choose to search for restaurants, you may enter a city or a zipcode (the state is optional). Anytime restaurants are displayed in a list like below, individualized links will be included below the image that connect to the restaurant's yelp page and to it's google location via google maps, which is navigable. Additional information will be displayed on the right side of the image, including ratings, opening hours, etc. and a link to dial the number if you are viewing the page with a cellphone.
-<img width="997" alt="Screen Shot 2023-01-12 at 11 34 06 PM" src="https://user-images.githubusercontent.com/114823741/212241012-9d986953-5f87-4a82-912b-a4c8043eecd6.png">
+<img width="900" alt="Screen Shot 2023-01-13 at 12 40 22 AM" src="https://user-images.githubusercontent.com/114823741/212245988-97104351-eece-437b-9d75-683c21daf59e.png">
 ​
 
 
 If you choose to plan an event, you will be taken to the plan and event form page. Here you may toggle between three forms as you please. Your information is saved as you plan. You may not submit the form, however, until all required inputs are complete. Once all information is entered and you click submit, invitations will be emailed to your invitees.
+<img width="1012" alt="Screen Shot 2023-01-12 at 11 32 46 PM" src="https://user-images.githubusercontent.com/114823741/212246380-88cd644b-5156-437a-911f-13b46387f410.png">
 
 Step 1. Plan the date and time of your event and give a deadline for when your "buds" must respond to an invite.
 <img width="1012" alt="Screen Shot 2023-01-13 at 12 39 00 AM" src="https://user-images.githubusercontent.com/114823741/212246057-4d8abc81-d369-485b-a373-76bc23d3623d.png">
