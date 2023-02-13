@@ -4,9 +4,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-//Are we doing a ranking system?
-//KA - We may not need this class
-
 public class Voting {
 
     private String restaurantId;

@@ -5,11 +5,11 @@ public class Vote {
     //two booleans in case some restaurants are not voted on
     //if isApproved is true, tally is incremented by 1
     //if isApproved is false, nothing happens
-//    private boolean isApproved;
+//private boolean isApproved;
 
     //if isRejected is true, tally is decremented by 1
     //if isRejected is false, nothing happens
-//    private boolean isRejected;
+//private boolean isRejected;
 
     private String yelpRestaurantId;
     private int eventId;

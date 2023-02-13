@@ -31,17 +31,6 @@ public class YelpBusinessService implements IYelpBusinessService {
         return returnArray;
     }
 
-
-//    public List<Business> getBusinesses(String location) throws RestClientException {
-//        ResponseEntity<Businesses> response = restTemplate.exchange(API_BASE_URL + "businesses/search?location=" + location, HttpMethod.GET, makeAuthEntity(), Businesses.class);
-//        Businesses businesses = response.getBody();
-//        List<Business> returnArray = new ArrayList<>();
-//        for (Business business : businesses.getBusinesses()) {
-//            returnArray.add(business);
-//        }
-//        return returnArray;
-//    }
-
     public Business getBusinessById(String id) throws RestClientException {
         Business business = null;
         business = restTemplate.exchange(API_BASE_URL + "/businesses/" + id, HttpMethod.GET, makeAuthEntity(), Business.class).getBody();
