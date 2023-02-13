@@ -138,11 +138,17 @@ export default {
   },
    created() {
     this.userId = this.$store.state.user.id;
-    // this.restaurantWinner({...this.business.yelpRestaurantId});
     this.winningRestaurants = this.$store.state.winningRestaurants;
     this.isRestaurantWinner({...this.business});
    },
   methods: {
+    isRestaurantWinner(business) {
+      if (this.$store.state.winningRestaurants.includes(business)) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     ifRestaurant5(rating){
       if (rating === 5) {
         return true;
@@ -226,25 +232,7 @@ export default {
       $loggedIn = true;
     } return $loggedIn;  
   },
-    isRestaurantWinner(business) {
-      // this.$store.state.winningRestaurants.forEach((restaurant) => {
-      //   if (id === restaurant.id) {
-      //     this.isWinner === true;
-      //   }
-      // })
-      if (this.$store.state.winningRestaurants.includes(business)) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    // restaurantWinner(id) {
-    //   if (id === this.$store.state.winner) {
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // }
+
   },
 }
 

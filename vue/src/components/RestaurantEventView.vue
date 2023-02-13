@@ -204,11 +204,11 @@ export default {
     //   })
     // },
     addToInvitees() {
-      this.invitees.push({ ...this.invitation }); //learned about this really cool thing called the "spread operator" or "..." which makes a clone of input and therefore freezes it in time basically
+      this.invitees.push({ ...this.invitation }); 
       //resetForm;
       let target = document.getElementById("invitee-input");
       target.value = "";
-      // console.log(this.invitation);
+      //console.log(this.invitation);
     },
     userIsLoggedIn() {
       let $loggedIn = false;
