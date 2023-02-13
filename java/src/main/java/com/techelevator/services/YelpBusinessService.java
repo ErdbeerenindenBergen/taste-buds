@@ -17,8 +17,8 @@ public class YelpBusinessService implements IYelpBusinessService {
     private static final String API_BASE_URL = "https://api.yelp.com/v3/";
     private static final String API_KEY = "hto3PV1EXx4TD_iY6As5CyQaC60ijHyngfYUU-m681CcCjY6rpnHFxkDu5yNcLfzuLpTXotEhZFpEC-LW6xHZBqisku5OxCpq_VSDC2uA3BGej0nanDtkQQH3OOMY3Yx";
     private RestTemplate restTemplate = new RestTemplate();
-    private final int TOTAL_BUSINESSES_LIMIT = 40;
 
+    //receives list of restaurants from YelpFusionAPI based on location entered
     public List<Business> getBusinesses(String location) throws RestClientException {
         ResponseEntity<Businesses> response = restTemplate.exchange(API_BASE_URL + "businesses/search?location=" + location, HttpMethod.GET, makeAuthEntity(), Businesses.class);
         Businesses businesses = response.getBody();
@@ -31,12 +31,15 @@ public class YelpBusinessService implements IYelpBusinessService {
         return returnArray;
     }
 
+    //retrieves individual restaurant info from YelpFusionAPI
     public Business getBusinessById(String id) throws RestClientException {
         Business business = null;
         business = restTemplate.exchange(API_BASE_URL + "/businesses/" + id, HttpMethod.GET, makeAuthEntity(), Business.class).getBody();
         return business;
     }
 
+    //receives list of voted-on restaurants from front-end
+    //retrieves restaurant info from YelpFusionAPI, sets vote count for each restaurant
     public List<Business> getBusinessesByYelpRestaurantId(List<EventRestaurant> eventRestaurants) throws RestClientException {
         List<Business> returnedBusinesses = new ArrayList<>();
         Business business = null;
